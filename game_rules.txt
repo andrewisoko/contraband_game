@@ -1,0 +1,22 @@
+1.   Southern and Northen Team
+2.  Default characters abilities 5 for each teams
+3.  Smuglers and inspectors
+4.  After one turn, teams swith roles. 2 turns = 1 game.
+5.  The entire round is completed after 50 games.
+6.  Smuglers have 300 milions in the opposing country, the goal is to get it back.
+7.  The smugglers is allowed to carry around 0 to 100 milion in one turn
+8.  The money smuggled by the smuggler will go to the smuggler bank account outside the country.
+7.  The inspector's job is to prevent the smuggling will occur.
+8.  If inspector suspect a smuggling is occuring he should declare doubt with the alleged amount.
+9.  When declaring doubt half of the amount declared will be taken as a security.
+10. The security is taken from the inspector's bank account in the outside country.
+11. Each player has 100 milion in their personal account outside the country.
+12. You cannot declared doubt if any amount that requires security of more than it is in his/her outside bank account.
+13. If amount declared is equal or exceeds the actual amount being smuggled the inspector wins. the money will go to the inspector bank account.
+14. If doubt is declared but no money is found the security amount will go to the smuggler's outside bank account.
+15. If declared amount is less than the actuall amount thr smuggler wins 
+16. If inspector determines that no money is going to be smuggled he should declare pass
+17. If pass is declared but there is money, the smuggler wins 
+18. The team with the highest amount wins the game
+19. Any leftovers that have not being smuggle will go to the opponents team and splitt equally among the 5 players.
+20. After that each player will have their initial 400 million deducted from their bsank account and their remaining value will become the prize money.
