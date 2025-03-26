@@ -1,6 +1,7 @@
 
 import string
 import random
+import json
 
 
 class SignUpProcess:
@@ -9,7 +10,7 @@ class SignUpProcess:
 
   def __init__ (self):
     
-    self.user_accounts_history_list = []
+    # self.user_accounts_history_list = []
     self.name = None
     self.surname = None
     self.email_address = None
@@ -17,7 +18,22 @@ class SignUpProcess:
     self.code = None
     
     
-  
+  def json_append_data(self):
+      
+      """Add dictionary in the json file"""
+      
+      with open ("json_user_data","a") as file:
+        json.dump(self.user_dict,file)
+    
+    
+  def json_read_data(self,file_name) -> str:
+    
+      """Reads the json file"""
+    
+      with open (file_name,"r") as file:
+        return json.load(file)
+        
+
     
   def sign_up(self) -> str:
     
@@ -34,7 +50,7 @@ class SignUpProcess:
           
         if "@" in self.email_address and "." in self.email_address: # Checking requirements needed for an email
           
-          print("account created")
+          print("Succesful sign up")
           break
         
         else:
@@ -48,20 +64,22 @@ class SignUpProcess:
       """Data where each user generated credentials are stored"""
       
       
-      user_dict = {"nickname": self.nickname,
+      self.user_dict = {"nickname": self.nickname,
                   "code": self.code,
                   "email": self.email_address,
                   }
-      self.user_accounts_history_list.append(user_dict)
-      print("Data inserted on database")
-   
     
+      # print("Data inserted on database")
+     
+
     
   def game_generated_credentials(self) -> str:
     
         """Generating nickname and code for each user."""  
+        
+        self.Json_data  = self.json_read_data("json_user_data")
     
-        if self.email_address != None and self.email_address in self.user_accounts_history_list:
+        if self.email_address != None and self.email_address in self.Json_data:
     
             print("Account already exists") # preventing creation of multiple accounts
     
@@ -110,6 +128,8 @@ class SignUpProcess:
               if nickname == self.nickname and code == self.code:
               
                 print(f"{nickname} and {code} accepted")
+                print("ACCOUNT CREATED")
+                
                 break
               
               if nickname == "skip" and code == 'skip':
@@ -143,13 +163,38 @@ class SignUpProcess:
           self.dict_credentials()
           self.sign_in()
           
-          print(self.user_accounts_history_list)
+          self.json_append_data()
           
         elif additional_player == "N":
-          print("Only 1 player logged in")
+          
+            self.json_append_data()
+            
+            print("Only 1 player logged in")
         
         else:
-         print("invalid character")
+          
+          while True:
+            
+            try_again_invalid_char = input("invalid character, try again: ")
+            
+            if try_again_invalid_char == "S":
+              print("Character now accepted")
+            
+            
+              self.sign_up()
+              self.game_generated_credentials() 
+              self.dict_credentials()
+              self.sign_in()
+              
+              self.json_append_data()
+              break 
+            
+            elif try_again_invalid_char == "N":
+              
+              self.json_append_data()
+              
+              print("Only 1 player logged in")
+              break
         
   
 
