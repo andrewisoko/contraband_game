@@ -1,13 +1,14 @@
 import json
 
 
-# def load_json_data(file_path):
-#     with open(file_path, 'r') as file:
-#         return json.load(file)
-    
+new_data = {"name": "Charlie", "age": 22}
 
-# # Usage
-# data = load_json_data('json_user_data')
+with open('json_user_data', 'r') as file:
+    data = json.load(file)
 
-# print(data)
+data.append(new_data)
 
+with open('json_user_data', 'w') as file:
+    json.dump(data, file, indent=4)
+
+print("Data appended successfully!")

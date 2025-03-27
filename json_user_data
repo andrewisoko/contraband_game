@@ -1,16 +1,7 @@
-
-{
-    "cred1": [ 
+[
     {
-        "nickname": "nickname",
+        "Nickname": "Nickname",
         "code": "code",
         "email": "email"
-    },
-    {
-        "nickname": "nickname2",
-        "code": "code2",
-        "email": "email2"
     }
- ]
-
-}
+]

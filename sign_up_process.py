@@ -20,19 +20,25 @@ class SignUpProcess:
     
   def json_append_data(self):
       
-      """Add dictionary in the json file"""
+      """Append gamer credentials' dictionary in the json file"""
       
-      with open ("json_user_data","a") as file:
-        json.dump(self.user_dict,file)
+      with open ("json_user_data","r") as file:
+         self.data_history_to_append = json.load(file)
+      
+      self.data_history_to_append.append(self.user_dict)
+         
+      with open ("json_user_data","w") as file:
+        return json.dump(self.data_history_to_append,file, indent=4)
     
     
-  def json_read_data(self,file_name) -> str:
+  def json_read_data(self,filename):
     
-      """Reads the json file"""
+      """Reads the gamer credentials' dictionary"""
     
-      with open (file_name,"r") as file:
-        return json.load(file)
-        
+      with open (filename,"r") as file:
+         self.read_data_history = json.load(file)
+         return self.read_data_history
+         
 
     
   def sign_up(self) -> str:
@@ -47,6 +53,7 @@ class SignUpProcess:
       while True:
         
         self.email_address = input("email: ")
+        
           
         if "@" in self.email_address and "." in self.email_address: # Checking requirements needed for an email
           
@@ -59,7 +66,7 @@ class SignUpProcess:
     
            
     
-  def dict_credentials(self) -> dict: 
+  def dict_credentials(self) -> str: 
         
       """Data where each user generated credentials are stored"""
       
@@ -69,7 +76,7 @@ class SignUpProcess:
                   "email": self.email_address,
                   }
     
-      # print("Data inserted on database")
+      print("Data inserted on database")
      
 
     
@@ -77,9 +84,11 @@ class SignUpProcess:
     
         """Generating nickname and code for each user."""  
         
-        self.Json_data  = self.json_read_data("json_user_data")
+        game_hist_data_instance = self.json_read_data("json_user_data")
+        
     
-        if self.email_address != None and self.email_address in self.Json_data:
+        if self.email_address != None and self.email_address in game_hist_data_instance:
+          
     
             print("Account already exists") # preventing creation of multiple accounts
     
@@ -149,8 +158,6 @@ class SignUpProcess:
         
         self.game_generated_credentials()  
         
-        self.dict_credentials()
-        
         self.sign_in()
         
         
@@ -160,14 +167,15 @@ class SignUpProcess:
           
           self.sign_up()
           self.game_generated_credentials() 
-          self.dict_credentials()
           self.sign_in()
           
-          self.json_append_data()
+          self.dict_credentials()
+          print(self.json_append_data())
           
         elif additional_player == "N":
           
-            self.json_append_data()
+            self.dict_credentials()
+            print(self.json_append_data())
             
             print("Only 1 player logged in")
         
@@ -183,15 +191,16 @@ class SignUpProcess:
             
               self.sign_up()
               self.game_generated_credentials() 
-              self.dict_credentials()
               self.sign_in()
               
-              self.json_append_data()
+              self.dict_credentials()
+              print(self.json_append_data())
               break 
             
             elif try_again_invalid_char == "N":
               
-              self.json_append_data()
+              self.dict_credentials()
+              print(self.json_append_data())
               
               print("Only 1 player logged in")
               break
