@@ -10,7 +10,8 @@ class SignUpProcess:
 
   def __init__ (self):
     
-    # self.user_accounts_history_list = []
+    self.json_value_validation = True
+    self.values_from_json_list = []
     self.name = None
     self.surname = None
     self.email_address = None
@@ -25,20 +26,43 @@ class SignUpProcess:
       with open ("json_user_data","r") as file:
          self.data_history_to_append = json.load(file)
       
-      self.data_history_to_append.append(self.user_dict)
+      self.data_history_to_append.append(self.user_dict) # the dictionary comes from the dict credential function 
          
       with open ("json_user_data","w") as file:
         return json.dump(self.data_history_to_append,file, indent=4)
     
     
-  def json_read_data(self,filename):
+  def json_read_data(self,filename) ->list:
     
       """Reads the gamer credentials' dictionary"""
     
       with open (filename,"r") as file:
-         self.read_data_history = json.load(file)
-         return self.read_data_history
-         
+         return json.load(file) # returns a list object
+       
+      
+      
+       
+  def json_account_check_process(self):
+    
+    """Checks if value is in the json dictionary"""
+    
+    read_data_for_signin = self.json_read_data("json_user_data")   
+      
+    for dictionaries in read_data_for_signin:
+      for values in dictionaries.values():
+            
+        self.values_from_json_list.append(values)
+      
+    if self.nickname_signin in self.values_from_json_list and self.code_signin in self.values_from_json_list:
+       self.json_value_validation = False
+       print("Credentials present on database")
+        
+    else:
+      print("Incorrect credentials")
+     
+       
+          
+    
 
     
   def sign_up(self) -> str:
@@ -121,31 +145,33 @@ class SignUpProcess:
       
         """Login for user after obtained the game credentials"""
         
-
-        if self.name == None and self.surname == None and self.email_address == None:
-            
-            print("User credentials missing, your game credentials have not been generated")
-        
-        else:
-            
-            while True:
-              
-              print("Insert 'skip' on both nickname and code if convenient to skip.") 
-              nickname = input("Nickname: ")
-              code = input("code: ")
-              
-              if nickname == self.nickname and code == self.code:
-              
-                print(f"{nickname} and {code} accepted")
-                print("ACCOUNT CREATED")
-                
-                break
-              
-              if nickname == "skip" and code == 'skip':
-                break
+        while self.json_value_validation:
           
-              else:
-                  print("Incorrect gamer credentials")
+          
+          print("Insert 'skip' on both nickname and code if convenient to skip.") 
+          self.nickname_signin = input("Nickname: ")
+          self.code_signin = input("code: ")
+          
+          
+          try:
+            
+            self.json_account_check_process()
+            
+            if self.nickname_signin in self.nickname and self.code_signin in self.code:
+              
+            
+              print(f"{self.nickname_signin} and {self.code_signin} accepted")
+              print("ACCOUNT CREATED")
+              break
+            
+          except:
+            pass
+            
+          if self.nickname_signin == "skip" and self.code_signin == 'skip':
+            break
+      
+          else:
+            pass
                 
           
          
@@ -157,8 +183,8 @@ class SignUpProcess:
         self.sign_up() # sign up first gamer
         
         self.game_generated_credentials()  
-        
-        self.sign_in()
+        self.dict_credentials()
+        print(self.json_append_data())
         
         
         additional_player = input("to join a second gamer press S otherwise press N: ")  # sign up second player
@@ -167,7 +193,6 @@ class SignUpProcess:
           
           self.sign_up()
           self.game_generated_credentials() 
-          self.sign_in()
           
           self.dict_credentials()
           print(self.json_append_data())
@@ -191,17 +216,13 @@ class SignUpProcess:
             
               self.sign_up()
               self.game_generated_credentials() 
-              self.sign_in()
               
               self.dict_credentials()
               print(self.json_append_data())
               break 
             
             elif try_again_invalid_char == "N":
-              
-              self.dict_credentials()
-              print(self.json_append_data())
-              
+            
               print("Only 1 player logged in")
               break
         
@@ -209,12 +230,4 @@ class SignUpProcess:
 
 
 
-  def main_signin_process(self):
-        
-        """Log in process, remember your gaming credentials"""
-        
-        try:
-          self.sign_in()
-        except:
-          print("Login process invalid")
     
