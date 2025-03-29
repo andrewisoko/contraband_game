@@ -49,16 +49,22 @@ class SignUpProcess:
     read_data_for_signin = self.json_read_data("json_user_data")   
       
     for dictionaries in read_data_for_signin:
-      for values in dictionaries.values():
+      for values in dictionaries.values(): 
             
         self.values_from_json_list.append(values)
       
     if self.nickname_signin in self.values_from_json_list and self.code_signin in self.values_from_json_list:
-       self.json_value_validation = False
-       print("Credentials present on database")
+   
+        index1 = self.values_from_json_list.index(self.nickname_signin) 
+        index2 = self.values_from_json_list.index(self.code_signin)
         
-    else:
-      print("Incorrect credentials")
+        if index1 + 1 == index2: # This will avoid accessing the game with credentials deriving from two different account but still present in the json list
+          
+          self.json_value_validation = False # Stopping the while self.json_value_validation in sign in.
+          print("Credentials present on database")
+        
+        else:
+          print("Incorrect credentials")
      
        
           
