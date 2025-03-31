@@ -4,10 +4,14 @@
         "code": "code",
         "email": "email"
     },
-    
     {
         "Nickname": "Nickname1",
         "code": "code1",
         "email": "email1"
+    },
+    {
+        "Nickname": "Nickname2",
+        "code": "code2",
+        "email": "email2"
     }
 ]

@@ -1,11 +1,20 @@
 from sign_up_process import SignUpProcess
+from teams import Teams
+
 
 test = SignUpProcess()
 
-quick_start = input("SIng up = S / log in = L: ")
+quick_start = input("Sign up = S / log in = L: ")
+
 
 if quick_start == "S":
  test.main_signup_process()
  
 elif quick_start == "L":
-   test.sign_in()
+   test.main_sign_in_process()
+   
+   
+players = Teams(test)
+players.player_data(test.nickname_signin) #not working
+print(players.player_generator())
+

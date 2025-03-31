@@ -153,7 +153,6 @@ class SignUpProcess:
         
         while self.json_value_validation:
           
-          
           print("Insert 'skip' on both nickname and code if convenient to skip.") 
           self.nickname_signin = input("Nickname: ")
           self.code_signin = input("code: ")
@@ -167,7 +166,8 @@ class SignUpProcess:
               
             
               print(f"{self.nickname_signin} and {self.code_signin} accepted")
-              print("ACCOUNT CREATED")
+              print("ACCOUNT CREATED")   
+              
               break
             
           except:
@@ -184,7 +184,7 @@ class SignUpProcess:
     
   def main_signup_process(self):
         
-        """Sign up function that summarises all the sign up process, from sign up to log in"""
+        """Sign up function that summarises all the sign up process"""
     
         self.sign_up() # sign up first gamer
         
@@ -229,10 +229,37 @@ class SignUpProcess:
             
             elif try_again_invalid_char == "N":
             
-              print("Only 1 player logged in")
+              print("Only 1 account generated")
               break
         
+
+  def main_sign_in_process(self):
+    
+    """Sign up function that summarises all the sign up process"""
+    
   
+    self.sign_in()
+    
+    try:
+      
+      second_sign_in = int(input("Insert 2 to sign up another player else Insert 0: "))
+      
+      if second_sign_in == 0:
+        
+        print("only one player in the game")
+        
+      elif second_sign_in == 2:
+        
+        self.json_value_validation = True # needed to be added since after the first call of the functions the boolian turns in False.
+        self.sign_in()
+   
+    
+    except:
+        print("I Know it sounds frustrating, please restart the log in process.")
+      
+      
+      
+
 
 
 
