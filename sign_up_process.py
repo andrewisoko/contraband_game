@@ -19,17 +19,21 @@ class SignUpProcess:
     self.code = None
     
     
-  def json_append_data(self):
+  def json_append_data(self,filename,*args):
       
       """Append gamer credentials' dictionary in the json file"""
       
-      with open ("json_user_data","r") as file:
-         self.data_history_to_append = json.load(file)
-      
-      self.data_history_to_append.append(self.user_dict) # the dictionary comes from the dict credential function 
+      with open (filename,"r") as file:
+         self.data_to_append = json.load(file) # Json list instance
          
-      with open ("json_user_data","w") as file:
-        return json.dump(self.data_history_to_append,file, indent=4)
+      if self.name is None and self.surname is None: # This is uselful to append any other object beside self.user dict in a json file.
+        for arg in args:
+            self.data_to_append.append(arg) 
+      else:
+       self.data_to_append.append(self.user_dict) # The dictionary comes from the dict credential function 
+         
+      with open (filename,"w") as file:
+        return json.dump(self.data_to_append,file, indent=4)
     
     
   def json_read_data(self,filename) ->list:
@@ -190,7 +194,7 @@ class SignUpProcess:
         
         self.game_generated_credentials()  
         self.dict_credentials()
-        print(self.json_append_data())
+        print(self.json_append_data("json_user_data"))
         
         
         additional_player = input("to join a second gamer press S otherwise press N: ")  # sign up second player
@@ -204,9 +208,6 @@ class SignUpProcess:
           print(self.json_append_data())
           
         elif additional_player == "N":
-          
-            self.dict_credentials()
-            print(self.json_append_data())
             
             print("Only 1 player logged in")
         
@@ -230,15 +231,18 @@ class SignUpProcess:
             elif try_again_invalid_char == "N":
             
               print("Only 1 account generated")
+     
               break
         
 
+ 
   def main_sign_in_process(self):
     
     """Sign up function that summarises all the sign up process"""
     
   
     self.sign_in()
+    self.json_append_data("players.json",{"Nickname": self.nickname_signin})
     
     try:
       
@@ -252,11 +256,19 @@ class SignUpProcess:
         
         self.json_value_validation = True # needed to be added since after the first call of the functions the boolian turns in False.
         self.sign_in()
-   
+        self.json_append_data("players.json",{"Nickname": self.nickname_signin})
+        
     
     except:
         print("I Know it sounds frustrating, please restart the log in process.")
       
+      
+      
+
+
+
+
+    
       
       
 

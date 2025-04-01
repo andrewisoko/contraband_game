@@ -6,8 +6,7 @@ test = SignUpProcess()
 
 quick_start = input("Sign up = S / log in = L: ")
 
-
-if quick_start == "S":
+if quick_start == "S":  
  test.main_signup_process()
  
 elif quick_start == "L":
@@ -15,6 +14,6 @@ elif quick_start == "L":
    
    
 players = Teams(test)
-players.player_data(test.nickname_signin) #not working
 print(players.player_generator())
+
 

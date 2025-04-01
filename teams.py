@@ -16,41 +16,25 @@ class Teams:
   def __init__(self,sign_in: SignUpProcess):
     self.sign_in = sign_in
     
-  def player_data(self, nickname):
-    
-    """Store temporary sign-in data"""
-    self._current_signin = nickname
-    
   def player_generator(self):
-    """Assign sign-in data to player slots"""
-    if not self._current_signin:
-        return "No sign-in data"
-        
-    if  hasattr(self, 'player1') and not self.player1:  # First player assignment
-        self.player1 = self._current_signin
-        self._current_signin = None  # Clear temporary storage
-        return f"Player1: {self.player1}"
-        
-    if hasattr(self, 'player2') and not self.player2 and self._current_signin != self.player1:  # Second player assignment
-        self.player2 = self._current_signin
-        self._current_signin = None  # Clear temporary storage
-        
-        return f"Player1: {self.player1} and player2: {self.player2}"
-
     
-
-     
+     with open ( "players.json","r") as file:
+         self. player_json_list = json.load(file) # Json list instance
+       
+         player_list_values= [player_nickname for dictionaries in self.player_json_list for player_nickname in dictionaries.values()]
+         
+         self.player1 = player_list_values[-1]
       
-    
-    # with open ("json_user_data" ,"r") as file:
-    #   self.json_user_data_instance = json.load(file)
-      
-    #   json_list_values = [json_val for dicts in self.json_user_data_instance for json_val in dicts.values()]
-    
-    
-    
-    
-      
+       
+         if self.player1 is not None:
+         
+           self.player1 = player_list_values[-2]
+           self.player2 = player_list_values[-1]
+           
+           return f"player one {self.player1} and player two {self.player2}"
+         
+         else:
+           return self.player1
     
   
   def Southern_team(self):
