@@ -1,34 +1,25 @@
 import json
 
 
-import json
+# team_instance.display_players()
 
-def player_generator():
-    with open("players.json", "r") as file:
-        player_json_list = json.load(file)
+#   def player_generator(self):
     
-    player_list_values = [list(dictionaries.values())[0] for dictionaries in player_json_list]
+#      with open ( "players.json","r") as file:
+#          self. player_json_list = json.load(file) # Json list instance
+       
+#          player_list_values= [player_nickname for dictionaries in self.player_json_list for player_nickname in dictionaries.values()]
+         
+#          self.player1 = player_list_values[-1]
+      
+       
+#          if self.player1 is not None:
+         
+#            self.player1 = player_list_values[-2]
+#            self.player2 = player_list_values[-1]
+           
+#            return f"player one {self.player1} and player two {self.player2}"
+         
+#          else:
+#            return self.player1
     
-    # Remove "player0" if it exists
-    if player_list_values and player_list_values[0] == "player0":
-        player_list_values.pop(0)
-    
-    players = {
-        "Andrew": "",
-        "Kesler": "",
-        "Utomi": "",
-        "Eddy": ""
-    }
-    
-    player_names = list(players.keys())
-    
-    for i, value in enumerate(player_list_values[:4]):
-        players[player_names[i]] = value
-    
-    return players
-
-# Example usage
-assigned_players = player_generator()
-for player, value in assigned_players.items():
-    print(f"{player} = {value}")
-

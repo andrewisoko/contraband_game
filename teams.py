@@ -5,37 +5,39 @@ from sign_up_process import *
 
 class Teams:
   
+  
+  
   def __init__(self):
     
-    self.player1 = None
-    self.player2 = None
-    self.float_player = None
-    
+      self.player1 = None
+      self.player2 = None
+      self.player3 = None
+      self.player4 = None
     
     
   def __init__(self,sign_in: SignUpProcess):
-    self.sign_in = sign_in
+      self.sign_in = sign_in
     
   def player_generator(self):
     
-     with open ( "players.json","r") as file:
-         self. player_json_list = json.load(file) # Json list instance
-       
-         player_list_values= [player_nickname for dictionaries in self.player_json_list for player_nickname in dictionaries.values()]
-         
-         self.player1 = player_list_values[-1]
+      """Dinamically assign players values"""
+
+      with open("players.json", "r") as file:
+          self.player_json_list = json.load(file) # Read Json file
       
-       
-         if self.player1 is not None:
-         
-           self.player1 = player_list_values[-2]
-           self.player2 = player_list_values[-1]
-           
-           return f"player one {self.player1} and player two {self.player2}"
-         
-         else:
-           return self.player1
+      self.player_list_values = [player_nickname for dictionaries in self.player_json_list for player_nickname in dictionaries.values()] # Appending json values on a list
+      
     
+      if self.player_list_values[0] == "player0": # Remove "player0" if it exists
+          self.player_list_values.pop(0) 
+      
+      
+      for index_list_value, value in enumerate(self.player_list_values[:4]): # Creating an index paired with a value for the first 4 items in the list
+          setattr(self, f"player{index_list_value + 1}", value) # Assigning values to initialised instance attribute matched with index of list item.
+      
+      return f"final resume player1: {self.player1}, player2: {self.player2}, player3: {self.player3}, player4: {self.player4}"
+
+
   
   def Southern_team(self):
     

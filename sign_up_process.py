@@ -240,28 +240,31 @@ class SignUpProcess:
     
     """Sign up function that summarises all the sign up process"""
     
-  
+    count_players  = 3 
+    
     self.sign_in()
     self.json_append_data("players.json",{"Nickname": self.nickname_signin})
     
-    try:
+    while count_players > 0:
       
-      second_sign_in = int(input("Insert 2 to sign up another player else Insert 0: "))
+      try:
+        
+        second_sign_in = int(input("Insert 2 to sign up another player else Insert 0: "))
+        
+        if second_sign_in == 0:
+          print("only one player in the game")
+          break
+          
+        elif second_sign_in == 2:
+          
+          self.json_value_validation = True # needed to be added since after the first call of the functions the boolian turns in False.
+          self.sign_in()
+          self.json_append_data("players.json",{"Nickname": self.nickname_signin})
+          count_players -= 1
       
-      if second_sign_in == 0:
+      except:
+          print("I Know it sounds frustrating, please restart the log in process.")
         
-        print("only one player in the game")
-        
-      elif second_sign_in == 2:
-        
-        self.json_value_validation = True # needed to be added since after the first call of the functions the boolian turns in False.
-        self.sign_in()
-        self.json_append_data("players.json",{"Nickname": self.nickname_signin})
-        
-    
-    except:
-        print("I Know it sounds frustrating, please restart the log in process.")
-      
       
       
 
