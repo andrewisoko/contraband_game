@@ -14,5 +14,8 @@ elif quick_start == "L":
    
    players = Teams(test)
    print(players.player_generator())
+   
+   print(players.Southern_team())
+   print(players.Northern_team())
 
 
