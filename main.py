@@ -12,8 +12,7 @@ if quick_start == "S":
 elif quick_start == "L":
    test.main_sign_in_process()
    
-   
-players = Teams(test)
-print(players.player_generator())
+   players = Teams(test)
+   print(players.player_generator())
 
 
