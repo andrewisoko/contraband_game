@@ -11,7 +11,6 @@ class SignUpProcess:
   def __init__ (self):
     
     self.json_value_validation = True
-    self.values_from_json_list = []
     self.name = None
     self.surname = None
     self.email_address = None
@@ -19,29 +18,35 @@ class SignUpProcess:
     self.code = None
     
     
+    
   def json_append_data(self,filename,*args):
       
       """Append gamer credentials' dictionary in the json file"""
       
       with open (filename,"r") as file:
-         self.data_to_append = json.load(file) # Json list instance
-         
-      if self.name is None and self.surname is None: # This is uselful to append any other object beside self.user dict in a json file.
+        # Json list object
+         self.data_to_append = json.load(file) 
+      
+      # This is uselful to append any other object beside self.user dict in a json file.   
+      if self.name is None and self.surname is None: 
         for arg in args:
             self.data_to_append.append(arg) 
       else:
-       self.data_to_append.append(self.user_dict) # The dictionary comes from the dict credential function 
+       # The dictionary comes from the dict credential function 
+       self.data_to_append.append(self.user_dict) 
          
       with open (filename,"w") as file:
         return json.dump(self.data_to_append,file, indent=4)
     
     
+    
   def json_read_data(self,filename) ->list:
     
-      """Reads the gamer credentials' dictionary"""
+      """Reads list from json files"""
     
       with open (filename,"r") as file:
-         return json.load(file) # returns a list object
+         # returns a list object
+         return json.load(file) 
        
       
       
@@ -50,26 +55,34 @@ class SignUpProcess:
     
     """Checks if value is in the json dictionary"""
     
-    read_data_for_signin = self.json_read_data("json_user_data")   
+    read_data_for_signin = self.json_read_data("json_user_data")  
+    read_data_for_players = self.json_read_data("players.json")
+       
+    # list containing all the values from the json_user_data's dictionary
+    self.json_user_data_list = [values for dictionaries in read_data_for_signin for values in dictionaries.values()] 
+    # List containing all the values from players.json's dictionary
+    self.players_json_list = [value_players for dictionaries_players in read_data_for_players for value_players in dictionaries_players.values()] 
+    
+    # Check if nickname has been already in the player.json file in order to avoid multiple sign in with the same gamer credentials.
+    if self.nickname_signin in self.players_json_list:
+      print("player already generated")
       
-    for dictionaries in read_data_for_signin:
-      for values in dictionaries.values(): 
-            
-        self.values_from_json_list.append(values)
+    else:
       
-    if self.nickname_signin in self.values_from_json_list and self.code_signin in self.values_from_json_list:
-   
-        index1 = self.values_from_json_list.index(self.nickname_signin) 
-        index2 = self.values_from_json_list.index(self.code_signin)
-        
-        if index1 + 1 == index2: # This will avoid accessing the game with credentials deriving from two different account but still present in the json list
+      if self.nickname_signin in self.json_user_data_list and self.code_signin in self.json_user_data_list:
+    
+          index1 = self.json_user_data_list.index(self.nickname_signin) 
+          index2 = self.json_user_data_list.index(self.code_signin)
           
-          self.json_value_validation = False # Stopping the while self.json_value_validation in sign in.
-          print("Credentials present on database")
-        
-        else:
-          print("Incorrect credentials")
-     
+          # This will avoid accessing the game with credentials deriving from two different account but still present in the json list
+          if index1 + 1 == index2: 
+          # Stopping the while self.json_value_validation in sign in.
+            self.json_value_validation = False
+            print("Credentials present on database")
+            
+          else:
+            print("Incorrect credentials")
+      
        
           
     
@@ -88,9 +101,8 @@ class SignUpProcess:
         
         self.email_address = input("email: ")
         
-          
-        if "@" in self.email_address and "." in self.email_address: # Checking requirements needed for an email
-          
+         # Checking requirements needed for an email 
+        if "@" in self.email_address and "." in self.email_address:
           print("Succesful sign up")
           break
         
@@ -123,8 +135,8 @@ class SignUpProcess:
     
         if self.email_address != None and self.email_address in game_hist_data_instance:
           
-    
-            print("Account already exists") # preventing creation of multiple accounts
+            # preventing creation of multiple accounts
+            print("Account already exists")
     
         else:
     
@@ -164,8 +176,10 @@ class SignUpProcess:
           
           try:
             
+            # Checking if gamer credentials are in the json_user_data file, avoiding access with nickname and code from two different game credentials in the json file etc...
             self.json_account_check_process()
             
+            # this is an additional layer (probably redundant)
             if self.nickname_signin in self.nickname and self.code_signin in self.code:
               
             
@@ -189,15 +203,18 @@ class SignUpProcess:
   def main_signup_process(self):
         
         """Sign up function that summarises all the sign up process"""
-    
-        self.sign_up() # sign up first gamer
+        
+        
+        # sign up first gamer.
+        self.sign_up() 
         
         self.game_generated_credentials()  
         self.dict_credentials()
-        print(self.json_append_data("json_user_data"))
+        # Adding dict_credentials in the json_user_data file.
+        self.json_append_data("json_user_data")
         
-        
-        additional_player = input("to join a second gamer press S otherwise press N: ")  # sign up second player
+        # sign up second player.
+        additional_player = input("to join a second gamer press S otherwise press N: ")  
       
         if additional_player == "S":
           
@@ -205,7 +222,7 @@ class SignUpProcess:
           self.game_generated_credentials() 
           
           self.dict_credentials()
-          print(self.json_append_data())
+          self.json_append_data("json_user_data")
           
         elif additional_player == "N":
             
@@ -225,7 +242,7 @@ class SignUpProcess:
               self.game_generated_credentials() 
               
               self.dict_credentials()
-              print(self.json_append_data())
+              self.json_append_data("json_user_data")
               break 
             
             elif try_again_invalid_char == "N":
@@ -240,9 +257,12 @@ class SignUpProcess:
     
     """Sign up function that summarises all the sign up process"""
     
+    # Used to multiple log in requests. Maximum 4 players.
     count_players  = 3 
     
     self.sign_in()
+    
+    # Unlike the sign up this will grab the user nickname data for then store it in a json file
     self.json_append_data("players.json",{"Nickname": self.nickname_signin})
     
     while count_players > 0:
@@ -252,12 +272,12 @@ class SignUpProcess:
         second_sign_in = int(input("Insert 2 to sign up another player else Insert 0: "))
         
         if second_sign_in == 0:
-          print("only one player in the game")
           break
           
         elif second_sign_in == 2:
           
-          self.json_value_validation = True # needed to be added since after the first call of the functions the boolian turns in False.
+           # Needed to be added since after the first call of the functions the boolian turns in False.
+          self.json_value_validation = True
           self.sign_in()
           self.json_append_data("players.json",{"Nickname": self.nickname_signin})
           count_players -= 1

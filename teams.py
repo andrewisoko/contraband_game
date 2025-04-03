@@ -23,19 +23,23 @@ class Teams:
       """Dinamically assign players values"""
 
       with open("players.json", "r") as file:
-          self.player_json_list = json.load(file) # Read Json file
-      
+          # Read Json file
+          self.player_json_list = json.load(file) 
+          
+      # A list of values from the players.json's dictionaries
       self.player_list_values = [player_nickname for dictionaries in self.player_json_list for player_nickname in dictionaries.values()] # Appending json values on a list
       
-    
-      if self.player_list_values[0] == "player0": # Remove "player0" if it exists
+      # Remove "player0" if it exists
+      if self.player_list_values[0] == "player0": 
           self.player_list_values.pop(0) 
       
+      # Creating an index paired with a value for the first 4 items in the list
+      for index_list_value, value in enumerate(self.player_list_values[:4]): 
+          
+           # Assigning values to initialised instance attribute matched with index of list item.
+          setattr(self, f"player{index_list_value + 1}", value)
       
-      for index_list_value, value in enumerate(self.player_list_values[:4]): # Creating an index paired with a value for the first 4 items in the list
-          setattr(self, f"player{index_list_value + 1}", value) # Assigning values to initialised instance attribute matched with index of list item.
-      
-      return f"final resume player1: {self.player1}, player2: {self.player2}, player3: {self.player3}, player4: {self.player4}"
+      return "Player/s in the game :)"
 
 
   
@@ -69,5 +73,3 @@ class Teams:
     return random.choice(team2_list)
   
   
-# teams = Teams()
-# teams.player_generator()
