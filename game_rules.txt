@@ -1,22 +1,54 @@
-1.   Southern and Northen Team
-2.  Default characters abilities 5 for each teams
-3.  Smuglers and inspectors
-4.  After one turn, teams swith roles. 2 turns = 1 game.
-5.  The entire round is completed after 50 games.
-6.  Smuglers have 300 milions in the opposing country, the goal is to get it back.
-7.  The smugglers is allowed to carry around 0 to 100 milion in one turn
-8.  The money smuggled by the smuggler will go to the smuggler bank account outside the country.
-7.  The inspector's job is to prevent the smuggling will occur.
-8.  If inspector suspect a smuggling is occuring he should declare doubt with the alleged amount.
-9.  When declaring doubt half of the amount declared will be taken as a security.
-10. The security is taken from the inspector's bank account in the outside country.
-11. Each player has 100 milion in their personal account outside the country.
-12. You cannot declared doubt if any amount that requires security of more than it is in his/her outside bank account.
-13. If amount declared is equal or exceeds the actual amount being smuggled the inspector wins. the money will go to the inspector bank account.
-14. If doubt is declared but no money is found the security amount will go to the smuggler's outside bank account.
-15. If declared amount is less than the actuall amount thr smuggler wins 
-16. If inspector determines that no money is going to be smuggled he should declare pass
-17. If pass is declared but there is money, the smuggler wins 
-18. The team with the highest amount wins the game
-19. Any leftovers that have not being smuggle will go to the opponents team and splitt equally among the 5 players.
-20. After that each player will have their initial 400 million deducted from their bsank account and their remaining value will become the prize money.
+The Rules of the Contraband Game
+1. General Rules
+
+    1.1 The Contraband Game is team-based.
+
+        1.1.1 There are two teams, called the "Northern" and "Southern" countries.
+
+        1.1.1.1 Each team is comprised of 9 players.
+
+    1.2 Each team will elect one smuggler and one inspector. The smuggler attempts to pass his or her money over the border, while the inspector's job is to prevent that from happening.
+
+        1.2.1 After one turn, the teams switch their respective roles. Two turns make one game.
+
+        1.2.2 The entire round is complete after a total of 50 games have passed.
+
+2. Smuggling and Bank Accounts
+
+    2.1 Each smuggler has a bank account of 300 million yen in the opposing country, and their goal is to get it back.
+
+    2.2 A smuggler is allowed to carry anywhere from 0 to 100 million yen in one turn.
+
+        2.2.1 All of the money that is successfully smuggled out will be transferred to the smuggler's bank account in an outside country.
+
+3. Inspector’s Role and Doubt Mechanism
+
+    3.1 The inspector’s job is to examine the smuggler to determine if smuggling is taking place, and if so, prevent it.
+
+        3.1.1 If the inspector suspects smuggling is taking place, he or she should declare "doubt," along with the estimated amount.
+
+            3.1.1.1 The moment the inspector does so, half of the amount declared will be taken as security.
+
+            3.1.1.2 The security is taken from the inspector’s bank account in the outside country.
+
+            3.1.1.3 To have enough funds to cover such securities, each player already has 200 million yen in a personal bank account outside the country.
+
+            3.1.1.4 An inspector cannot declare doubt on any amount that requires a security of more than what is in his or her outside bank account.
+
+    3.2 If the amount declared matches or exceeds the amount being smuggled, the inspector wins and the smuggling attempt is thwarted. The money the smuggler was carrying is instead deposited into the inspector’s outside bank account. The security initially taken is also returned to the account.
+
+        3.2.1 If doubt is declared, but the smuggler is not carrying any money (the scenario with 0 yen), the security is given to the smuggler and placed into their outside bank account.
+
+        3.2.2 If the declared amount is less than the amount being carried, the smuggler wins and all of the money is placed into their outside bank account. The security also becomes theirs and is likewise added to the account.
+
+        3.2.3 If the inspector determines that no money is being smuggled, he or she should declare "pass."
+
+            3.2.3.1 However, if pass is declared and the smuggler is carrying money, the sum automatically goes to his or her outside bank account.
+
+4. Winning Conditions
+
+    4.1 Victory is determined by the sum of the entire team's individual bank accounts outside the country at the end of the round. The team with the higher sum is the winner.
+
+    4.2 Any leftover money that was not smuggled goes to the opponents’ team and is divided equally among the entire team’s 9 members.
+
+    4.3 After that, each player's outside bank account will have the initial 400 million yen loaned to them deducted, and the remaining value will become his or her prize money.

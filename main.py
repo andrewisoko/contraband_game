@@ -12,10 +12,10 @@ if quick_start == "S":
 elif quick_start == "L":
    test.main_sign_in_process()
    
-   players = Teams(test)
-   print(players.player_generator())
+   teams = Teams(test)
+   print(teams.player_generator())
    
-   print(players.Southern_team())
-   print(players.Northern_team())
+   print(teams.Southern_team())
+   print(teams.Northern_team())
 
 
