@@ -42,7 +42,7 @@ class Teams:
 
 
   
-  def Southern_team_players(self) -> str:
+  def southern_team_players(self) -> str:
     
     """Southern team, it will return a random player of this team."""
        
@@ -60,12 +60,12 @@ class Teams:
         team1_list.append(self.player3)
     
   
-    print(random.choice(team1_list))
+    return random.choice(team1_list)
 
 
 
   
-  def Northern_team_players(self) -> str:
+  def northern_team_players(self) -> str:
      
     """Northern team, it will return a random player of this team."""
      
@@ -83,6 +83,7 @@ class Teams:
         team2_list.append(self.player4)
         
 
-    print(random.choice(team2_list))
+    
+    return random.choice(team2_list)
   
   

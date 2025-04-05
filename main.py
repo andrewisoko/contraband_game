@@ -13,11 +13,17 @@ if quick_start == "S":
 elif quick_start == "L":
    test.main_sign_in_process()
    
-   teams = Teams(test)
-   print(teams.player_generator())
-   teams.Southern_team_players()
-   teams.Northern_team_players()
-   
+   teams_instance = Teams(test)
+   teams_instance.player_generator()
+
+   game_settings_instance = GameSettings(teams_instance)
+   game_settings_instance.assign_roles()
+
+   print(f"The Smuggler is: {game_settings_instance.smuggler}")
+   print(f"The Inspector is: {game_settings_instance.inspector}")
+
+   game_settings_instance.the_smuggler()
+   game_settings_instance.the_inspector()
    
 
 
