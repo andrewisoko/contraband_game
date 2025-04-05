@@ -1,5 +1,6 @@
 from sign_up_process import SignUpProcess
 from teams import Teams
+from game_settings import GameSettings
 
 
 test = SignUpProcess()
@@ -14,8 +15,9 @@ elif quick_start == "L":
    
    teams = Teams(test)
    print(teams.player_generator())
+   teams.Southern_team_players()
+   teams.Northern_team_players()
    
-   print(teams.Southern_team())
-   print(teams.Northern_team())
+   
 
 

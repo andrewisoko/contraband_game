@@ -1,26 +1,43 @@
 import json
 
+   # def Northen_team_options(self):
+        
+    #     self.northen_player = self.teams.Northern_team_players()
+    #     self.northen_inspection_process = self.The_inspector()
+    #     self.northen_smuggler_attempt = self.The_smuggler()
+        
+        
+    # def Southern_team_options(self):
+        
+    #     self.southern_player = self.teams.Southern_team_players()
+    #     self.southern_inspector = self.The_inspector()
+    #     self.southern_smuggle_attempt = self.The_smuggler() 
+     
+              
+                      
 
-# team_instance.display_players()
-
-#   def player_generator(self):
-    
-#      with open ( "players.json","r") as file:
-#          self. player_json_list = json.load(file) # Json list instance
-       
-#          player_list_values= [player_nickname for dictionaries in self.player_json_list for player_nickname in dictionaries.values()]
-         
-#          self.player1 = player_list_values[-1]
-      
-       
-#          if self.player1 is not None:
-         
-#            self.player1 = player_list_values[-2]
-#            self.player2 = player_list_values[-1]
-           
-#            return f"player one {self.player1} and player two {self.player2}"
-         
-#          else:
-#            return self.player1
-    
+    # def games(self):
+        
+    #     """General game setting"""
+        
+    #     for self.game in range(6,0,-1):
+            
+    #         print(f" {self.southern_player} from the SOUTHERN TEAM. It's your turn to smuggle")
+    #         print(self.southern_smuggle_attempt)
+            
+    #         print(f"{self.northen_player} from the THE NORTHEN TEAM. it's your turn to inspect")
+    #         print(self.northen_inspection_process)
+            
+    #         print(f"{self.game - 1} game(s) remaining.\n")
+             
+    #         print(f"{self.northen_player} from the SOUTHERN TEAM. It's your turn to smuggle")
+    #         print(self.northen_smuggler_attempt)
+            
+    #         print(f"{self.southern_player}  from the THE NORTHEN TEAM. it's your turn to inspect")
+    #         print(self.southern_inspector)
+            
+    #         print(f"{self.game - 1} game(s) remaining.\n")
+     
+            
+    #     print("Game Over!")
     
