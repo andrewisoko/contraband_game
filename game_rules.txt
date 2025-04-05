@@ -5,7 +5,7 @@ The Rules of the Contraband Game
 
         1.1.1 There are two teams, called the "Northern" and "Southern" countries.
 
-        1.1.1.1 Each team is comprised of 9 players.
+        1.1.1.1 Each team is comprised of 9 players. (5 modified)
 
     1.2 Each team will elect one smuggler and one inspector. The smuggler attempts to pass his or her money over the border, while the inspector's job is to prevent that from happening.
 
@@ -49,6 +49,6 @@ The Rules of the Contraband Game
 
     4.1 Victory is determined by the sum of the entire team's individual bank accounts outside the country at the end of the round. The team with the higher sum is the winner.
 
-    4.2 Any leftover money that was not smuggled goes to the opponents’ team and is divided equally among the entire team’s 9 members.
+    4.2 Any leftover money that was not smuggled goes to the opponents’ team and is divided equally among the entire team’s 9 members (5 members).
 
     4.3 After that, each player's outside bank account will have the initial 400 million yen loaned to them deducted, and the remaining value will become his or her prize money.
