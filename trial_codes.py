@@ -47,17 +47,45 @@
     # sort random players decision 
     # sort out comments
     
-import random
+# import random
 
-mylist = ["banana", "cherry"]
-previous = None
+# southern_player = "Southside"
+# northern_player = "Northside"
 
-for _ in range(5):
-    random.shuffle(mylist)
-    while mylist[0] == previous:  # Ensure first element is different
-        random.shuffle(mylist)
-    previous = mylist[0]
-    print(mylist)
+# mylist = ["Smuggler", "Inspector"]
+# previous = None
+
+# for _ in range(10):
     
-   
-   
+#     while mylist[0] == previous:  # Ensure first element is different
+#         random.shuffle(mylist)
+#         if mylist[0] == "Smuggler":
+                
+#             smuggler = southern_player
+#             inspector = northern_player
+#             print(smuggler)
+            
+#         else:
+#             smuggler = northern_player
+#             inspector = southern_player
+#             print(smuggler)
+            
+#     previous = mylist[0]
+    
+#     print(mylist)
+
+ 
+southern_player = "South"
+northern_player = "North"
+previous_player = northern_player
+
+for _ in range(10):
+            
+    smuggler = northern_player if previous_player == southern_player else southern_player
+    inspector = northern_player if smuggler == southern_player else southern_player
+    previous_player = southern_player if previous_player == northern_player else northern_player
+    
+    print(f"The Smuggler is: {smuggler} and the inspector is: {inspector}")
+ 
+
+    

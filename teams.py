@@ -15,6 +15,7 @@ class Teams:
       self.player3 = None
       self.player4 = None
    
+   
     
   def player_generator(self):
     
@@ -83,7 +84,6 @@ class Teams:
         team2_list.append(self.player4)
         
 
-    
     return random.choice(team2_list)
   
   

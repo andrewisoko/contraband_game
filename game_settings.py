@@ -12,38 +12,32 @@ class GameSettings:
         self.teams = teams
         self.smuggling_amount = None
         self.inspector = None
+        self.smuggler = None
         self.security_amount = None
         self.game = None
        
        
        
-    def assign_roles(self):
-        """Assign roles (Smuggler and Inspector) to players"""
+   
+      
         
-        # Returning string names of players
+    def assign_roles(self):
+        
+        """Assign roles (Smuggler and Inspector) to players"""
         southern_player = self.teams.southern_team_players()
         northern_player = self.teams.northern_team_players()
+        previous_player = northern_player
 
-        # Randomly assign roles
-        roles = ["Smuggler", "Inspector"]
-        previous = None
+        for _ in range(10):
+            # Update previous player first
+            previous_player = southern_player if previous_player == northern_player else northern_player
+            
+            # Assign roles based on updated previous player
+            self.smuggler = northern_player if previous_player == southern_player else southern_player
+            self.inspector = northern_player if self.smuggler == southern_player else southern_player
+
         
-        for game_turns in range(6):
-            random.shuffle(roles) #Ins
-            
-            while roles[0] == previous:
-                random.shuffle(roles)
-            
-                if roles[0] == "Smuggler":
-                    
-                    self.smuggler = southern_player
-                    self.inspector = northern_player
-                else:
-                    self.smuggler = northern_player
-                    self.inspector = southern_player
-            
-            previous = roles[0] 
-            
+
     
     
     def doubt_declaration(self):

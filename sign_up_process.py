@@ -278,6 +278,7 @@ class SignUpProcess:
           
            # Needed to be added since after the first call of the functions the boolian turns in False.
           self.json_value_validation = True
+          # Print statement occurring.
           self.sign_in()
           self.json_append_data("players.json",{"Nickname": self.nickname_signin})
           count_players -= 1
