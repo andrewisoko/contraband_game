@@ -28,15 +28,18 @@ class GameSettings:
         northern_player = self.teams.northern_team_players()
         previous_player = northern_player
 
-        for _ in range(10):
+        for _ in range(4):
             # Update previous player first
             previous_player = southern_player if previous_player == northern_player else northern_player
             
             # Assign roles based on updated previous player
             self.smuggler = northern_player if previous_player == southern_player else southern_player
             self.inspector = northern_player if self.smuggler == southern_player else southern_player
+            
+            print(f"The Smuggler is: {self.smuggler}")
+            print(f"The Inspector is: {self.inspector}")
+            
 
-        
 
     
     
@@ -130,16 +133,14 @@ class GameSettings:
     
         """General game setting"""
             
-        for self.game in range(6,0,-1):
+        for self.game in range(4,0,-1):
             
             teams_instance = Teams(logged_in_players)
             teams_instance.player_generator()
 
             game_settings_instance = GameSettings(teams_instance)
             game_settings_instance.assign_roles()
-
-            print(f"The Smuggler is: {game_settings_instance.smuggler}")
-            print(f"The Inspector is: {game_settings_instance.inspector}")
+            
 
             game_settings_instance.the_smuggler()
             game_settings_instance.the_inspector()
