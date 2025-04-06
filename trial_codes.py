@@ -1,4 +1,4 @@
-import json
+# import json
 
    # def Northen_team_options(self):
         
@@ -41,3 +41,23 @@ import json
             
     #     print("Game Over!")
     
+    
+    # sort out turn in games ✅
+    # sort turn switch.
+    # sort random players decision 
+    # sort out comments
+    
+import random
+
+mylist = ["banana", "cherry"]
+previous = None
+
+for _ in range(5):
+    random.shuffle(mylist)
+    while mylist[0] == previous:  # Ensure first element is different
+        random.shuffle(mylist)
+    previous = mylist[0]
+    print(mylist)
+    
+   
+   

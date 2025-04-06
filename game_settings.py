@@ -1,6 +1,8 @@
 from teams import Teams
 from getpass import getpass
 import random
+from sign_up_process import SignUpProcess
+
 
 class GameSettings:
     
@@ -18,21 +20,30 @@ class GameSettings:
     def assign_roles(self):
         """Assign roles (Smuggler and Inspector) to players"""
         
+        # Returning string names of players
         southern_player = self.teams.southern_team_players()
         northern_player = self.teams.northern_team_players()
 
         # Randomly assign roles
         roles = ["Smuggler", "Inspector"]
-        random.shuffle(roles)
-
-        if roles[0] == "Smuggler":
-            
-            self.smuggler = southern_player
-            self.inspector = northern_player
-        else:
-            self.smuggler = northern_player
-            self.inspector = southern_player
+        previous = None
         
+        for game_turns in range(6):
+            random.shuffle(roles) #Ins
+            
+            while roles[0] == previous:
+                random.shuffle(roles)
+            
+                if roles[0] == "Smuggler":
+                    
+                    self.smuggler = southern_player
+                    self.inspector = northern_player
+                else:
+                    self.smuggler = northern_player
+                    self.inspector = southern_player
+            
+            previous = roles[0] 
+            
     
     
     def doubt_declaration(self):
@@ -45,7 +56,7 @@ class GameSettings:
                 self.statement_amount = int(input("AMOUNT: "))
                 self.security_amount = self.statement_amount / 2
                 
-                if self.statement_amount < 100_000_000 and self.statement_amount.is_integer():
+                if self.statement_amount <= 100_000_000 and self.statement_amount.is_integer():
                     break
                 else:
                     print("Invalid amount")
@@ -118,14 +129,40 @@ class GameSettings:
                     print("Invalid amount. Please try again.")
             except:
                 print("Invalid input. Please enter a numeric value.")
+                
+                
  
-       
+    def games(self,logged_in_players):
+    
+        """General game setting"""
+            
+        for self.game in range(6,0,-1):
+            
+            teams_instance = Teams(logged_in_players)
+            teams_instance.player_generator()
+
+            game_settings_instance = GameSettings(teams_instance)
+            game_settings_instance.assign_roles()
+
+            print(f"The Smuggler is: {game_settings_instance.smuggler}")
+            print(f"The Inspector is: {game_settings_instance.inspector}")
+
+            game_settings_instance.the_smuggler()
+            game_settings_instance.the_inspector()
+            
+            print(f"{self.game - 1} game(s) remaining.\n")
+        
+        
+        print("Game Over!")
+    
 
     
            
   
            
                 
+logged_in_players = SignUpProcess().main_sign_in_process()
+teams = Teams(logged_in_players)
 
-# game_test = GameSettings()
-# game_test.games()
+game_test = GameSettings(teams)
+game_test.games(logged_in_players)
