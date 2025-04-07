@@ -42,11 +42,6 @@
     #     print("Game Over!")
     
     
-    # sort out turn in games ✅
-    # sort turn switch.
-    # sort random players decision 
-    # sort out comments
-    
 # import random
 
 # southern_player = "Southside"
@@ -79,14 +74,19 @@ southern_player = "South"
 northern_player = "North"
 previous_player = northern_player
 
-# for _ in range(5):
+for _ in range(5):
             
-smuggler = northern_player if previous_player == southern_player else southern_player 
-inspector = northern_player if smuggler == southern_player else southern_player
-previous_player = southern_player if previous_player == northern_player else northern_player
+    smuggler = northern_player if previous_player == southern_player else southern_player 
+    inspector = northern_player if smuggler == southern_player else southern_player
+    previous_player = southern_player if previous_player == northern_player else northern_player
 
 print(f"The Smuggler is: {smuggler} and the inspector is: {inspector}")
- 
 
- #1 loop: smuggler = South, inspector = North , previous_player = South
- #2 loop: smuggler = North, inspector = South , previous_player = North
+
+    # sort out turn in games ✅
+    # sort turn switch. ✅
+    # sort random players decision 
+    # sort out comments
+    # sort out your test.py
+    
+    

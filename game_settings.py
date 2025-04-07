@@ -18,27 +18,6 @@ class GameSettings:
        
        
        
-   
-      
-        
-    def assign_roles(self):
-        
-        """Assign roles (Smuggler and Inspector) to players"""
-        southern_player = self.teams.southern_team_players()
-        northern_player = self.teams.northern_team_players()
-        previous_player = northern_player
-
-        for _ in range(4):
-            # Update previous player first
-            previous_player = southern_player if previous_player == northern_player else northern_player
-            
-            # Assign roles based on updated previous player
-            self.smuggler = northern_player if previous_player == southern_player else southern_player
-            self.inspector = northern_player if self.smuggler == southern_player else southern_player
-            
-            print(f"The Smuggler is: {self.smuggler}")
-            print(f"The Inspector is: {self.inspector}")
-            
 
 
     
@@ -133,15 +112,30 @@ class GameSettings:
     
         """General game setting"""
             
-        for self.game in range(4,0,-1):
+        for self.game in range(2,0,-1):
             
             teams_instance = Teams(logged_in_players)
             teams_instance.player_generator()
 
             game_settings_instance = GameSettings(teams_instance)
-            game_settings_instance.assign_roles()
+    
+            game_settings_instance.smuggler = teams_instance.southern_team_players()
+            print(f" the smuggler of the Southern team is: {game_settings_instance.smuggler}")
             
-
+            game_settings_instance.inspector = teams_instance.northern_team_players()
+            print(f" the inspector of the Northern team is: { game_settings_instance.inspector}")
+            
+            game_settings_instance.the_smuggler()
+            game_settings_instance.the_inspector()
+            
+            print(f"{self.game - 1} game(s) remaining.\n")
+            
+            game_settings_instance.smuggler = teams_instance.northern_team_players()
+            print(f" the smuggler of the Northern team is { game_settings_instance.smuggler}")
+            
+            game_settings_instance.inspector = teams_instance.southern_team_players()
+            print(f" the inspector of the Southern team is: { game_settings_instance.inspector}")
+            
             game_settings_instance.the_smuggler()
             game_settings_instance.the_inspector()
             
@@ -150,10 +144,6 @@ class GameSettings:
         
         print("Game Over!")
     
-
-    
-           
-  
            
                 
 logged_in_players = SignUpProcess().main_sign_in_process()
