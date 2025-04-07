@@ -36,6 +36,7 @@ class SignUpProcess:
        self.data_to_append.append(self.user_dict) 
          
       with open (filename,"w") as file:
+        # Writing the new data in the json file once it has been appended with the variable instance of the json list
         return json.dump(self.data_to_append,file, indent=4)
     
     
@@ -43,7 +44,8 @@ class SignUpProcess:
   def json_read_data(self,filename) ->list:
     
       """Reads list from json files"""
-    
+      
+      #reads a json file
       with open (filename,"r") as file:
          # returns a list object
          return json.load(file) 
@@ -54,7 +56,7 @@ class SignUpProcess:
   def json_account_check_process(self):
     
     """Checks if value is in the json dictionary"""
-    
+    # these ojects are simply representing a list of the json data so its like object = [json data]
     read_data_for_signin = self.json_read_data("json_user_data")  
     read_data_for_players = self.json_read_data("players.json")
        
@@ -76,7 +78,7 @@ class SignUpProcess:
           
           # This will avoid accessing the game with credentials deriving from two different account but still present in the json list
           if index1 + 1 == index2: 
-          # Stopping the while self.json_value_validation in sign in.
+          # Stopping the while self.json_value_validation in sign in if condition are met.
             self.json_value_validation = False
             print("Credentials present on database")
             
@@ -99,6 +101,7 @@ class SignUpProcess:
       
       while True:
         
+        # Email in a while loop in case it doesn't match requirements
         self.email_address = input("email: ")
         
          # Checking requirements needed for an email 
@@ -130,30 +133,38 @@ class SignUpProcess:
     
         """Generating nickname and code for each user."""  
         
-        game_hist_data_instance = self.json_read_data("json_user_data")
+        game_list_data_instance = self.json_read_data("json_user_data")
         
-    
-        if self.email_address != None and self.email_address in game_hist_data_instance:
+        # Instead of checking name and surname that might be homonym, this checks if email is already in the json list suggesting a creation of a previous account.
+        if self.email_address != None and self.email_address in game_list_data_instance:
           
             # preventing creation of multiple accounts
             print("Account already exists")
     
         else:
-    
+            # Nickname contains the first three character of a name and the rest is made by the entire surname.
             self.nickname = self.name[0:3] + self.surname  
 
-    
+            # this contains all the upper case letters
             letters_uppercase = string.ascii_uppercase
+            
+            # this tuple contains lower case, punctuations and numbers.
             my_tuppy = (string.ascii_lowercase,string.punctuation,string.digits)
-
+            
+            # mergin the upper case letters with the rest of the tuple
             code_chars = letters_uppercase.join(my_tuppy)
-
+            
+            # accessing each character in the list
             list_char = [char for char in code_chars]
+            
+            # shuffling the list
             random.shuffle(list_char)
+            
             empty = ""
-
+             # merging the empty string with the tuple (of the list) to have an array of random characters
             code_string = empty.join(tuple(list_char))
             
+            # the code is made by the first 18 random characters.
             self.code = code_string[0:18]
             
         
@@ -167,6 +178,8 @@ class SignUpProcess:
       
         """Login for user after obtained the game credentials"""
         
+        
+        # the instance variable comes from json_check_account_process
         while self.json_value_validation:
           
           print("Insert 'skip' on both nickname and code if convenient to skip.") 
@@ -208,7 +221,10 @@ class SignUpProcess:
         # sign up first gamer.
         self.sign_up() 
         
+        # creating the gamer credentials needed to access the game.
         self.game_generated_credentials()  
+        
+        # creating the dictionary which will be passed as an argument in the json_append_data function.
         self.dict_credentials()
         # Adding dict_credentials in the json_user_data file.
         self.json_append_data("json_user_data")
@@ -276,10 +292,11 @@ class SignUpProcess:
           
         elif second_sign_in == 2:
           
-           # Needed to be added since after the first call of the functions the boolian turns in False.
+          # Needed to be added since after the first call of the functions the boolian variable turns in returnd false.
           self.json_value_validation = True
           # Print statement occurring.
           self.sign_in()
+          # Unlike the sign up process in this case the function will not append a dixtionary therefore the argument is needed.
           self.json_append_data("players.json",{"Nickname": self.nickname_signin})
           count_players -= 1
       
