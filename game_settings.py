@@ -2,6 +2,7 @@ from teams import Teams
 from getpass import getpass
 import random
 from sign_up_process import SignUpProcess
+import time
 
 
 class GameSettings:
@@ -15,7 +16,7 @@ class GameSettings:
         self.smuggler = None
         self.security_amount = None
         self.game = None
-       
+        
        
        
 
@@ -29,15 +30,27 @@ class GameSettings:
         while True:
              
             try:
-                self.statement_amount = int(input("AMOUNT: "))
-                # the security amount is equal to half of the statement amount. this gets temporary withdrawn from the inspector outside bank account, and given to the smuggler certain circumstances.
-                
-                self.security_amount = self.statement_amount / 2
-                # the statement amount shoudn't exceed 100milion since that is the limit of the money allowed inside the trunk.
-                if self.statement_amount <= 100_000_000 and self.statement_amount.is_integer():
+                # If it's the default player turn a random statement amount will be generated.
+                if self.smuggler != self.teams.player1 and self.smuggler != self.teams.player2 and self.smuggler != self.teams.player3 and self.smuggler != self.teams.player4:
+                    self.statement_amount = int(random.randrange(1,100_000_000))
+                    
+                    # Some suspance on the decision.
+                    time.sleep(15)
+                    print(f"the inspector declared the amount is equal to {self.smuggling_amount}£ inside the trunk")
                     break
                 else:
-                    print("Invalid amount")
+                    self.statement_amount = int(input("AMOUNT: "))
+                    
+                    print(f"the inspector declared the amount is equal to {self.smuggling_amount}£ inside the trunk")
+                    
+                    # the security amount is equal to half of the statement amount. this gets temporary withdrawn from the inspector outside bank account, and given to the smuggler certain circumstances.
+                    self.security_amount = self.statement_amount / 2
+                    
+                    # the statement amount shoudn't exceed 100milion since that is the limit of the money allowed inside the trunk.
+                    if self.statement_amount <= 100_000_000 and self.statement_amount.is_integer():
+                        break
+                    else:
+                        print("Invalid amount")
             except:
                 print("Invalid input. Please enter a numeric value.")
                 
@@ -77,22 +90,42 @@ class GameSettings:
         
         """Inspector's action"""
         
-        while True:
+        default_player_choice = ["PASS","DOuBT"]
         
-            self.inspector_action = input(f"{self.inspector} insert PASS if you believe the smuggler is carrying no money. Insert DOUBT if you believe money are carried by the smuggler: ")
+        while True:
+            
+            # The if statement gives all the delfault players in the game a option between pass and doubt.
+            if self.inspector != self.teams.player1 and self.inspector != self.teams.player2 and self.inspector != self.teams.player3 and self.inspector != self.teams.player4 :
+                self.inspector_action = random.choice(default_player_choice)
+        
+                
+                # slowing down the pace of the output
+                time.sleep(15)
+                print("Call PASS if you believe the smuggler is carrying no money. Insert DOUBT if you believe money are carried by the smuggler")
+                
+                # Adding a bit of suspance before the decision.
+                time.sleep(5)
+                print(self.inspector_action)  
+                break
+               
+            else:
+                # Otherwise the the user/player inserts the key words.
+                self.inspector_action = input(f"{self.inspector} insert PASS if you believe the smuggler is carrying no money. Insert DOUBT if you believe money are carried by the smuggler: ")
+                # SORT OUT THIS IF STATEMENT LOGIC
             
             if self.inspector_action == "PASS":
+                time.sleep(5)
                 self.pass_declaration()
                 break
                 
             elif self.inspector_action == "DOUBT":
+                time.sleep(5)
                 self.doubt_declaration()
                 break
             
             else:
                 print("Invalid input. Please try again")
-   
-   
+
    
    
     def the_smuggler(self):
@@ -101,18 +134,31 @@ class GameSettings:
         
         while True: 
             try:
-                # the getpass method is needed to hide the amount placed in the trunk by the smuggler
-                self.smuggling_amount = int(getpass(f"{self.smuggler} place your amount in the trunk. The max is 100,000,000 £: "))
-                
-                # the amount in the trunk has to be 100 million £ maximum
-                if self.smuggling_amount <= 100_000_000 and self.smuggling_amount.is_integer():
-                    print(f" {self.smuggler} smuggler turn is over")
-                    break  
+                # The if statement declares that every non user/player place their amount with the random function.
+                if self.smuggler != self.teams.player1 and self.smuggler != self.teams.player2 and self.smuggler != self.teams.player3 and self.smuggler != self.teams.player4:
+                    self.smuggling_amount = int(random.randrange(1,100_000_000))
+                    
+                    # delayed output to make it more fluid
+                    time.sleep(10)
+                    
+                    # The print statement masks the smuggling amount of the default player
+                    print( "*" * len("maskednumber"))
+                    print(f" {self.smuggler}'s turn is over")
+                    break
+        
                 else:
-                    print("Invalid amount. Please try again.")
+                # the getpass method is needed to hide the amount placed in the trunk by the smuggler.
+                    self.smuggling_amount = int(getpass(f"{self.smuggler} place your amount in the trunk. The max is 100,000,000 £: "))
+                    
+                    # the amount in the trunk has to be 100 million £ maximum
+                    if self.smuggling_amount <= 100_000_000 and self.smuggling_amount.is_integer():
+                        print(f" {self.smuggler} turn is over")
+                        break  
+                    else:
+                        print("Invalid amount. Please try again.")
             except:
                 print("Invalid input. Please enter a numeric value.")
-                
+            
                 
  
     def games(self,countries_players):
@@ -133,10 +179,10 @@ class GameSettings:
             
             # Initialising the class on the instance variable which will generate a random player from the southern country. Now the instance variable will have the same value throughout the all functions of the class if present in the following call of a function.
             game_settings_instance.smuggler = teams_instance.southern_country_players()
-            print(f" the smuggler of the Southern team is: {game_settings_instance.smuggler}")
+            print(f" The smuggler of the Southern team is: {game_settings_instance.smuggler}")
             
             game_settings_instance.inspector = teams_instance.northern_country_players()
-            print(f" the inspector of the Northern team is: { game_settings_instance.inspector}")
+            print(f" The inspector of the Northern team is: { game_settings_instance.inspector}")
             
             game_settings_instance.the_smuggler()
             game_settings_instance.the_inspector()

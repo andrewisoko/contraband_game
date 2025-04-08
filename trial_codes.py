@@ -1,5 +1,7 @@
 # import json
 
+import random
+
    # def Northen_team_options(self):
         
     #     self.northen_player = self.teams.Northern_team_players()
@@ -70,17 +72,17 @@
 #     print(mylist)
 
  
-southern_player = "South"
-northern_player = "North"
-previous_player = northern_player
+# southern_player = "South"
+# northern_player = "North"
+# previous_player = northern_player
 
-for _ in range(5):
+# for _ in range(5):
             
-    smuggler = northern_player if previous_player == southern_player else southern_player 
-    inspector = northern_player if smuggler == southern_player else southern_player
-    previous_player = southern_player if previous_player == northern_player else northern_player
+#     smuggler = northern_player if previous_player == southern_player else southern_player 
+#     inspector = northern_player if smuggler == southern_player else southern_player
+#     previous_player = southern_player if previous_player == northern_player else northern_player
 
-print(f"The Smuggler is: {smuggler} and the inspector is: {inspector}")
+# print(f"The Smuggler is: {smuggler} and the inspector is: {inspector}")
 
 
     # sort out turn in games ✅
@@ -88,5 +90,4 @@ print(f"The Smuggler is: {smuggler} and the inspector is: {inspector}")
     # sort random players decision 
     # sort out comments
     # sort out your test.py
-    
-    
+
