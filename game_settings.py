@@ -90,28 +90,26 @@ class GameSettings:
         
         """Inspector's action"""
         
-        default_player_choice = ["PASS","DOuBT"]
-        
-        while True:
+        default_player_choice = ["PASS","DOUBT"]
             
-            # The if statement gives all the delfault players in the game a option between pass and doubt.
-            if self.inspector != self.teams.player1 and self.inspector != self.teams.player2 and self.inspector != self.teams.player3 and self.inspector != self.teams.player4 :
-                self.inspector_action = random.choice(default_player_choice)
-        
-                
-                # slowing down the pace of the output
-                time.sleep(15)
-                print("Call PASS if you believe the smuggler is carrying no money. Insert DOUBT if you believe money are carried by the smuggler")
-                
-                # Adding a bit of suspance before the decision.
-                time.sleep(5)
-                print(self.inspector_action)  
-                break
-               
-            else:
-                # Otherwise the the user/player inserts the key words.
-                self.inspector_action = input(f"{self.inspector} insert PASS if you believe the smuggler is carrying no money. Insert DOUBT if you believe money are carried by the smuggler: ")
-                # SORT OUT THIS IF STATEMENT LOGIC
+        # The if statement gives all the delfault players in the game a option between pass and doubt.
+        if self.inspector != self.teams.player1 and self.inspector != self.teams.player2 and self.inspector != self.teams.player3 and self.inspector != self.teams.player4 :
+            self.inspector_action = random.choice(default_player_choice)
+    
+            
+            # slowing down the pace of the output
+            time.sleep(15)
+            print("Call PASS if you believe the smuggler is carrying no money. Insert DOUBT if you believe money are carried by the smuggler")
+            
+            # Adding a bit of suspance before the decision.
+            time.sleep(5)
+            print(self.inspector_action) 
+        else:
+            # Otherwise the the user/player inserts the key words.
+            self.inspector_action = input(f"{self.inspector} insert PASS if you believe the smuggler is carrying no money. Insert DOUBT if you believe money are carried by the smuggler: ")
+            # SORT OUT THIS IF STATEMENT LOGIC
+    
+        while True:
             
             if self.inspector_action == "PASS":
                 time.sleep(5)
@@ -124,7 +122,8 @@ class GameSettings:
                 break
             
             else:
-                print("Invalid input. Please try again")
+                self.inspector_action = input("Invalid input. Please try again:  ")
+                print(self.inspector_action)
 
    
    
@@ -188,7 +187,7 @@ class GameSettings:
             game_settings_instance.the_inspector()
             
             # Updates the loop
-            print(f"{self.game - 1} game(s) remaining.\n")
+            print(f"{self.game - 0.5} game(s) remaining.\n")
             
             game_settings_instance.smuggler = teams_instance.northern_country_players()
             print(f" the smuggler of the Northern team is { game_settings_instance.smuggler}")
@@ -199,7 +198,7 @@ class GameSettings:
             game_settings_instance.the_smuggler()
             game_settings_instance.the_inspector()
             
-            print(f"{self.game - 1} game(s) remaining.\n")
+            print(f"{self.game - 0.5} game(s) remaining.\n")
         
         
         print("Game Over!")
