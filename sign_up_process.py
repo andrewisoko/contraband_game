@@ -248,24 +248,26 @@ class SignUpProcess:
           
           while True:
             
-            try_again_invalid_char = input("invalid character, try again: ")
+            additional_player = input("please try again: ")
             
-            if try_again_invalid_char == "S":
-              print("Character now accepted")
+            # try_again_invalid_char = input("invalid character, try again: ")
+            
+            # if try_again_invalid_char == "S":
+            #   print("Character now accepted")
             
             
-              self.sign_up()
-              self.game_generated_credentials() 
+            #   self.sign_up()
+            #   self.game_generated_credentials() 
               
-              self.dict_credentials()
-              self.json_append_data("json_user_data")
-              break 
+            #   self.dict_credentials()
+            #   self.json_append_data("json_user_data")
+            #   break 
             
-            elif try_again_invalid_char == "N":
+            # elif try_again_invalid_char == "N":
             
-              print("Only 1 account generated")
+            #   print("Only 1 account generated")
      
-              break
+            #   break
         
 
  
