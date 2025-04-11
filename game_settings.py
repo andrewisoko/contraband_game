@@ -204,13 +204,13 @@ class GameSettings:
            
 
 # this object creates the current nicknames and code for playing the game . Nickname is used for identify the user/player in the game.              
-logged_in_players = SignUpProcess().main_sign_in_process()
+# logged_in_players = SignUpProcess().main_sign_in_process()
 
-# the class teams contain the two countries. logged in player as an argument is needed to access the user/player partecipating in the game.
-teams = Teams(logged_in_players)
+# # the class teams contain the two countries. logged in player as an argument is needed to access the user/player partecipating in the game.
+# teams = Teams(logged_in_players)
 
-# Teams is passed as an argument to access the two countries for the game.
-game_test = GameSettings(teams)
+# # Teams is passed as an argument to access the two countries for the game.
+# game_test = GameSettings(teams)
 
-# The game function contains a parameter that resembles the main_sign_in_process. This is because it is needed for the teams class instsnce inside the function that requires the same parameter.
-game_test.games(logged_in_players)
+# # The game function contains a parameter that resembles the main_sign_in_process. This is because it is needed for the teams class instsnce inside the function that requires the same parameter.
+# game_test.games(logged_in_players)
