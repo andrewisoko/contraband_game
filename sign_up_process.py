@@ -86,9 +86,6 @@ class SignUpProcess:
             print("Incorrect credentials")
       
        
-          
-    
-
     
   def sign_up(self) -> str:
     
@@ -112,7 +109,6 @@ class SignUpProcess:
         else:
           print("Not matching email standards. Please add a @ and a . into your email.")  
           
-    
            
     
   def dict_credentials(self) -> str: 
@@ -171,7 +167,6 @@ class SignUpProcess:
             print(f"Please save and use the generated user credentials to login. NICKNAME:{self.nickname} USER CODE:{self.code}")
      
      
-        
         
   def sign_in(self) -> str:
       

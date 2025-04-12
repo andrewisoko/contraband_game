@@ -14,8 +14,7 @@ class Teams:
       self.player2 = None
       self.player3 = None
       self.player4 = None
-      self.team1_list = None
-      self.team2_list = None
+      
    
    
     
@@ -45,47 +44,48 @@ class Teams:
 
 
   
-  def southern_country_players(self) -> str:
+  def southern_country_players(self) -> list:
     
-    """Southern team, it will return a random player of this team."""
+    """It returns a list containing the southern country's players"""
        
     
-    self.team1_list = [ "Lupin", "Clyde","C.Ponzi"]
+    team1_list = [ "Lupin", "Clyde","C.Ponzi"]
     
     # It is mandatory to have at least a player in the game, player1. the additional players will be replaced by other invented players if they do not partake in the game.
     if self.player1 is not None:
-        self.team1_list.append(self.player1)
+        team1_list.append(self.player1)
         
     # With the if statement containing else statement I have inverted the block structure pay attention.
     if self.player3 is None:
-        self.team1_list.append("Bonnie")
+        team1_list.append("Bonnie")
     else:
-        self.team1_list.append(self.player3)
+        team1_list.append(self.player3)
     
   
-    return random.choice(self.team1_list)
+    return team1_list
 
 
 
   
-  def northern_country_players(self) -> str:
+  def northern_country_players(self) -> list:
      
-    """Northern team, it will return a random player of this team."""
+    """It returns a list containing the northern country's players"""
+       
      
-    self.team2_list = ["Maradona","Berlusconi", "Diddy"]
+    team2_list = ["Maradona","Berlusconi", "Diddy"]
 
     if self.player2 is None:
-        self.team2_list.append("S.Bankman-Fried")
+        team2_list.append("S.Bankman-Fried")
     else:
-        self.team2_list.append(self.player2)
+        team2_list.append(self.player2)
         
         
     if self.player4 is None:
-        self.team2_list.append("Ted Bundy")
+        team2_list.append("Ted Bundy")
     else:
-        self.team2_list.append(self.player4)
+        team2_list.append(self.player4)
         
 
-    return random.choice(self.team2_list)
+    return team2_list
   
   

@@ -177,20 +177,20 @@ class GameSettings:
             game_settings_instance = GameSettings(teams_instance)
             
             # Initialising the class on the instance variable which will generate a random player from the southern country. Now the instance variable will have the same value throughout the all functions of the class if present in the following call of a function.
-            game_settings_instance.smuggler = teams_instance.southern_country_players()
+            game_settings_instance.smuggler = random.choice(teams_instance.southern_country_players())
             print(f" The smuggler of the Southern team is: {game_settings_instance.smuggler}")
             
-            game_settings_instance.inspector = teams_instance.northern_country_players()
+            game_settings_instance.inspector = random.choice(teams_instance.northern_country_players())
             print(f" The inspector of the Northern team is: { game_settings_instance.inspector}")
             
             game_settings_instance.the_smuggler()
             game_settings_instance.the_inspector()
             
             
-            game_settings_instance.smuggler = teams_instance.northern_country_players()
+            game_settings_instance.smuggler = random.choice(teams_instance.northern_country_players())
             print(f" the smuggler of the Northern team is { game_settings_instance.smuggler}")
             
-            game_settings_instance.inspector = teams_instance.southern_country_players()
+            game_settings_instance.inspector = random.choice(teams_instance.southern_country_players())
             print(f" the inspector of the Southern team is: { game_settings_instance.inspector}")
             
             game_settings_instance.the_smuggler()
