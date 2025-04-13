@@ -16,8 +16,11 @@ class GameSettings:
         self.smuggler = None
         self.security_amount = None
         self.game = None
-        
+        self.inspector_win = False
+        self.smuggler_win = False
+        self.sec_amount_win = False
        
+        
        
 
 
@@ -57,14 +60,23 @@ class GameSettings:
                 
          # If smuggler has no money inside the trunk and the statement amount from the inspector exceeds the empty trunk the smuggler wins and gets the security amount        
         if self.smuggling_amount == 0 and self.statement_amount > 0:
+            
+            # This will be used to update the money in the bank account.
+            self.sec_amount_win = True
             print(f"The smuggler {self.smuggler} obtained {self.security_amount:,} £ of security amount.")
             
         # If statement amount higher or equal the smuggler amount the inspector wins  
         elif self.statement_amount >= self.smuggling_amount:
+            
+             # This approach is used to update the money in the bank account.
+            self.inspector_win = True
+            
             print(f"Smuggling attempt flopped!!! The inspector {self.inspector} obtained {self.smuggling_amount:,} £ into his/her outside country's bank account.")
                     
         # If the statement amount is lower than the money inside the trunk from the smuggler, The latter wins and carries both the money in the trunk and security amount of the inspector
         elif self.statement_amount < self.smuggling_amount:
+            
+            self.smuggler_win = True
             print(f"{self.smuggler} succesfully smuggled {self.smuggling_amount:,} £ on his/her outside country's bank account plus {self.security_amount:,} from the inspector!!!")
         else:
             pass
@@ -83,6 +95,7 @@ class GameSettings:
             
          # if pass is called and the smuggler has money inside the trunk the smuggler wins    
         else:
+            self.smuggler_win = True
             print(f"The smuggler has been able to carry {self.smuggling_amount:,} £")
    
            

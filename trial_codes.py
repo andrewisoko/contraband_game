@@ -87,7 +87,17 @@ import random
 
     # sort out turn in games ✅
     # sort turn switch. ✅
-    # sort random players decision 
+    # sort random players decision ✅
     # sort out comments
     # sort out your test.py
 
+
+    # self.bankaccounts_list_values = [tot_amount for players_bank_account_dict in self.players_bank_account for tot_amount in players_bank_account_dict.values()] 
+    # prova = self.players_bank_account[0]
+        
+    #     # prova1 will become the new value 
+    #     prova1 = prova['Berlusconi'] - 1 # minus or plus
+        
+    #     self.total_northern_players_ba = sum(self.bankaccounts_list_values) 
+        
+    #     print(prova1)
