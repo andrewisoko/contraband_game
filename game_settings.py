@@ -22,9 +22,6 @@ class GameSettings:
        
         
        
-
-
-    
     
     def doubt_declaration(self):
         
