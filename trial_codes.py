@@ -88,8 +88,10 @@ import random
     # sort out turn in games ✅
     # sort turn switch. ✅
     # sort random players decision ✅
-    # sort out comments
+    # sort out comments ✅
     # sort out your test.py
+    
+    # check name key it could be an issue.
 
 
     # self.bankaccounts_list_values = [tot_amount for players_bank_account_dict in self.players_bank_account for tot_amount in players_bank_account_dict.values()] 

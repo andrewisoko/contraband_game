@@ -70,13 +70,13 @@ class GameSettings:
             
              # This approach is used to update the money in the bank account.
             self.inspector_win = True
-            
             print(f"Smuggling attempt flopped!!! The inspector {self.inspector} obtained {self.smuggling_amount:,} £ into his/her outside country's bank account.")
                     
         # If the statement amount is lower than the money inside the trunk from the smuggler, The latter wins and carries both the money in the trunk and security amount of the inspector
         elif self.statement_amount < self.smuggling_amount:
             
             self.smuggler_win = True
+            self.sec_amount_win = True
             print(f"{self.smuggler} succesfully smuggled {self.smuggling_amount:,} £ on his/her outside country's bank account plus {self.security_amount:,} from the inspector!!!")
         else:
             pass
