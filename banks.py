@@ -17,7 +17,6 @@ class Banks:
         self.northern_country_personal_bankaccounts = None
         self.southern_country_personal_bankaccounts = None
         
-
         
     
     def northern_bankaccount_third_country(self):
@@ -42,8 +41,7 @@ class Banks:
         self.total_money_northen_country_atm = sum(self.bankaccounts_values) 
         
         return self.total_money_northen_country_atm
-        
-        
+                
         
     def money_update_as_southern_smuggler(self): 
         
