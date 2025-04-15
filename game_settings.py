@@ -5,6 +5,7 @@ from sign_up_process import SignUpProcess
 import time
 
 
+
 class GameSettings:
     
     
@@ -170,57 +171,3 @@ class GameSettings:
                 print("Invalid input. Please enter a numeric value.")
             
                 
- 
-    def games(self,countries_players):
-    
-        """General game setting, bare in mmind the money are smuggled with a trunk but it is not in this game"""
-       # Bare in mind the turn in a game will be 4 since both country wil be inspector and smuggler in the round but it should be two turns for one game.
-        for self.game in range(2,0,-1):
-            
-            # Teams class instance where the log in of the gamer is passed as an argument
-            teams_instance = Teams(countries_players)
-            
-            # Generating players from gamer user credentials. 1 if one player wants to play or multiple.
-            teams_instance.player_generator()
-            
-            # adding trams as argument so players can be accessed in the class
-            game_settings_instance = GameSettings(teams_instance)
-            
-            # Initialising the class on the instance variable which will generate a random player from the southern country. Now the instance variable will have the same value throughout the all functions of the class if present in the following call of a function.
-            game_settings_instance.smuggler = random.choice(teams_instance.southern_country_players())
-            print(f" The smuggler of the Southern team is: {game_settings_instance.smuggler}")
-            
-            game_settings_instance.inspector = random.choice(teams_instance.northern_country_players())
-            print(f" The inspector of the Northern team is: { game_settings_instance.inspector}")
-            
-            game_settings_instance.the_smuggler()
-            game_settings_instance.the_inspector()
-            
-            
-            game_settings_instance.smuggler = random.choice(teams_instance.northern_country_players())
-            print(f" the smuggler of the Northern team is { game_settings_instance.smuggler}")
-            
-            game_settings_instance.inspector = random.choice(teams_instance.southern_country_players())
-            print(f" the inspector of the Southern team is: { game_settings_instance.inspector}")
-            
-            game_settings_instance.the_smuggler()
-            game_settings_instance.the_inspector()
-            
-            print(f"{self.game - 1} game(s) remaining.\n")
-        
-        
-        print("Game Over!")
-    
-           
-
-# this object creates the current nicknames and code for playing the game . Nickname is used for identify the user/player in the game.              
-# logged_in_players = SignUpProcess().main_sign_in_process()
-
-# # the class teams contain the two countries. logged in player as an argument is needed to access the user/player partecipating in the game.
-# teams = Teams(logged_in_players)
-
-# # Teams is passed as an argument to access the two countries for the game.
-# game_test = GameSettings(teams)
-
-# # The game function contains a parameter that resembles the main_sign_in_process. This is because it is needed for the teams class instsnce inside the function that requires the same parameter.
-# game_test.games(logged_in_players)

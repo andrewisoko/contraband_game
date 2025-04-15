@@ -40,15 +40,14 @@ class Banks:
         # Total amount of the Southern country.
         self.total_money_northen_country_atm = sum(self.bankaccounts_values) 
         
-        return self.total_money_northen_country_atm
+       
+        return self.northern_country_personal_bankaccounts
                 
         
-    def money_update_as_southern_smuggler(self): 
+    def money_update_as_northern_smuggler(self): 
         
         """Uptdates bank account of each northern country players based on outcome of the game when role is of a smuggler.""" 
              
-             
-        # Matching the parameter with the keys of the players bank account dictionary for then using the variable of the loop as representation of the name string.
         for name_key in self.northern_country_personal_bankaccounts.keys():
             
             # Scenario where the smuggler has no money in the trunk and inspector calls doubt.
@@ -99,7 +98,7 @@ class Banks:
                 pass  
         
     
-    def money_update_as_southern_inspector(self): 
+    def money_update_as_northern_inspector(self): 
         
         
         """Uptdates bank account of each northern country players based on outcome of the game when role is of a inspector.""" 
@@ -154,21 +153,18 @@ class Banks:
         
         
    
-        
-        
-           
-             
-       
-    
-    
-    
+         
 
-sign_ins = SignUpProcess()      
-teams_list = Teams(sign_ins)
-gameset = GameSettings(teams_list)
-banks = Banks(sign_ins,teams_list,gameset)
+# sign_ins = SignUpProcess()      
+# teams_list = Teams(sign_ins)
+# gameset = GameSettings(teams_list)
+# banks = Banks(sign_ins,teams_list,gameset)
 
-    
-banks.northern_bankaccount_third_country()
+# banks.northern_bankaccount_third_country()
+# banks.money_update_as_northern_smuggler()   
+# banks.money_update_as_northern_inspector()
 
+# gameset.games(sign_ins) 
+
+# print(banks.northern_bankaccount_third_country())
     
