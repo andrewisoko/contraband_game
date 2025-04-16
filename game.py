@@ -3,7 +3,7 @@ from sign_up_process import SignUpProcess
 from game_settings import GameSettings
 from banks import Banks
 import random
-import time
+
 
 
 class Game():
@@ -23,6 +23,9 @@ class Game():
             # adding trams as argument so players can be accessed in the class
             game_settings_instance = GameSettings(teams_instance)
             
+            banks_instance = Banks(sign_in,teams_instance,game_settings_instance)
+            banks_instance.northern_bankaccount_third_country()
+            
             # Initialising the class on the instance variable which will generate a random player from the southern country. Now the instance variable will have the same value throughout the all functions of the class if present in the following call of a function.
             game_settings_instance.smuggler = random.choice(teams_instance.southern_country_players())
             print(f" The smuggler of the Southern team is: {game_settings_instance.smuggler}")
@@ -30,8 +33,13 @@ class Game():
             game_settings_instance.inspector = random.choice(teams_instance.northern_country_players())
             print(f" The inspector of the Northern team is: { game_settings_instance.inspector}")
             
+            
             game_settings_instance.the_smuggler()
+               
             game_settings_instance.the_inspector()
+            banks_instance.money_update_as_northern_inspector()
+            print(banks_instance.northern_country_personal_bankaccounts)
+
             
             
             game_settings_instance.smuggler = random.choice(teams_instance.northern_country_players())
@@ -41,9 +49,14 @@ class Game():
             print(f" the inspector of the Southern team is: { game_settings_instance.inspector}")
             
             game_settings_instance.the_smuggler()
+            banks_instance.money_update_as_northern_smuggler()
+            
             game_settings_instance.the_inspector()
             
+            
             print(f"{self.game - 1} game(s) remaining.\n")
+            print(banks_instance.northern_country_personal_bankaccounts)
+            
          
         
         

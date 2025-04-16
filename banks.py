@@ -106,7 +106,7 @@ class Banks:
                 # Matching the parameter with the keys of the players bank account dictionary for then using the variable of the loop as representation of the name string.
         for name_key in self.northern_country_personal_bankaccounts.keys():
             
-            if  self.game_settings.inspector == name_key and self.game_settings.sec_amount_win is True:
+            if  self.game_settings.inspector == name_key and self.game_settings.sec_amount_win is True and self.game_settings.inspector_win is False:
                     
                 #This is the value of the dictionary. The integer.
                 current_val = self.northern_country_personal_bankaccounts[name_key]
@@ -117,6 +117,7 @@ class Banks:
                 # Assigning a new value by adding the previous value with the security amount.
                 self.northern_country_personal_bankaccounts[name_key] = current_val - ammount_won
                 
+                
             elif self.game_settings.inspector == name_key and self.game_settings.inspector_win is True and self.game_settings.smuggler_win is False: 
             
                 current_val = self.northern_country_personal_bankaccounts[name_key]
@@ -126,6 +127,7 @@ class Banks:
                 
                 # Assigning a new value by adding the previous value with the smuggling amount.
                 self.northern_country_personal_bankaccounts[name_key] = current_val + ammount_won
+                
                 
             
             elif self.game_settings.inspector == name_key and self.game_settings.smuggler_win is True and self.game_settings.sec_amount_win is True: 
@@ -138,6 +140,7 @@ class Banks:
                 
                 # Assigning a new value by adding the previous value with the smuggling amount.
                 self.northern_country_personal_bankaccounts[name_key] = current_val - ammount_won - security_ammount_won
+                
             
             # Condition occurring in a declared PASS scenario.   
             elif self.game_settings.inspector == name_key and self.game_settings.smuggler_win is True and self.game_settings.inspector_win is False:
@@ -148,6 +151,7 @@ class Banks:
                 
                 # Assigning a new value by adding the previous value with the smuggling amount.
                 self.northern_country_personal_bankaccounts[name_key] = current_val - ammount_won 
+                
             else:
                 pass  
         
