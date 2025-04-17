@@ -13,35 +13,44 @@ class Banks:
         self.team_list = team_list
         self.game_settings = game_settings
         
-        self.outside_the_country_ba = None
         self.northern_country_personal_bankaccounts = None
         self.southern_country_personal_bankaccounts = None
         
+        self.northern_atm_bankaccounts = None
+        self.southern_atm_bankaccounts = None
         
+
+#_______________________________________________NORTHEN SECTION THIRD COUNTRY_____________________________________________________________________________        
+    
+    
     
     def northern_bankaccount_third_country(self):
         
-        """Returns the total ammount of money obtained from the entire northen country team during the game"""
+        """Returns the total amount of money obtained from the entire northen country team during the game"""
         
-        # getting the northern player's list
-        self.northern_bank_players = self.team_list.northern_country_players()
+        if self.northern_country_personal_bankaccounts is not None:
+            return self.northern_country_personal_bankaccounts
         
-        # Placing each player's names by referencing their list position with index.
-        self.northern_country_personal_bankaccounts = {self.northern_bank_players[0]:100_000_000,
-                                     self.northern_bank_players[1]:100_000_000,
-                                     self.northern_bank_players[2]:100_000_000,
-                                     self.northern_bank_players[3]:100_000_000,
-                                     self.northern_bank_players[4]:100_000_000
-                                     }
-         
-        # Gathering all the values in the dictionary.
-        self.bankaccounts_values = self.northern_country_personal_bankaccounts.values()
+        else:
+            # getting the northern player's list
+            self.northern_bank_players = self.team_list.northern_country_players()
+            
+            # Placing each player's names by referencing their list position with index.
+            self.northern_country_personal_bankaccounts = {self.northern_bank_players[0]:100_000_000,
+                                        self.northern_bank_players[1]:100_000_000,
+                                        self.northern_bank_players[2]:100_000_000,
+                                        self.northern_bank_players[3]:100_000_000,
+                                        self.northern_bank_players[4]:100_000_000
+                                        }
+            
+            # Gathering all the values in the dictionary.
+            self.bankaccounts_values = self.northern_country_personal_bankaccounts.values()
+            
+            # Total amount of the Southern country.
+            self.total_amount_northern_thirdcountry = sum(self.bankaccounts_values) 
+            
         
-        # Total amount of the Southern country.
-        self.total_money_northen_country_atm = sum(self.bankaccounts_values) 
-        
-       
-        return self.northern_country_personal_bankaccounts
+            return self.total_amount_northern_thirdcountry
                 
         
     def money_update_as_northern_smuggler(self): 
@@ -128,8 +137,6 @@ class Banks:
                 # Assigning a new value by adding the previous value with the smuggling amount.
                 self.northern_country_personal_bankaccounts[name_key] = current_val + ammount_won
                 
-                
-            
             elif self.game_settings.inspector == name_key and self.game_settings.smuggler_win is True and self.game_settings.sec_amount_win is True: 
                 
                 current_val = self.northern_country_personal_bankaccounts[name_key]
@@ -139,8 +146,7 @@ class Banks:
                 
                 
                 # Assigning a new value by adding the previous value with the smuggling amount.
-                self.northern_country_personal_bankaccounts[name_key] = current_val - ammount_won - security_ammount_won
-                
+                self.northern_country_personal_bankaccounts[name_key] = current_val - ammount_won - security_ammount_won  
             
             # Condition occurring in a declared PASS scenario.   
             elif self.game_settings.inspector == name_key and self.game_settings.smuggler_win is True and self.game_settings.inspector_win is False:
@@ -156,8 +162,170 @@ class Banks:
                 pass  
         
         
-   
+#______________________________________________SOUTHERN SECTION THIRD COUNTRY__________________________________________________________________________      
+ 
+    def southern_bankaccount_third_country(self):
+        
+        """Returns the total amount of money obtained from the entire southern country team during the game"""
+        
+        if self.southern_country_personal_bankaccounts is not None:
+            return self.southern_country_personal_bankaccounts
+        
+        else:
+           
+            self.southern_bank_players = self.team_list.southern_country_players()
+        
+            self.southern_country_personal_bankaccounts = {self.southern_bank_players[0]:100_000_000,
+                                        self.southern_bank_players[1]:100_000_000,
+                                        self.southern_bank_players[2]:100_000_000,
+                                        self.southern_bank_players[3]:100_000_000,
+                                        self.southern_bank_players[4]:100_000_000
+                                        }
+            
+            self.bankaccounts_values = self.southern_country_personal_bankaccounts.values()
+    
+            self.total_amount_southern_thirdcountry = sum(self.bankaccounts_values) 
+               
+            return self.total_amount_southern_thirdcountry
+
+
+
+
+    def money_update_as_southern_smuggler(self): 
+        
+        """Uptdates bank account of each southern country players based on outcome of the game when role is of a smuggler.""" 
+                
+        for name_key in self.southern_country_personal_bankaccounts.keys():
+            
+            if  self.game_settings.smuggler == name_key and self.game_settings.sec_amount_win is True:
+                    
+                current_val = self.southern_country_personal_bankaccounts[name_key]
+           
+                ammount_won = self.game_settings.security_amount
+                
+                self.southern_country_personal_bankaccounts[name_key] = current_val + ammount_won
+                
+                 
+            elif self.game_settings.smuggler == name_key and self.game_settings.inspector_win is True and self.game_settings.smuggler_win is False: 
+            
+                current_val = self.southern_country_personal_bankaccounts[name_key]
+            
+                ammount_won = self.game_settings.smuggling_amount
+                
+                self.southern_country_personal_bankaccounts[name_key] = current_val - ammount_won
+                
+                
+            elif self.game_settings.smuggler == name_key and self.game_settings.smuggler_win is True and self.game_settings.sec_amount_win is True: 
+                
+                current_val = self.southern_country_personal_bankaccounts[name_key]
+                
+                ammount_won = self.game_settings.smuggling_amount
+                security_ammount_won = self.game_settings.security_amount
+                
+                self.southern_country_personal_bankaccounts[name_key] = current_val + ammount_won + security_ammount_won
+            
+             
+            elif self.game_settings.smuggler == name_key and self.game_settings.smuggler_win is True and self.game_settings.inspector_win is False:
+                
+                current_val = self.southern_country_personal_bankaccounts[name_key]
+        
+                ammount_won = self.game_settings.smuggling_amount
+                
+                self.southern_country_personal_bankaccounts[name_key] = current_val + ammount_won 
+            else:
+                pass  
+    
+    
+    def money_update_as_southern_inspector(self): 
+    
+        
+        """Uptdates bank account of each southern country players based on outcome of the game when role is of a inspector.""" 
+        
+    
+        for name_key in self.southern_country_personal_bankaccounts.keys():
+            
+            if  self.game_settings.inspector == name_key and self.game_settings.sec_amount_win is True and self.game_settings.inspector_win is False:
+                    
+                current_val = self.southern_country_personal_bankaccounts[name_key]
+            
+                ammount_won = self.game_settings.security_amount
+                
+                self.southern_country_personal_bankaccounts[name_key] = current_val - ammount_won
+                
+                
+            elif self.game_settings.inspector == name_key and self.game_settings.inspector_win is True and self.game_settings.smuggler_win is False: 
+            
+                current_val = self.southern_country_personal_bankaccounts[name_key]
+              
+                ammount_won = self.game_settings.smuggling_amount
+                
+                self.southern_country_personal_bankaccounts[name_key] = current_val + ammount_won
+                
+                
+            elif self.game_settings.inspector == name_key and self.game_settings.smuggler_win is True and self.game_settings.sec_amount_win is True: 
+                
+                current_val = self.southern_country_personal_bankaccounts[name_key]
+                
+                ammount_won = self.game_settings.smuggling_amount
+                
+                security_ammount_won = self.game_settings.security_amount
+                
+                self.southern_country_personal_bankaccounts[name_key] = current_val - ammount_won - security_ammount_won  
          
+          
+            elif self.game_settings.inspector == name_key and self.game_settings.smuggler_win is True and self.game_settings.inspector_win is False:
+                
+                current_val = self.southern_country_personal_bankaccounts[name_key]
+        
+                ammount_won = self.game_settings.smuggling_amount
+                
+                self.southern_country_personal_bankaccounts[name_key] = current_val - ammount_won 
+                
+            else:
+                pass  
+
+#________________________________________________________ATMs_______________________________________________________________________________
+
+
+    
+    def northern_atm(self):
+        
+        """Returns the total amount of money remained in the northern atm"""
+        
+        if self.northern_atm_bankaccounts is not None:
+            return self.northern_atm_bankaccounts
+        
+        else:
+            self.northern_ba_with_money_loaned = self.team_list.northern_country_players()
+            
+  
+            self.northern_atm_bankaccounts = {self.northern_ba_with_money_loaned[0]:300_000_000,
+                                        self.northern_ba_with_money_loaned[1]:300_000_000,
+                                        self.northern_ba_with_money_loaned[2]:300_000_000,
+                                        self.northern_ba_with_money_loaned[3]:300_000_000,
+                                        self.northern_ba_with_money_loaned[4]:300_000_000
+                                        }
+       
+            self.atm_bankaccounts_values = self.northern_atm_bankaccounts.values()
+            
+            for name_key in self.northern_atm_bankaccounts.keys():
+                
+                if name_key == self.game_settings.smuggler:
+                    
+                    current_val = self.northern_ba_with_money_loaned[name_key]
+                    
+                    if current_val == 0:
+                        
+                        self.game_settings.security_amount
+                    else:
+                    
+                        self.northern_ba_with_money_loaned[name_key] = current_val - self.game_settings.smuggling_amount
+                
+                        self.total_amount_northern_atm = sum(self.bankaccounts_values) 
+                        
+                        return self.total_amount_northern_atm
+                
+
 
 # sign_ins = SignUpProcess()      
 # teams_list = Teams(sign_ins)
