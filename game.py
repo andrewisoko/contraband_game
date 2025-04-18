@@ -51,7 +51,7 @@ class Game():
                game_settings_instance.doubt_declaration_aftermath()
               
             else:
-                continue
+                pass
             
             banks_instance.money_update_as_southern_smuggler()
             banks_instance.money_update_as_northern_inspector()
@@ -74,7 +74,7 @@ class Game():
                game_settings_instance.doubt_declaration_aftermath()
             
             else:
-                continue
+               pass
             
             
             banks_instance.money_update_as_northern_smuggler()

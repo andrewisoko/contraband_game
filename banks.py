@@ -88,8 +88,20 @@ class Banks:
              
         for name_key in self.northern_country_personal_bankaccounts.keys():
             
+            
+            # Scenario where inspector calls DOUBT but smuggler's money inside the trunk exceed the amount declared from inspector.
+            if self.game_settings.smuggler == name_key and self.game_settings.smuggler_win is True and self.game_settings.sec_amount_win is True: 
+                
+                current_val = self.northern_country_personal_bankaccounts[name_key]
+                
+                ammount_won = self.game_settings.smuggling_amount
+                security_ammount_won = self.game_settings.security_amount
+                
+                # Assigning a new value by adding the previous value with the smuggling amount.
+                self.northern_country_personal_bankaccounts[name_key] = current_val + ammount_won + security_ammount_won
+            
             # Scenario where the smuggler has no money in the trunk and inspector calls doubt.
-            if  self.game_settings.smuggler == name_key and self.game_settings.sec_amount_win is True:
+            elif  self.game_settings.smuggler == name_key and self.game_settings.sec_amount_win is True:
                     
                 #This is the value of the dictionary. The integer.
                 current_val = self.northern_country_personal_bankaccounts[name_key]
@@ -100,31 +112,20 @@ class Banks:
                 # Assigning a new value by adding the previous value with the security amount.
                 self.northern_country_personal_bankaccounts[name_key] = current_val + ammount_won
              
-             #Scenario where inspector calls DOUBT and it matches or exceeds amount of money inside the smuggler's trunk. 
-            elif self.game_settings.smuggler == name_key and self.game_settings.inspector_win is True and self.game_settings.smuggler_win is False: 
+            #Scenario where inspector calls DOUBT and it matches or exceeds amount of money inside the smuggler's trunk. 
+            elif self.game_settings.smuggler == name_key and self.game_settings.inspector_win is True: 
             
                 current_val = self.northern_country_personal_bankaccounts[name_key]
                 
                 # This is the smuggling amount deriving from the game.
-                ammount_won = self.game_settings.smuggling_amount
+                ammount_lost = self.game_settings.smuggling_amount
                 
                 # Assigning a new value by adding the previous value with the smuggling amount.
-                self.northern_country_personal_bankaccounts[name_key] = current_val - ammount_won
+                self.northern_country_personal_bankaccounts[name_key] = current_val - ammount_lost
                 
-            # Scenario where inspector calls DOUBT but smuggler's money inside the trunk exceed the amount declared from inspector.
-            elif self.game_settings.smuggler == name_key and self.game_settings.smuggler_win is True and self.game_settings.sec_amount_win is True: 
-                
-                current_val = self.northern_country_personal_bankaccounts[name_key]
-                
-                ammount_won = self.game_settings.smuggling_amount
-                security_ammount_won = self.game_settings.security_amount
-                
-                
-                # Assigning a new value by adding the previous value with the smuggling amount.
-                self.northern_country_personal_bankaccounts[name_key] = current_val + ammount_won + security_ammount_won
             
             # Scenario where inspector calls PASS but smuggler carries money inside the trunk.   
-            elif self.game_settings.smuggler == name_key and self.game_settings.smuggler_win is True and self.game_settings.inspector_win is False:
+            elif self.game_settings.smuggler == name_key and self.game_settings.smuggler_win is True:
                 
                 current_val = self.northern_country_personal_bankaccounts[name_key]
         
@@ -144,19 +145,31 @@ class Banks:
                 # Matching the parameter with the keys of the players bank account dictionary for then using the variable of the loop as representation of the name string.
         for name_key in self.northern_country_personal_bankaccounts.keys():
             
-            if  self.game_settings.inspector == name_key and self.game_settings.sec_amount_win is True and self.game_settings.inspector_win is False:
+            
+            if self.game_settings.inspector == name_key and self.game_settings.smuggler_win is True and self.game_settings.sec_amount_win is True: 
+                
+                current_val = self.northern_country_personal_bankaccounts[name_key]
+                
+                ammount_lost = self.game_settings.smuggling_amount
+                security_ammount_lost = self.game_settings.security_amount
+                
+                
+                # Assigning a new value by adding the previous value with the smuggling amount.
+                self.northern_country_personal_bankaccounts[name_key] = current_val - ammount_lost - security_ammount_lost  
+            
+            elif  self.game_settings.inspector == name_key and self.game_settings.sec_amount_win is True:
                     
                 #This is the value of the dictionary. The integer.
                 current_val = self.northern_country_personal_bankaccounts[name_key]
                 
                 #This is the security amount deriving from the game.
-                ammount_won = self.game_settings.security_amount
+                ammount_lost = self.game_settings.security_amount
                 
                 # Assigning a new value by adding the previous value with the security amount.
-                self.northern_country_personal_bankaccounts[name_key] = current_val - ammount_won
+                self.northern_country_personal_bankaccounts[name_key] = current_val - ammount_lost
                 
                 
-            elif self.game_settings.inspector == name_key and self.game_settings.inspector_win is True and self.game_settings.smuggler_win is False: 
+            elif self.game_settings.inspector == name_key and self.game_settings.inspector_win is True: 
             
                 current_val = self.northern_country_personal_bankaccounts[name_key]
                 
@@ -166,26 +179,16 @@ class Banks:
                 # Assigning a new value by adding the previous value with the smuggling amount.
                 self.northern_country_personal_bankaccounts[name_key] = current_val + ammount_won
                 
-            elif self.game_settings.inspector == name_key and self.game_settings.smuggler_win is True and self.game_settings.sec_amount_win is True: 
-                
-                current_val = self.northern_country_personal_bankaccounts[name_key]
-                
-                ammount_won = self.game_settings.smuggling_amount
-                security_ammount_won = self.game_settings.security_amount
-                
-                
-                # Assigning a new value by adding the previous value with the smuggling amount.
-                self.northern_country_personal_bankaccounts[name_key] = current_val - ammount_won - security_ammount_won  
             
             # Condition occurring in a declared PASS scenario.   
-            elif self.game_settings.inspector == name_key and self.game_settings.smuggler_win is True and self.game_settings.inspector_win is False:
+            elif self.game_settings.inspector == name_key and self.game_settings.smuggler_win is True:
                 
                 current_val = self.northern_country_personal_bankaccounts[name_key]
         
-                ammount_won = self.game_settings.smuggling_amount
+                ammount_lost = self.game_settings.smuggling_amount
                 
                 # Assigning a new value by adding the previous value with the smuggling amount.
-                self.northern_country_personal_bankaccounts[name_key] = current_val - ammount_won 
+                self.northern_country_personal_bankaccounts[name_key] = current_val - ammount_lost 
                 
             else:
                 pass  
@@ -224,17 +227,18 @@ class Banks:
     def security_amount_condition_southern(self): 
         
         """ Checking inspector declaration amount to prevent statements that requires a security of more than what is in his or her outside bank account."""
+  
         
         for name_key in self.southern_country_personal_bankaccounts.keys():
-             
+            
             if self.game_settings.inspector == name_key:
                 
                 personal_bankaccount = self.southern_country_personal_bankaccounts[name_key]
                 
-                if self.game_settings.security_amount > personal_bankaccount:
-                        
+                if self.game_settings.security_amount > personal_bankaccount: 
+                    
                     while True:
-                            
+                        
                         print("the amount cannot be backed by your security amount. Please try again")
                             
                         if self.game_settings.inspector != self.team_list.player1 and self.game_settings.inspector != self.team_list.player2 and self.game_settings.inspector != self.team_list.player3 and self.game_settings.inspector != self.team_list.player4:
@@ -248,9 +252,7 @@ class Banks:
                             if statement_amount_attemmpts / 2 < personal_bankaccount:
                                 self.game_settings.statement_amount = statement_amount_attemmpts
                                 break
-                                    
-                      
-
+                                        
 
     def money_update_as_southern_smuggler(self): 
         
@@ -258,7 +260,18 @@ class Banks:
                 
         for name_key in self.southern_country_personal_bankaccounts.keys():
             
-            if  self.game_settings.smuggler == name_key and self.game_settings.sec_amount_win is True:
+            if self.game_settings.smuggler == name_key and self.game_settings.smuggler_win is True and self.game_settings.sec_amount_win is True: 
+                
+                current_val = self.southern_country_personal_bankaccounts[name_key]
+                
+                ammount_won = self.game_settings.smuggling_amount
+                
+                security_ammount_won = self.game_settings.security_amount
+                
+                self.southern_country_personal_bankaccounts[name_key] = current_val + ammount_won + security_ammount_won
+                
+                
+            elif  self.game_settings.smuggler == name_key and self.game_settings.sec_amount_win is True:
                     
                 current_val = self.southern_country_personal_bankaccounts[name_key]
            
@@ -267,26 +280,17 @@ class Banks:
                 self.southern_country_personal_bankaccounts[name_key] = current_val + ammount_won
                 
                  
-            elif self.game_settings.smuggler == name_key and self.game_settings.inspector_win is True and self.game_settings.smuggler_win is False: 
+            elif self.game_settings.smuggler == name_key and self.game_settings.inspector_win is True: 
             
                 current_val = self.southern_country_personal_bankaccounts[name_key]
             
-                ammount_won = self.game_settings.smuggling_amount
+                ammount_lost = self.game_settings.smuggling_amount
                 
-                self.southern_country_personal_bankaccounts[name_key] = current_val - ammount_won
+                self.southern_country_personal_bankaccounts[name_key] = current_val - ammount_lost
                 
                 
-            elif self.game_settings.smuggler == name_key and self.game_settings.smuggler_win is True and self.game_settings.sec_amount_win is True: 
-                
-                current_val = self.southern_country_personal_bankaccounts[name_key]
-                
-                ammount_won = self.game_settings.smuggling_amount
-                security_ammount_won = self.game_settings.security_amount
-                
-                self.southern_country_personal_bankaccounts[name_key] = current_val + ammount_won + security_ammount_won
-            
              
-            elif self.game_settings.smuggler == name_key and self.game_settings.smuggler_win is True and self.game_settings.inspector_win is False:
+            elif self.game_settings.smuggler == name_key and self.game_settings.smuggler_win is True:
                 
                 current_val = self.southern_country_personal_bankaccounts[name_key]
         
@@ -305,16 +309,27 @@ class Banks:
     
         for name_key in self.southern_country_personal_bankaccounts.keys():
             
-            if  self.game_settings.inspector == name_key and self.game_settings.sec_amount_win is True and self.game_settings.inspector_win is False:
+            if self.game_settings.inspector == name_key and self.game_settings.smuggler_win is True and self.game_settings.sec_amount_win is True: 
+                
+                current_val = self.southern_country_personal_bankaccounts[name_key]
+                
+                ammount_lost = self.game_settings.smuggling_amount
+                
+                security_ammount_lost = self.game_settings.security_amount
+                
+                self.southern_country_personal_bankaccounts[name_key] = current_val - ammount_lost - security_ammount_lost  
+                
+                
+            elif  self.game_settings.inspector == name_key and self.game_settings.sec_amount_win is True:
                     
                 current_val = self.southern_country_personal_bankaccounts[name_key]
             
-                ammount_won = self.game_settings.security_amount
+                ammount_lost = self.game_settings.security_amount
                 
-                self.southern_country_personal_bankaccounts[name_key] = current_val - ammount_won
+                self.southern_country_personal_bankaccounts[name_key] = current_val - ammount_lost
                 
                 
-            elif self.game_settings.inspector == name_key and self.game_settings.inspector_win is True and self.game_settings.smuggler_win is False: 
+            elif self.game_settings.inspector == name_key and self.game_settings.inspector_win is True: 
             
                 current_val = self.southern_country_personal_bankaccounts[name_key]
               
@@ -323,24 +338,14 @@ class Banks:
                 self.southern_country_personal_bankaccounts[name_key] = current_val + ammount_won
                 
                 
-            elif self.game_settings.inspector == name_key and self.game_settings.smuggler_win is True and self.game_settings.sec_amount_win is True: 
-                
-                current_val = self.southern_country_personal_bankaccounts[name_key]
-                
-                ammount_won = self.game_settings.smuggling_amount
-                
-                security_ammount_won = self.game_settings.security_amount
-                
-                self.southern_country_personal_bankaccounts[name_key] = current_val - ammount_won - security_ammount_won  
          
-          
-            elif self.game_settings.inspector == name_key and self.game_settings.smuggler_win is True and self.game_settings.inspector_win is False:
+            elif self.game_settings.inspector == name_key and self.game_settings.smuggler_win is True:
                 
                 current_val = self.southern_country_personal_bankaccounts[name_key]
         
-                ammount_won = self.game_settings.smuggling_amount
+                ammount_lost = self.game_settings.smuggling_amount
                 
-                self.southern_country_personal_bankaccounts[name_key] = current_val - ammount_won 
+                self.southern_country_personal_bankaccounts[name_key] = current_val - ammount_lost 
                 
             else:
                 pass  
