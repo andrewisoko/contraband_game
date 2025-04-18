@@ -44,15 +44,43 @@ class Banks:
                                         }
             
             # Gathering all the values in the dictionary.
-            self.bankaccounts_values = self.northern_country_personal_bankaccounts.values()
+            self.bankaccounts_values_northern = self.northern_country_personal_bankaccounts.values()
             
             # Total amount of the Northern country.
-            self.total_amount_northern_thirdcountry = sum(self.bankaccounts_values) 
+            self.total_amount_northern_thirdcountry = sum(self.bankaccounts_values_northern) 
             
             return self.total_amount_northern_thirdcountry
             
-    
-    
+     
+    def security_amount_condition_northern(self): 
+        
+        """ Checking northern inspector declaration amount to prevent statements that requires a security of more than what is in his or her outside bank account."""
+        
+        for name_key in self.northern_country_personal_bankaccounts.keys():
+             
+            if self.game_settings.inspector == name_key:
+                
+                personal_bankaccount = self.northern_country_personal_bankaccounts[name_key]
+            
+            
+                if self.game_settings.security_amount > personal_bankaccount:
+                        
+                    while True:
+                            
+                        print("the amount cannot be backed by your security amount. Please try again")
+                            
+                        if self.game_settings.inspector != self.team_list.player1 and self.game_settings.inspector != self.team_list.player2 and self.game_settings.inspector != self.team_list.player3 and self.game_settings.inspector != self.team_list.player4:
+                            statement_amount_attemmpts = float(random.randrange(1,100_000_000))
+                            
+                            if statement_amount_attemmpts / 2 < personal_bankaccount:
+                                self.game_settings.statement_amount = statement_amount_attemmpts
+                                break
+                        else:
+                            statement_amount_attemmpts = float(input("here you go mate: "))
+                            if statement_amount_attemmpts / 2 < personal_bankaccount:
+                                self.game_settings.statement_amount = statement_amount_attemmpts
+                                break
+        
         
     def money_update_as_northern_smuggler(self): 
         
@@ -107,8 +135,7 @@ class Banks:
             else:
                 pass  
      
-        
-    
+          
     def money_update_as_northern_inspector(self): 
         
         
@@ -167,6 +194,8 @@ class Banks:
 #______________________________________________SOUTHERN SECTION THIRD COUNTRY__________________________________________________________________________      
  
  
+ 
+ 
     def southern_bankaccount_third_country(self):
         
         """Returns the total amount of money obtained from the entire southern country team during the game"""
@@ -185,13 +214,42 @@ class Banks:
                                         self.southern_bank_players[4]:100_000_000
                                         }
             
-            self.bankaccounts_values = self.southern_country_personal_bankaccounts.values()
+            self.bankaccounts_values_southern = self.southern_country_personal_bankaccounts.values()
     
-            self.total_amount_southern_thirdcountry = sum(self.bankaccounts_values) 
+            self.total_amount_southern_thirdcountry = sum(self.bankaccounts_values_northern) 
                
             return self.total_amount_southern_thirdcountry
 
 
+    def security_amount_condition_southern(self): 
+        
+        """ Checking inspector declaration amount to prevent statements that requires a security of more than what is in his or her outside bank account."""
+        
+        for name_key in self.southern_country_personal_bankaccounts.keys():
+             
+            if self.game_settings.inspector == name_key:
+                
+                personal_bankaccount = self.southern_country_personal_bankaccounts[name_key]
+                
+                if self.game_settings.security_amount > personal_bankaccount:
+                        
+                    while True:
+                            
+                        print("the amount cannot be backed by your security amount. Please try again")
+                            
+                        if self.game_settings.inspector != self.team_list.player1 and self.game_settings.inspector != self.team_list.player2 and self.game_settings.inspector != self.team_list.player3 and self.game_settings.inspector != self.team_list.player4:
+                            statement_amount_attemmpts = float(random.randrange(1,100_000_000))
+                            
+                            if statement_amount_attemmpts / 2 < personal_bankaccount:
+                                self.game_settings.statement_amount = statement_amount_attemmpts
+                                break
+                        else:
+                            statement_amount_attemmpts = float(input("here you go mate: "))
+                            if statement_amount_attemmpts / 2 < personal_bankaccount:
+                                self.game_settings.statement_amount = statement_amount_attemmpts
+                                break
+                                    
+                      
 
 
     def money_update_as_southern_smuggler(self): 
@@ -286,31 +344,9 @@ class Banks:
                 
             else:
                 pass  
-#__________________________________________________SECURITY AMOUNT_____________________________________________________________________
 
-    def security_amaount_condition(self): 
-        
-        """ Checking inspector declaration amount to prevent statements that requires a security of more than what is in his or her outside bank account."""
-        
-        for personal_bankaccount in self.bankaccounts_values:
-            
-            if self.game_settings.security_amount > personal_bankaccount:
-                
-                while True:
-                    
-                    print("the amount cannot be backed by your security amount. Please try again")
-                    
-                    if self.game_settings.inspector != self.team_list.player1 and self.game_settings.inspector != self.team_list.player2 and self.game_settings.inspector != self.team_list.player3 and self.game_settings.inspector != self.team_list.player4:
-                        statement_amount_attemmpts = float(random.randrange(1,100_000_000))
-                    
-                        if statement_amount_attemmpts / 2 < personal_bankaccount:
-                            break
-                    else:
-                        statement_amount_attemmpts = float(input(self.game_settings.statement_amount))
-                        if statement_amount_attemmpts / 2 < personal_bankaccount:
-                            break
-            else:
-                pass
+  
+                            
 #________________________________________________________ATMs_______________________________________________________________________________
 
 
@@ -338,18 +374,19 @@ class Banks:
                 
                 if name_key == self.game_settings.smuggler:
                     
-                    current_val = self.northern_ba_with_money_loaned[name_key]
+                    current_val = self.northern_atm_bankaccounts[name_key]
                     
                     if current_val == 0:
                         
                         self.game_settings.smuggling_amount = 0 
                     else:
                     
-                        self.northern_ba_with_money_loaned[name_key] = current_val - self.game_settings.smuggling_amount
+                        self.northern_atm_bankaccounts[name_key] = current_val - self.game_settings.smuggling_amount
                 
-                        self.total_amount_northern_atm = sum(self.bankaccounts_values) 
+                        self.total_amount_northern_atm = sum(self.bankaccounts_values_northern) 
                         
                         return self.total_amount_northern_atm
+
 
    
     def southern_atm(self):
@@ -375,18 +412,20 @@ class Banks:
                 
                 if name_key == self.game_settings.smuggler:
                     
-                    current_val = self.southern_ba_with_money_loaned[name_key]
+                    current_val = self.southern_atm_bankaccounts[name_key]
                     
                     if current_val == 0:
                         
                         self.game_settings.smuggling_amount = 0 
                     else:
                     
-                        self.southern_ba_with_money_loaned[name_key] = current_val - self.game_settings.smuggling_amount
+                        self.southern_atm_bankaccounts[name_key] = current_val - self.game_settings.smuggling_amount
                 
-                        self.total_amount_southern_atm = sum(self.bankaccounts_values) 
+                        self.total_amount_southern_atm = sum(self.bankaccounts_values_northern) 
                         
                         return self.total_amount_southern_atm
+                else:
+                    pass
                 
 
 

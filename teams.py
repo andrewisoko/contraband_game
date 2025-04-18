@@ -53,7 +53,9 @@ class Teams:
     team1_list = [ "Lupin", "Clyde","C.Ponzi"]
     
     # It is mandatory to have at least a player in the game, player1. the additional players will be replaced by other invented players if they do not partake in the game.
-    if self.player1 is not None:
+    if self.player1 is None:
+      team1_list.append("Joker")
+    else:
         team1_list.append(self.player1)
         
     # With the if statement containing else statement I have inverted the block structure pay attention.

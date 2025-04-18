@@ -20,6 +20,7 @@ class GameSettings:
         self.inspector_win = False
         self.smuggler_win = False
         self.sec_amount_win = False
+        self.doubt_investigation  = False
        
         
        
@@ -37,13 +38,9 @@ class GameSettings:
                     
                     self.security_amount = self.statement_amount / 2
                     
-                    # Some suspance on the decision.
-                    time.sleep(15)
-                    print(f"the inspector declared the amount is equal to {self.statement_amount}£ inside the trunk")
                     break
                 else:
                     self.statement_amount = float(input("AMOUNT: "))
-                    print(f"the inspector declared the amount is equal to {self.smuggling_amount}£ inside the trunk")
                     
                     # the security amount is equal to half of the statement amount. this gets temporary withdrawn from the inspector outside bank account, and given to the smuggler certain circumstances.
                     self.security_amount = self.statement_amount / 2
@@ -56,17 +53,27 @@ class GameSettings:
             except:
                 print("Invalid input. Please enter a numeric value.")
                 
-         # If smuggler has no money inside the trunk and the statement amount from the inspector exceeds the empty trunk the smuggler wins and gets the security amount        
+                
+        
+    def doubt_declaration_aftermath(self): 
+        
+        """All the possible outcome from the doubt statement"""   
+        
+        # Some suspance on the decision.
+        time.sleep(15)
+        print(f"the inspector declared amount is equal to {self.statement_amount:,}£ inside the trunk")    
+    
+        # If smuggler has no money inside the trunk and the statement amount from the inspector exceeds the empty trunk the smuggler wins and gets the security amount        
         if self.smuggling_amount == 0 and self.statement_amount > 0:
             
             # This will be used to update the money in the bank account.
             self.sec_amount_win = True
-            print(f"The smuggler {self.smuggler} obtained {self.security_amount:,} £ of security amount.")
+            print(f"The smuggler {self.smuggler} obtained {self.security_amount:,} £ of inspector's security amount.")
             
         # If statement amount higher or equal the smuggler amount the inspector wins  
         elif self.statement_amount >= self.smuggling_amount:
             
-             # This approach is used to update the money in the bank account.
+            # This approach is used to update the money in the bank account.
             self.inspector_win = True
             print(f"Smuggling attempt flopped!!! The inspector {self.inspector} obtained {self.smuggling_amount:,} £ into his/her outside country's bank account.")
                     
@@ -75,17 +82,17 @@ class GameSettings:
             
             self.smuggler_win = True
             self.sec_amount_win = True
-            print(f"{self.smuggler} succesfully smuggled {self.smuggling_amount:,} £ on his/her outside country's bank account plus {self.security_amount:,} from the inspector!!!")
+            print(f"{self.smuggler} succesfully smuggled {self.smuggling_amount:,} £ into his/her outside country's bank account plus {self.security_amount:,} from the inspector!!!")
         else:
             pass
-   
+    
       
     
     def pass_declaration(self):
         
         """All the scenarios occurring from a pass declaration"""
 
-        print(f"Inspector declared PASS, the smuggler carried {self.smuggling_amount:,} £")
+        print(f"Inspector {self.inspector} declared PASS, the smuggler carried {self.smuggling_amount:,} £")
         
         # this is the only stalemate scenario
         if self.smuggling_amount == 0:
@@ -94,7 +101,7 @@ class GameSettings:
          # if pass is called and the smuggler has money inside the trunk the smuggler wins    
         else:
             self.smuggler_win = True
-            print(f"The smuggler has been able to carry {self.smuggling_amount:,} £")
+            print(f"The smuggler {self.smuggler} has been able to carry {self.smuggling_amount:,} £ into his/her outside country's bank account.")
    
            
             
@@ -129,6 +136,8 @@ class GameSettings:
                 break
                 
             elif self.inspector_action == "DOUBT":
+                self.doubt_investigation = True
+                
                 time.sleep(5)
                 self.doubt_declaration()
                 break

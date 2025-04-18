@@ -8,7 +8,8 @@ import random
 
 class Game():
     
-       def games(self,sign_in):
+    
+    def games(self,sign_in):
     
         """General game setting, bare in mind the money are smuggled with a trunk but it is not in this game"""
         
@@ -40,10 +41,17 @@ class Game():
             
             
             game_settings_instance.the_smuggler()
+            banks_instance.southern_atm()
             
             game_settings_instance.the_inspector()
-            banks_instance.security_amaount_condition()
             
+            if game_settings_instance.doubt_investigation is True:
+                
+               banks_instance.security_amount_condition_northern()
+               game_settings_instance.doubt_declaration_aftermath()
+              
+            else:
+                continue
             
             banks_instance.money_update_as_southern_smuggler()
             banks_instance.money_update_as_northern_inspector()
@@ -59,18 +67,40 @@ class Game():
             banks_instance.northern_atm()
             
             game_settings_instance.the_inspector()
-            banks_instance.security_amaount_condition()
+            
+            if game_settings_instance.doubt_investigation is True:
+
+               banks_instance.security_amount_condition_southern()
+               game_settings_instance.doubt_declaration_aftermath()
+            
+            else:
+                continue
+            
             
             banks_instance.money_update_as_northern_smuggler()
             banks_instance.money_update_as_southern_inspector()
             
             print(f"{self.game - 1} game(s) remaining.\n")
             
-            print(banks_instance.northern_country_personal_bankaccounts)
-            print(banks_instance.southern_country_personal_bankaccounts)
+            print(f"{banks_instance.northern_country_personal_bankaccounts}")
+            print(f"{banks_instance.southern_country_personal_bankaccounts}")
             
          
         print("Game Over!")
+        
+        if banks_instance.total_amount_northern_thirdcountry > banks_instance.total_amount_southern_thirdcountry:
+            print(f"with the total amount of {banks_instance.total_amount_northern_thirdcountry:,} the northern country wins the round!!!🥳")
+        else:
+         print(f"with the total amount of {banks_instance.total_amount_southern_thirdcountry:,} the southern country wins the round!!!🥳")
+         
+    
+    # def game_aftermath(self):
+        
+        
+        
+        # deducting initial 300 million from atms
+        # atms remaining money sent to opposition teams personal account 
+        # chart of players from the one with the highest amount to the one with the most amount of dept.
         
 
 sign_up = SignUpProcess()
