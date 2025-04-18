@@ -40,7 +40,10 @@ class Game():
             
             
             game_settings_instance.the_smuggler()
+            
             game_settings_instance.the_inspector()
+            banks_instance.security_amaount_condition()
+            
             
             banks_instance.money_update_as_southern_smuggler()
             banks_instance.money_update_as_northern_inspector()
@@ -53,7 +56,10 @@ class Game():
             print(f" the inspector of the Southern team is: { game_settings_instance.inspector}")
             
             game_settings_instance.the_smuggler()
+            banks_instance.northern_atm()
+            
             game_settings_instance.the_inspector()
+            banks_instance.security_amaount_condition()
             
             banks_instance.money_update_as_northern_smuggler()
             banks_instance.money_update_as_southern_inspector()
@@ -64,8 +70,6 @@ class Game():
             print(banks_instance.southern_country_personal_bankaccounts)
             
          
-        
-        
         print("Game Over!")
         
 

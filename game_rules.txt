@@ -15,7 +15,7 @@ The Rules of the Contraband Game
 
 2. Smuggling and Bank Accounts
 
-    2.1 Each smuggler has a bank account of 300 million yen in the opposing country, and their goal is to get it back. (this will allow you to repay the loan.)
+    2.1 Each smuggler has a bank account of 300 million yen in the opposing country, and their goal is to get it back. (this will allow you to repay the loan.)✅
 
     2.2 A smuggler is allowed to carry anywhere from 0 to 100 million yen in one turn. ✅
 
@@ -29,15 +29,15 @@ The Rules of the Contraband Game
 
             3.1.1.1 The moment the inspector does so, half of the amount declared will be taken as security. ✅
 
-            3.1.1.2 The security is taken from the inspector’s bank account in the outside country. 
+            3.1.1.2 The security is taken from the inspector’s bank account in the outside country. ✅
 
-            3.1.1.3 To have enough funds to cover such securities, each player already has 100 million pounds (it says 200 but that doesn't make sense) in a personal bank account outside the country.
+            3.1.1.3 To have enough funds to cover such securities, each player already has 100 million pounds (it says 200 but that doesn't make sense) in a personal bank account outside the country.✅
 
-            3.1.1.4 An inspector cannot declare doubt on any amount that requires a security of more than what is in his or her outside bank account.
+            3.1.1.4 An inspector cannot declare doubt on any amount that requires a security of more than what is in his or her outside bank account.✅
 
-    3.2 If the amount declared matches or exceeds the amount being smuggled, the inspector wins and the smuggling attempt is thwarted. The money the smuggler was carrying is instead deposited into the inspector’s outside bank account. The security initially taken is also returned to the account.
+    3.2 If the amount declared matches or exceeds the amount being smuggled, the inspector wins and the smuggling attempt is thwarted. The money the smuggler was carrying is instead deposited into the inspector’s outside bank account. The security initially taken is also returned to the account. ✅
 
-        3.2.1 If doubt is declared, but the smuggler is not carrying any money (the scenario with 0 pounds), the security is given to the smuggler and placed into their outside bank account.
+        3.2.1 If doubt is declared, but the smuggler is not carrying any money (the scenario with 0 pounds), the security is given to the smuggler and placed into their outside bank account.✅
 
         3.2.2 If the declared amount is less than the amount being carried, the smuggler wins and all of the money is placed into their outside bank account. The security also becomes theirs and is likewise added to the account. ✅
 
