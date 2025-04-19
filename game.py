@@ -23,14 +23,13 @@ class Game():
         game_settings_instance = GameSettings(teams_instance)
             
         banks_instance = Banks(sign_in,teams_instance,game_settings_instance)
+        banks_instance.northern_bankaccount_third_country()
+        banks_instance.southern_bankaccount_third_country()
         
         
        # Bear in mind the turn in a game are 4
         for self.game in range(5,0,-1):
             
-        
-            banks_instance.northern_bankaccount_third_country()
-            banks_instance.southern_bankaccount_third_country()
             
             # Initialising the class on the instance variable which will generate a random player from the southern country. Now the instance variable will have the same value throughout the all functions of the class if present in the following call of a function.
             game_settings_instance.smuggler = random.choice(teams_instance.southern_country_players())
@@ -100,13 +99,17 @@ class Game():
             print(f"{banks_instance.northern_country_personal_bankaccounts}")
             print(f"{banks_instance.southern_country_personal_bankaccounts}")
             
+            if self.game == 1:
+                self.final_personal_ba_northern = banks_instance.northern_country_personal_bankaccounts 
+                self.final_personal_ba_southern = banks_instance.southern_country_personal_bankaccounts 
+            
          
         print("Game Over!")
         
-        if banks_instance.total_amount_northern_thirdcountry > banks_instance.total_amount_southern_thirdcountry:
-            print(f"with the total amount of {banks_instance.total_amount_northern_thirdcountry:,} the northern country wins the round!!!🥳")
+        if sum(self.final_personal_ba_northern.values()) > sum(self.final_personal_ba_southern.values()):
+            print(f"with the total amount of {sum(self.final_personal_ba_northern.values()):,} the northern country wins the round!!!🥳")
         else:
-         print(f"with the total amount of {banks_instance.total_amount_southern_thirdcountry:,} the southern country wins the round!!!🥳")
+         print(f"with the total amount of {sum(self.final_personal_ba_northern.values()):,} the southern country wins the round!!!🥳")
          
     
     # def game_aftermath(self):

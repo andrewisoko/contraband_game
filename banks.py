@@ -36,11 +36,11 @@ class Banks:
             self.northern_bank_players = self.team_list.northern_country_players()
             
             # Placing each player's names by referencing their list position with index.
-            self.northern_country_personal_bankaccounts = {self.northern_bank_players[0]:100_000_000,
-                                        self.northern_bank_players[1]:100_000_000,
-                                        self.northern_bank_players[2]:100_000_000,
-                                        self.northern_bank_players[3]:100_000_000,
-                                        self.northern_bank_players[4]:100_000_000
+            self.northern_country_personal_bankaccounts = {self.northern_bank_players[0]:200_000_000,
+                                        self.northern_bank_players[1]:200_000_000,
+                                        self.northern_bank_players[2]:200_000_000,
+                                        self.northern_bank_players[3]:200_000_000,
+                                        self.northern_bank_players[4]:200_000_000
                                         }
             
             # Gathering all the values in the dictionary.
@@ -65,11 +65,12 @@ class Banks:
             
                 if self.game_settings.security_amount > personal_bankaccount:
                         
+                    max_range_number = 100_000_000
+                    
                     while True:
                             
                         print("the amount cannot be backed by your security amount. Please try again")
                         
-                        max_range_number = 100_000_000
                             
                         if self.game_settings.inspector != self.team_list.player1 and self.game_settings.inspector != self.team_list.player2 and self.game_settings.inspector != self.team_list.player3 and self.game_settings.inspector != self.team_list.player4:
                             statement_amount_attemmpts = float(random.randrange(1,max_range_number))
@@ -78,7 +79,7 @@ class Banks:
                                 self.game_settings.statement_amount = statement_amount_attemmpts
                                 break
                             else:
-                                max_range_number =- 20_000_000
+                                max_range_number -= 20_000_000
                         else:
                             statement_amount_attemmpts = float(input("here you go mate: "))
                             if statement_amount_attemmpts / 2 < personal_bankaccount:
@@ -241,9 +242,10 @@ class Banks:
                 
                 if self.game_settings.security_amount > personal_bankaccount: 
                     
+                    max_range_number = 100_000_000
+                    
                     while True:
                         
-                        max_range_number = 100_000_000
                         
                         print("the amount cannot be backed by your security amount. Please try again")
                             
@@ -254,7 +256,7 @@ class Banks:
                                 self.game_settings.statement_amount = statement_amount_attemmpts
                                 break
                             else:
-                                max_range_number =- 20_000_000
+                                max_range_number -= 20_000_000
                         else:
                             statement_amount_attemmpts = float(input("here you go mate: "))
                             if statement_amount_attemmpts / 2 < personal_bankaccount:
@@ -398,8 +400,6 @@ class Banks:
                 
                         self.total_amount_northern_atm = sum(self.bankaccounts_values_northern) 
                         
-                        return self.total_amount_northern_atm
-
 
    
     def southern_atm(self):
@@ -436,7 +436,6 @@ class Banks:
                 
                         self.total_amount_southern_atm = sum(self.bankaccounts_values_northern) 
                         
-                        return self.total_amount_southern_atm
                 else:
                     pass
                 

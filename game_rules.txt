@@ -31,7 +31,7 @@ The Rules of the Contraband Game
 
             3.1.1.2 The security is taken from the inspector’s bank account in the outside country. ✅
 
-            3.1.1.3 To have enough funds to cover such securities, each player already has 100 million pounds (it says 200 but that doesn't make sense) in a personal bank account outside the country.✅
+            3.1.1.3 To have enough funds to cover such securities, each player already has 200 million pounds in a personal bank account outside the country.✅
 
             3.1.1.4 An inspector cannot declare doubt on any amount that requires a security of more than what is in his or her outside bank account.✅
 
