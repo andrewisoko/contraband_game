@@ -102,7 +102,8 @@ class Game():
             if self.game == 1:
                 self.final_personal_ba_northern = banks_instance.northern_country_personal_bankaccounts 
                 self.final_personal_ba_southern = banks_instance.southern_country_personal_bankaccounts 
-            
+                self.final_amount_northern_atm = banks_instance.northern_atm_bankaccounts
+                self.final_amount_southern_atm = banks_instance.southern_atm_bankaccounts
          
         print("Game Over!")
         
@@ -112,8 +113,16 @@ class Game():
          print(f"with the total amount of {sum(self.final_personal_ba_northern.values()):,} the southern country wins the round!!!🥳")
          
     
-    # def game_aftermath(self):
+    def game_aftermath(self):
         
+        """Aftermath of the game, deducting the initial loans, declaring the player with the most money and the ones in dept"""
+        
+        self.southern_atm_deduction = self.final_amount_southern_atm
+        
+        for northern_remaining_money in self.final_amount_northern_atm:
+            self.final_amount_northern_atm["Maradona"] -= 300_000_000
+            
+        return  f"northern is {self.final_amount_northern_atm} \nsouthern is {self.final_amount_southern_atm}"
         
         
         # deducting initial 300 million from atms
@@ -126,3 +135,4 @@ teams = Teams(sign_up)
 gameset = GameSettings(teams)
 game = Game()
 game.games(sign_up)
+print(game.game_aftermath())

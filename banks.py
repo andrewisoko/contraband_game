@@ -371,22 +371,9 @@ class Banks:
         """Returns the total amount of money remained in the northern atm"""
         
         if self.northern_atm_bankaccounts is not None:
-            return self.northern_atm_bankaccounts
-        
-        else:
-            self.northern_ba_with_money_loaned = self.team_list.northern_country_players()
             
-  
-            self.northern_atm_bankaccounts = {self.northern_ba_with_money_loaned[0]:300_000_000,
-                                        self.northern_ba_with_money_loaned[1]:300_000_000,
-                                        self.northern_ba_with_money_loaned[2]:300_000_000,
-                                        self.northern_ba_with_money_loaned[3]:300_000_000,
-                                        self.northern_ba_with_money_loaned[4]:300_000_000
-                                        }
-       
+             for name_key in self.northern_atm_bankaccounts.keys():
             
-            for name_key in self.northern_atm_bankaccounts.keys():
-                
                 if name_key == self.game_settings.smuggler:
                     
                     current_val = self.northern_atm_bankaccounts[name_key]
@@ -397,18 +384,57 @@ class Banks:
                     else:
                     
                         self.northern_atm_bankaccounts[name_key] = current_val - self.game_settings.smuggling_amount
+        
+        else:
+            self.northern_ba_with_money_loaned = self.team_list.northern_country_players()
                 
-                        self.total_amount_northern_atm = sum(self.bankaccounts_values_northern) 
-                        
+    
+            self.northern_atm_bankaccounts = {self.northern_ba_with_money_loaned[0]:300_000_000,
+                                            self.northern_ba_with_money_loaned[1]:300_000_000,
+                                            self.northern_ba_with_money_loaned[2]:300_000_000,
+                                            self.northern_ba_with_money_loaned[3]:300_000_000,
+                                            self.northern_ba_with_money_loaned[4]:300_000_000
+                                            }
+       
+            
+        for name_key in self.northern_atm_bankaccounts.keys():
+            
+            if name_key == self.game_settings.smuggler:
+                
+                current_val = self.northern_atm_bankaccounts[name_key]
+                
+                if current_val == 0:
+                    
+                    self.game_settings.smuggling_amount = 0 
+                else:
+                
+                    self.northern_atm_bankaccounts[name_key] = current_val - self.game_settings.smuggling_amount
+            
+                    self.total_amount_northern_atm = sum(self.bankaccounts_values_northern) 
+                    
 
    
     def southern_atm(self):
         
         """Returns the total amount of money remained in the northern atm"""
         
-        if self.southern_atm_bankaccounts is not None:
-            return self.southern_atm_bankaccounts
         
+        if self.southern_atm_bankaccounts is not None:
+            
+              for name_key in self.southern_atm_bankaccounts.keys():
+                
+                if name_key == self.game_settings.smuggler:
+                    
+                    current_val = self.southern_atm_bankaccounts[name_key]
+                    
+                    if current_val == 0:
+                        
+                        self.game_settings.smuggling_amount = 0 
+                    else:
+                    
+                        self.southern_atm_bankaccounts[name_key] = current_val - self.game_settings.smuggling_amount
+            
+         
         else:
             self.southern_ba_with_money_loaned = self.team_list.southern_country_players()
             
