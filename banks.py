@@ -215,11 +215,11 @@ class Banks:
            
             self.southern_bank_players = self.team_list.southern_country_players()
         
-            self.southern_country_personal_bankaccounts = {self.southern_bank_players[0]:100_000_000,
-                                        self.southern_bank_players[1]:100_000_000,
-                                        self.southern_bank_players[2]:100_000_000,
-                                        self.southern_bank_players[3]:100_000_000,
-                                        self.southern_bank_players[4]:100_000_000
+            self.southern_country_personal_bankaccounts = {self.southern_bank_players[0]:200_000_000,
+                                        self.southern_bank_players[1]:200_000_000,
+                                        self.southern_bank_players[2]:200_000_000,
+                                        self.southern_bank_players[3]:200_000_000,
+                                        self.southern_bank_players[4]:200_000_000
                                         }
             
             self.bankaccounts_values_southern = self.southern_country_personal_bankaccounts.values()
