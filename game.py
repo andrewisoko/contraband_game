@@ -115,14 +115,63 @@ class Game():
     
     def game_aftermath(self):
         
-        """Aftermath of the game, deducting the initial loans, declaring the player with the most money and the ones in dept"""
+        """Aftermath of the game, deducting the initial loans, spitting remaining money inside atms to the opposing country, declaring the player with the most money and the ones in dept"""
         
+        self.northern_atm_deduction = self.final_amount_southern_atm
         self.southern_atm_deduction = self.final_amount_southern_atm
         
-        for northern_remaining_money in self.final_amount_northern_atm:
-            self.final_amount_northern_atm["Maradona"] -= 300_000_000
+        self.northern_personal_account_aftermath = self.final_personal_ba_northern
+        self.southern_personal_account_aftermath = self.final_personal_ba_southern
+
+        
+        
+        for northern_remaining_money in self.northern_atm_deduction.keys():
             
-        return  f"northern is {self.final_amount_northern_atm} \nsouthern is {self.final_amount_southern_atm}"
+            self.northern_atm_deduction[northern_remaining_money] -= 300_000_000
+            
+        self.tot_northern_amount_after_deduction = sum(self.northern_atm_deduction.values())
+        print(f"after the end of the round the total amount of the northern atm is {self.tot_northern_amount_after_deduction}")
+            
+        if self.tot_northern_amount_after_deduction > 0:
+            
+            for keys_personal_accounts in self.southern_personal_account_aftermath.keys():
+                
+                # val_personal_accounts = self.southern_personal_account_aftermath.values()
+                money_splitted_from_north_atm = self.tot_northern_amount_after_deduction / 5
+                
+                self.northern_personal_account_aftermath[keys_personal_accounts] = money_splitted_from_north_atm
+                
+            print(f" {self.southern_personal_account_aftermath} £ \n the additional amount is derived from the money not smuggled in southern country atm")
+        
+        else:
+            print("No money was left in the northern atm")
+                
+                    
+        for southern_remaining_money in self.southern_atm_deduction.keys():
+            
+            self.southern_atm_deduction[southern_remaining_money] -= 300_000_000
+        self.tot_southern_amount_after_deduction = sum(self.southern_atm_deduction.values())
+         
+        print(f"after the end of the round the total amount of the northern atm is {self.tot_southern_amount_after_deduction}")
+            
+        if self.tot_southern_amount_after_deduction > 0:
+            
+            for keys_personal_accounts in self.northern_personal_account_aftermath.keys():
+                
+                val_personal_accounts = self.northern_personal_account_aftermath.values()
+                money_splitted_from_south_atm = self.tot_southern_amount_after_deduction / 5
+                
+                self.southern_personal_account_aftermath[keys_personal_accounts] = val_personal_accounts + money_splitted_from_south_atm
+                
+                print(f" {self.northern_personal_account_aftermath} £ \n the additional amount is derived from the money not smuggled in southern country atm")
+            
+        else:
+            print("No money was left in the southern atm")       
+                    
+            
+        
+        
+
         
         
         # deducting initial 300 million from atms
