@@ -49,12 +49,18 @@ class Game():
                 
                banks_instance.security_amount_condition_northern()
                game_settings_instance.doubt_declaration_aftermath()
-              
+               
+            
             else:
                 pass
             
             banks_instance.money_update_as_southern_smuggler()
             banks_instance.money_update_as_northern_inspector()
+            
+            game_settings_instance.doubt_investigation = False
+            game_settings_instance.smuggler_win = False
+            game_settings_instance.sec_amount_win = False
+            game_settings_instance.inspector_win = False
             
             
             game_settings_instance.smuggler = random.choice(teams_instance.northern_country_players())
@@ -72,6 +78,7 @@ class Game():
 
                banks_instance.security_amount_condition_southern()
                game_settings_instance.doubt_declaration_aftermath()
+               
             
             else:
                pass
@@ -79,6 +86,14 @@ class Game():
             
             banks_instance.money_update_as_northern_smuggler()
             banks_instance.money_update_as_southern_inspector()
+            
+            game_settings_instance.doubt_investigation = False
+            game_settings_instance.smuggler_win = False
+            game_settings_instance.sec_amount_win = False
+            game_settings_instance.inspector_win = False
+            
+            
+            
             
             print(f"{self.game - 1} game(s) remaining.\n")
             
