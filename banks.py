@@ -378,7 +378,7 @@ class Banks:
                     
                     current_val = self.northern_atm_bankaccounts[name_key]
                     
-                    if current_val == 0:
+                    if current_val <= 0:
                         
                         self.game_settings.smuggling_amount = 0 
                     else:
@@ -403,7 +403,7 @@ class Banks:
                 
                 current_val = self.northern_atm_bankaccounts[name_key]
                 
-                if current_val == 0:
+                if current_val <= 0:
                     
                     self.game_settings.smuggling_amount = 0 
                 else:
@@ -427,7 +427,7 @@ class Banks:
                     
                     current_val = self.southern_atm_bankaccounts[name_key]
                     
-                    if current_val == 0:
+                    if current_val <= 0:
                         
                         self.game_settings.smuggling_amount = 0 
                     else:
@@ -453,7 +453,7 @@ class Banks:
                     
                     current_val = self.southern_atm_bankaccounts[name_key]
                     
-                    if current_val == 0:
+                    if current_val <= 0:
                         
                         self.game_settings.smuggling_amount = 0 
                     else:

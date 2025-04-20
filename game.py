@@ -28,7 +28,7 @@ class Game():
         
         
        # Bear in mind the turn in a game are 4
-        for self.game in range(5,0,-1):
+        for self.game in range(25,0,-1):
             
             
             # Initialising the class on the instance variable which will generate a random player from the southern country. Now the instance variable will have the same value throughout the all functions of the class if present in the following call of a function.
@@ -42,17 +42,19 @@ class Game():
             game_settings_instance.the_smuggler()
             banks_instance.southern_atm()
             
-            game_settings_instance.the_inspector()
+            if banks_instance.northern_country_personal_bankaccounts[game_settings_instance.inspector] <= 0:
+                game_settings_instance.pass_declaration()
+            else:    
+                game_settings_instance.the_inspector()
             
-            if game_settings_instance.doubt_investigation is True:
+                if game_settings_instance.doubt_investigation is True:
+                    
+                    banks_instance.security_amount_condition_northern()
+                    game_settings_instance.doubt_declaration_aftermath()
+        
+                else:
+                    pass
                 
-               banks_instance.security_amount_condition_northern()
-               game_settings_instance.doubt_declaration_aftermath()
-               
-            
-            else:
-                pass
-            
             banks_instance.money_update_as_southern_smuggler()
             banks_instance.money_update_as_northern_inspector()
             
@@ -71,16 +73,20 @@ class Game():
             game_settings_instance.the_smuggler()
             banks_instance.northern_atm()
             
-            game_settings_instance.the_inspector()
             
-            if game_settings_instance.doubt_investigation is True:
+            game_settings_instance.the_smuggler()
+            banks_instance.southern_atm()
+            
+            if banks_instance.southern_country_personal_bankaccounts[game_settings_instance.inspector] <= 0:
+                game_settings_instance.pass_declaration()
+            else:    
+                game_settings_instance.the_inspector()
+                if game_settings_instance.doubt_investigation is True:
 
-               banks_instance.security_amount_condition_southern()
-               game_settings_instance.doubt_declaration_aftermath()
-               
-            
-            else:
-               pass
+                    banks_instance.security_amount_condition_southern()
+                    game_settings_instance.doubt_declaration_aftermath()
+                else:
+                 pass
             
             
             banks_instance.money_update_as_northern_smuggler()
@@ -117,30 +123,30 @@ class Game():
         
         """Aftermath of the game, deducting the initial loans, spitting remaining money inside atms to the opposing country, declaring the player with the most money and the ones in dept"""
         
-        self.northern_atm_deduction = self.final_amount_southern_atm
-        self.southern_atm_deduction = self.final_amount_southern_atm
+        self.northern_atm_aftermath = self.final_amount_northern_atm
+        self.southern_atm_aftermath = self.final_amount_southern_atm
         
         self.northern_personal_account_aftermath = self.final_personal_ba_northern
         self.southern_personal_account_aftermath = self.final_personal_ba_southern
 
         
         
-        for northern_remaining_money in self.northern_atm_deduction.keys():
+        for northern_remaining_money in self.northern_personal_account_aftermath.keys():
             
-            self.northern_atm_deduction[northern_remaining_money] -= 300_000_000
+            self.northern_personal_account_aftermath[northern_remaining_money] -= 400_000_000
             
-        # self.tot_northern_amount_after_deduction = sum(self.northern_atm_deduction.values())
-        self.tot_northern_amount_after_deduction = 500_000_000
-        print(f"after the end of the round the total amount of the northern atm is {self.tot_northern_amount_after_deduction}")
+        self.tot_northern_atm_aftermath = sum(self.northern_atm_aftermath.values())
+    
+        print(f"after the end of the round the total amount of the northern atm is {self.tot_northern_atm_aftermath:,}")
             
-        if self.tot_northern_amount_after_deduction > 0:
+        if self.tot_northern_atm_aftermath > 0:
             
             for keys_personal_accounts_south in self.southern_personal_account_aftermath.keys():
                 
                 val_personal_accounts = self.southern_personal_account_aftermath[keys_personal_accounts_south]
-                money_splitted_from_north_atm = self.tot_northern_amount_after_deduction / 5
+                money_splitted_from_north_atm = self.tot_northern_atm_aftermath / 5
                 
-                self.southern_personal_account_aftermath[keys_personal_accounts_south] = val_personal_accounts + money_splitted_from_north_atm
+                self.southern_personal_account_aftermath[keys_personal_accounts_south] = int(val_personal_accounts) + int(money_splitted_from_north_atm)
                 
             print(f" SOUTHERN COUNTRY FINAL PERSONAL AMOUNT:{self.southern_personal_account_aftermath} £ \n the additional amount is derived from the money not smuggled in northern country atm")
         
@@ -148,23 +154,23 @@ class Game():
             print(f" SOUTHERN COUNTRY FINAL PERSONAL AMOUNT: {self.southern_personal_account_aftermath} No money was left in the northern atm")
                 
                     
-        for southern_remaining_money in self.southern_atm_deduction.keys():
+        for southern_remaining_money in self.southern_personal_account_aftermath.keys():
             
-            self.southern_atm_deduction[southern_remaining_money] -= 300_000_000
-        self.tot_southern_amount_after_deduction = sum(self.southern_atm_deduction.values())
+            self.southern_personal_account_aftermath[southern_remaining_money] -= 400_000_000
+        self.tot_southern_atm_aftermath = sum(self.southern_atm_aftermath.values())
          
-        print(f"after the end of the round the total amount of the northern atm is {self.tot_southern_amount_after_deduction}")
+        print(f"after the end of the round the total amount of the southern atm is {self.tot_southern_atm_aftermath:,}")
             
-        if self.tot_southern_amount_after_deduction > 0:
+        if self.tot_southern_atm_aftermath > 0:
             
             for keys_personal_accounts_north in self.northern_personal_account_aftermath.keys():
                 
                 val_personal_accounts = self.northern_personal_account_aftermath[keys_personal_accounts_north]
-                money_splitted_from_south_atm = self.tot_southern_amount_after_deduction / 5
+                money_splitted_from_south_atm = self.tot_southern_atm_aftermath / 5
                 
-                self.northern_personal_account_aftermath[keys_personal_accounts_north] = val_personal_accounts + money_splitted_from_south_atm
+                self.northern_personal_account_aftermath[keys_personal_accounts_north] = int(val_personal_accounts) + int(money_splitted_from_south_atm)
                 
-                print(f"NORTHERN COUNTRY FINAL PERSONAL AMOUNT: {self.northern_personal_account_aftermath} £ \n the additional amount is derived from the money not smuggled in southern country atm")
+            print(f"NORTHERN COUNTRY FINAL PERSONAL AMOUNT: {self.northern_personal_account_aftermath} £ \n the additional amount is derived from the money not smuggled in southern country atm")
             
         else:
             print(f"NORTHERN COUNTRY FINAL PERSONAL AMOUNT:{self.northern_personal_account_aftermath} No money was left in the southern atm")       
