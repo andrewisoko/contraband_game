@@ -65,7 +65,6 @@ class Banks:
             
                 if self.game_settings.security_amount > personal_bankaccount:
                         
-                    max_range_number = 100_000_000
                     
                     while True:
                             
@@ -73,13 +72,13 @@ class Banks:
                         
                             
                         if self.game_settings.inspector != self.team_list.player1 and self.game_settings.inspector != self.team_list.player2 and self.game_settings.inspector != self.team_list.player3 and self.game_settings.inspector != self.team_list.player4:
-                            statement_amount_attemmpts = float(random.randrange(1,max_range_number))
+                            statement_amount_attemmpts = float(random.randrange(1,100_000_000))
                             
                             if statement_amount_attemmpts / 2 < personal_bankaccount:
                                 self.game_settings.statement_amount = statement_amount_attemmpts
                                 break
                             else:
-                                max_range_number -= 20_000_000
+                                self.game_settings.statement_amount = personal_bankaccount / 2
                         else:
                             statement_amount_attemmpts = float(input("here you go mate: "))
                             if statement_amount_attemmpts / 2 < personal_bankaccount:
@@ -242,7 +241,6 @@ class Banks:
                 
                 if self.game_settings.security_amount > personal_bankaccount: 
                     
-                    max_range_number = 100_000_000
                     
                     while True:
                         
@@ -250,13 +248,13 @@ class Banks:
                         print("the amount cannot be backed by your security amount. Please try again")
                             
                         if self.game_settings.inspector != self.team_list.player1 and self.game_settings.inspector != self.team_list.player2 and self.game_settings.inspector != self.team_list.player3 and self.game_settings.inspector != self.team_list.player4:
-                            statement_amount_attemmpts = float(random.randrange(1,max_range_number))
+                            statement_amount_attemmpts = float(random.randrange(1, 100_000_000))
                             
                             if statement_amount_attemmpts / 2 < personal_bankaccount:
                                 self.game_settings.statement_amount = statement_amount_attemmpts
                                 break
                             else:
-                                max_range_number -= 20_000_000
+                                self.game_settings.statement_amount = personal_bankaccount / 2
                         else:
                             statement_amount_attemmpts = float(input("here you go mate: "))
                             if statement_amount_attemmpts / 2 < personal_bankaccount:
@@ -376,6 +374,32 @@ class Banks:
             
                 if name_key == self.game_settings.smuggler:
                     
+                    current_val = int(self.northern_atm_bankaccounts[name_key])
+                    
+                    if current_val <= 0:
+                        
+                        self.game_settings.smuggling_amount = 0 
+                    else:
+                       self.game_settings.smuggling_amount = random.randrange(0,current_val)
+                       self.northern_atm_bankaccounts[name_key] = current_val - self.game_settings.smuggling_amount
+                       
+        
+        else:
+            self.northern_ba_with_money_loaned = self.team_list.northern_country_players()
+                
+
+            self.northern_atm_bankaccounts = {self.northern_ba_with_money_loaned[0]:300_000_000,
+                                            self.northern_ba_with_money_loaned[1]:300_000_000,
+                                            self.northern_ba_with_money_loaned[2]:300_000_000,
+                                            self.northern_ba_with_money_loaned[3]:300_000_000,
+                                            self.northern_ba_with_money_loaned[4]:300_000_000
+                                            }
+        
+                
+            for name_key in self.northern_atm_bankaccounts.keys():
+                
+                if name_key == self.game_settings.smuggler:
+                    
                     current_val = self.northern_atm_bankaccounts[name_key]
                     
                     if current_val <= 0:
@@ -384,34 +408,9 @@ class Banks:
                     else:
                     
                         self.northern_atm_bankaccounts[name_key] = current_val - self.game_settings.smuggling_amount
-        
-        else:
-            self.northern_ba_with_money_loaned = self.team_list.northern_country_players()
                 
-    
-            self.northern_atm_bankaccounts = {self.northern_ba_with_money_loaned[0]:300_000_000,
-                                            self.northern_ba_with_money_loaned[1]:300_000_000,
-                                            self.northern_ba_with_money_loaned[2]:300_000_000,
-                                            self.northern_ba_with_money_loaned[3]:300_000_000,
-                                            self.northern_ba_with_money_loaned[4]:300_000_000
-                                            }
-       
-            
-        for name_key in self.northern_atm_bankaccounts.keys():
-            
-            if name_key == self.game_settings.smuggler:
-                
-                current_val = self.northern_atm_bankaccounts[name_key]
-                
-                if current_val <= 0:
-                    
-                    self.game_settings.smuggling_amount = 0 
-                else:
-                
-                    self.northern_atm_bankaccounts[name_key] = current_val - self.game_settings.smuggling_amount
-            
-                    self.total_amount_northern_atm = sum(self.bankaccounts_values_northern) 
-                    
+                        self.total_amount_northern_atm = sum(self.bankaccounts_values_northern) 
+                        
 
    
     def southern_atm(self):
@@ -425,28 +424,30 @@ class Banks:
                 
                 if name_key == self.game_settings.smuggler:
                     
-                    current_val = self.southern_atm_bankaccounts[name_key]
+                    current_val = int(self.southern_atm_bankaccounts[name_key])
                     
                     if current_val <= 0:
                         
                         self.game_settings.smuggling_amount = 0 
                     else:
-                    
-                        self.southern_atm_bankaccounts[name_key] = current_val - self.game_settings.smuggling_amount
+                       self.game_settings.smuggling_amount = random.randrange(0,current_val)
+                       self.southern_atm_bankaccounts[name_key] = current_val - self.game_settings.smuggling_amount
+                       
             
          
         else:
+            
             self.southern_ba_with_money_loaned = self.team_list.southern_country_players()
             
-  
+
             self.southern_atm_bankaccounts = {self.southern_ba_with_money_loaned[0]:300_000_000,
                                         self.southern_ba_with_money_loaned[1]:300_000_000,
                                         self.southern_ba_with_money_loaned[2]:300_000_000,
                                         self.southern_ba_with_money_loaned[3]:300_000_000,
                                         self.southern_ba_with_money_loaned[4]:300_000_000
                                         }
-       
-            
+        
+                
             for name_key in self.southern_atm_bankaccounts.keys():
                 
                 if name_key == self.game_settings.smuggler:
@@ -459,24 +460,11 @@ class Banks:
                     else:
                     
                         self.southern_atm_bankaccounts[name_key] = current_val - self.game_settings.smuggling_amount
-                
-                        self.total_amount_southern_atm = sum(self.bankaccounts_values_northern) 
                         
                 else:
                     pass
                 
 
 
-# sign_ins = SignUpProcess()      
-# teams_list = Teams(sign_ins)
-# gameset = GameSettings(teams_list)
-# banks = Banks(sign_ins,teams_list,gameset)
 
-# banks.northern_bankaccount_third_country()
-# banks.money_update_as_northern_smuggler()   
-# banks.money_update_as_northern_inspector()
-
-# gameset.games(sign_ins) 
-
-# print(banks.northern_bankaccount_third_country())
     

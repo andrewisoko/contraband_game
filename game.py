@@ -118,6 +118,7 @@ class Game():
         else:
          print(f"with the total amount of {sum(self.final_personal_ba_northern.values()):,} the southern country wins the round!!!🥳")
          
+  
     
     def game_aftermath(self):
         
@@ -175,7 +176,8 @@ class Game():
         else:
             print(f"NORTHERN COUNTRY FINAL PERSONAL AMOUNT:{self.northern_personal_account_aftermath} No money was left in the southern atm")       
                     
-            
+        
+        
         
         
 
