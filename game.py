@@ -28,7 +28,7 @@ class Game():
         
         
        # Bear in mind the turn in a game are 4
-        for self.game in range(13,0,-1):
+        for self.game in range(25,0,-1):
             
             
             # Initialising the class on the instance variable which will generate a random player from the southern country. Now the instance variable will have the same value throughout the all functions of the class if present in the following call of a function.
@@ -95,12 +95,11 @@ class Game():
             game_settings_instance.inspector_win = False
             
             
-            
-            
             print(f"{self.game - 1} game(s) remaining.\n")
             
-            print(f"{banks_instance.northern_country_personal_bankaccounts}")
-            print(f"{banks_instance.southern_country_personal_bankaccounts}")
+            # Print statement return bank transitions. Not needed in the game but if in case of uncertainty it's suggested the use of it.
+            # print(f"{banks_instance.northern_country_personal_bankaccounts}") 
+            # print(f"{banks_instance.southern_country_personal_bankaccounts}")
             
             if self.game == 1:
                 self.final_personal_ba_northern = banks_instance.northern_country_personal_bankaccounts 
@@ -174,21 +173,30 @@ class Game():
         print(f" SOUTHERN COUNTRY FINAL PERSONAL AMOUNT:{self.southern_personal_account_aftermath} £ \n the additional amount is derived from the money not smuggled in northern country atm")
            
     
+        united_countries_dicts = self.northern_personal_account_aftermath
+        united_countries_dicts.update(self.southern_personal_account_aftermath)
         
+        name_highest_earner = ""
+        losers = ""
+        highest_amount = 0
+        dept_money = 0
+    
         
-        
-        
+        for key_dicts,value_dicts in united_countries_dicts.items(): 
+            all_values.append(value_dicts)
+            sorted_all_values = sorted(all_values)
+            
+            if max(sorted_all_values) == value_dicts: 
+               name_highest_earner = key_dicts
+               highest_amount = value_dicts
+            if value_dicts < 0:
+                losers = key_dicts
+                dept_money = value_dicts
+                
+                print(f"After the end of the round the players in dept are {losers} with {dept_money}")
+              
+        print(f" the highest earner of the round is {name_highest_earner} with an amount of {highest_amount:,}£") 
+         
+             
 
-        
-        
-        # deducting initial 300 million from atms
-        # atms remaining money sent to opposition teams personal account 
-        # chart of players from the one with the highest amount to the one with the most amount of dept.
-        
 
-sign_up = SignUpProcess()
-teams = Teams(sign_up)
-gameset = GameSettings(teams)
-game = Game()
-game.games(sign_up)
-print(game.game_aftermath())

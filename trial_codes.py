@@ -103,3 +103,13 @@ import random
     #     self.total_northern_players_ba = sum(self.bankaccounts_list_values) 
         
     #     print(prova1)
+    
+
+# what worked in game.py:
+
+# sign_up = SignUpProcess()
+# teams = Teams(sign_up)
+# gameset = GameSettings(teams)
+# game = Game()
+# game.games(sign_up)
+# print(game.game_aftermath())
