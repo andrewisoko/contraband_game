@@ -4,7 +4,6 @@ from game_settings import GameSettings
 from game import Game
 
 
-
 def main():
    
    signup_or_signin = SignUpProcess()
