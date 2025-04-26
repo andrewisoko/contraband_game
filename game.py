@@ -179,7 +179,7 @@ class Game():
         name_highest_earner = ""
         losers = ""
         highest_amount = 0
-        dept_money = 0
+        debt_money = 0
     
         
         for key_dicts,value_dicts in united_countries_dicts.items(): 
@@ -191,9 +191,9 @@ class Game():
                highest_amount = value_dicts
             if value_dicts < 0:
                 losers = key_dicts
-                dept_money = value_dicts
+                debt_money = value_dicts
                 
-                print(f"After the end of the round the players in dept are {losers} with {dept_money}")
+                print(f"After the end of the round the players in debt are {losers} with {debt_money}")
               
         print(f" the highest earner of the round is {name_highest_earner} with an amount of {highest_amount:,}£") 
          

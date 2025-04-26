@@ -225,9 +225,9 @@ class SignUpProcess:
         self.json_append_data("json_user_data")
         
         # sign up second player.
-        additional_player = input("to join a second gamer press S otherwise press N: ")  
+        self.additional_player = input("to join a second gamer press S otherwise press N: ")  
       
-        if additional_player == "S":
+        if self.additional_player == "S":
           
           self.sign_up()
           self.game_generated_credentials() 
@@ -235,7 +235,7 @@ class SignUpProcess:
           self.dict_credentials()
           self.json_append_data("json_user_data")
           
-        elif additional_player == "N":
+        elif self.additional_player == "N":
             
             print("Only 1 player logged in")
         
@@ -243,7 +243,7 @@ class SignUpProcess:
           
           while True:
             
-            additional_player = input("please try again: ")
+            self.additional_player = input("please try again: ")
             
             # try_again_invalid_char = input("invalid character, try again: ")
             
