@@ -18,6 +18,7 @@ class SignUpProcess:
     self.code = None
     
     
+
     
   def json_append_data(self,filename,*args):
       
@@ -56,13 +57,13 @@ class SignUpProcess:
   def json_account_check_process(self):
     
     """Checks if value is in the json dictionary"""
-    # these ojects are simply representing a list of the json data so its like object = [json data]
-    read_data_for_signin = self.json_read_data("json_user_data")  
-    read_data_for_players = self.json_read_data("players.json")
+  
+    read_data_for_signin = self.json_read_data("data/user_data.json")  
+    read_data_for_players = self.json_read_data("data/players.json")
        
-    # list containing all the values from the json_user_data's dictionary
+
     self.json_user_data_list = [values for dictionaries in read_data_for_signin for values in dictionaries.values()] 
-    # List containing all the values from players.json's dictionary
+ 
     self.players_json_list = [value_players for dictionaries_players in read_data_for_players for value_players in dictionaries_players.values()] 
     
     # Check if nickname has been already in the player.json file in order to avoid multiple sign in with the same gamer credentials.
@@ -129,7 +130,7 @@ class SignUpProcess:
     
         """Generating nickname and code for each user."""  
         
-        game_list_data_instance = self.json_read_data("json_user_data")
+        game_list_data_instance = self.json_read_data("data/user_data.json")
         
         # Instead of checking name and surname that might be homonym, this checks if email is already in the json list suggesting a creation of a previous account.
         if self.email_address != None and self.email_address in game_list_data_instance:
@@ -222,7 +223,7 @@ class SignUpProcess:
         # creating the dictionary which will be passed as an argument in the json_append_data function.
         self.dict_credentials()
         # Adding dict_credentials in the json_user_data file.
-        self.json_append_data("json_user_data")
+        self.json_append_data("data/user_data.json")
         
         while True:
           
@@ -235,7 +236,7 @@ class SignUpProcess:
             self.game_generated_credentials() 
             
             self.dict_credentials()
-            self.json_append_data("json_user_data")
+            self.json_append_data("data/user_data.json")
             break
             
           elif self.additional_player == "N":
@@ -257,7 +258,7 @@ class SignUpProcess:
     self.sign_in()
     
     # Unlike the sign up this will grab the user nickname data for then store it in a json file
-    self.json_append_data("players.json",{"Nickname": self.nickname_signin})
+    self.json_append_data("data/players.json",{"Nickname": self.nickname_signin})
     
     while count_players > 0:
       
@@ -275,7 +276,7 @@ class SignUpProcess:
           # Print statement occurring.
           self.sign_in()
           # Unlike the sign up process in this case the function will not append a dixtionary therefore the argument is needed.
-          self.json_append_data("players.json",{"Nickname": self.nickname_signin})
+          self.json_append_data("data/players.json",{"Nickname": self.nickname_signin})
           count_players -= 1
       
       except:

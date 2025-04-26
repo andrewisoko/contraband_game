@@ -23,7 +23,7 @@ class Teams:
     
       """Dinamically assign players values"""
 
-      with open("players.json", "r") as file:
+      with open("data/players.json", "r") as file:
           # Read Json file.
           self.player_json_list = json.load(file) 
           
