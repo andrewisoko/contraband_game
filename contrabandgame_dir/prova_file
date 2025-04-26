@@ -1,6 +1,0 @@
-
-class Prova():
-    
-    def prova1():
-        numbers = 100
-        return numbers

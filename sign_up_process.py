@@ -224,45 +224,26 @@ class SignUpProcess:
         # Adding dict_credentials in the json_user_data file.
         self.json_append_data("json_user_data")
         
-        # sign up second player.
-        self.additional_player = input("to join a second gamer press S otherwise press N: ")  
-      
-        if self.additional_player == "S":
+        while True:
           
-          self.sign_up()
-          self.game_generated_credentials() 
-          
-          self.dict_credentials()
-          self.json_append_data("json_user_data")
-          
-        elif self.additional_player == "N":
-            
-            print("Only 1 player logged in")
+          # sign up second player.
+          self.additional_player = input("to join a second gamer press S otherwise press N: ")  
         
-        else:
+          if self.additional_player == "S":
+            
+            self.sign_up()
+            self.game_generated_credentials() 
+            
+            self.dict_credentials()
+            self.json_append_data("json_user_data")
+            break
+            
+          elif self.additional_player == "N":
+              print("Only 1 player logged in")
+              break
           
-          while True:
-            
-            self.additional_player = input("please try again: ")
-            
-            # try_again_invalid_char = input("invalid character, try again: ")
-            
-            # if try_again_invalid_char == "S":
-            #   print("Character now accepted")
-            
-            
-            #   self.sign_up()
-            #   self.game_generated_credentials() 
-              
-            #   self.dict_credentials()
-            #   self.json_append_data("json_user_data")
-            #   break 
-            
-            # elif try_again_invalid_char == "N":
-            
-            #   print("Only 1 account generated")
-     
-            #   break
+          else:
+              self.additional_player = input("please try again: ")
         
 
  
