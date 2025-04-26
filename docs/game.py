@@ -1,6 +1,6 @@
 from teams import Teams
-from sign_up_process import SignUpProcess
-from game_settings import GameSettings
+from docs.signups import SignUpProcess
+from docs.gamesettings import GameSettings
 from banks import Banks
 import random
 

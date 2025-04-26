@@ -1,6 +1,6 @@
-from sign_up_process import SignUpProcess
+from docs.signups import SignUpProcess
 from teams import Teams
-from game_settings import GameSettings
+from docs.gamesettings import GameSettings
 from game import Game
 
 
