@@ -1,6 +1,6 @@
 import json
 import random
-from docs.signups import *
+from src.signups import *
 
 
 class Teams:
