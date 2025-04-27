@@ -1,6 +1,6 @@
 
-from src.gamesettings import GameSettings
-from src.signups import SignUpProcess
+from gamesettings import GameSettings
+from signups import SignUpProcess
 import random
 from teams import Teams
 
@@ -248,7 +248,7 @@ class Banks:
                         print("the amount cannot be backed by your security amount. Please try again")
                             
                         if self.game_settings.inspector != self.team_list.player1 and self.game_settings.inspector != self.team_list.player2 and self.game_settings.inspector != self.team_list.player3 and self.game_settings.inspector != self.team_list.player4:
-                            statement_amount_attemmpts = float(random.randrange(1, 100_000_000))
+                            statement_amount_attemmpts = float(random.randrange(1,100_000_000))
                             
                             if statement_amount_attemmpts / 2 < personal_bankaccount:
                                 self.game_settings.statement_amount = statement_amount_attemmpts
@@ -366,23 +366,36 @@ class Banks:
     
     def northern_atm(self):
         
-        """Returns the total amount of money remained in the northern atm"""
+        """It contains loaned amount of each northern players and deducts amount for each smuggler turn"""
         
         if self.northern_atm_bankaccounts is not None:
             
-             for name_key in self.northern_atm_bankaccounts.keys():
-            
-                if name_key == self.game_settings.smuggler:
+            if self.game_settings.smuggler == self.team_list.player2 or self.game_settings.smuggler == self.team_list.player4:
+                
+                for name_key in self.northern_atm_bankaccounts.keys():
                     
-                    current_val = int(self.northern_atm_bankaccounts[name_key])
-                    
-                    if current_val <= 0:
+                    if name_key == self.game_settings.smuggler:
+                        current_val = int(self.northern_atm_bankaccounts[name_key])
+                        self.northern_atm_bankaccounts[name_key] = current_val - self.game_settings.smuggling_amount      
+            else:
+                
+                for name_key in self.northern_atm_bankaccounts.keys():
+                
+                    if name_key == self.game_settings.smuggler:
                         
-                        self.game_settings.smuggling_amount = 0 
-                    else:
-                       self.game_settings.smuggling_amount = random.randrange(0,current_val)
-                       self.northern_atm_bankaccounts[name_key] = current_val - self.game_settings.smuggling_amount
-                       
+                        current_val = int(self.northern_atm_bankaccounts[name_key])
+                        
+                        if current_val <= 0:
+                            
+                            self.game_settings.smuggling_amount = 0 
+                            
+                        elif current_val >= 100_000_000:
+                            self.game_settings.smuggling_amount = random.randrange(0,100_000_000)
+                            self.southern_atm_bankaccounts[name_key] = current_val - self.game_settings.smuggling_amount
+                        else:
+                            self.game_settings.smuggling_amount = random.randrange(0,current_val)
+                            self.northern_atm_bankaccounts[name_key] = current_val - self.game_settings.smuggling_amount
+                     
         
         else:
             self.northern_ba_with_money_loaned = self.team_list.northern_country_players()
@@ -415,12 +428,19 @@ class Banks:
    
     def southern_atm(self):
         
-        """Returns the total amount of money remained in the northern atm"""
+        """It contains loaned amount of each southern players and deducts amount for each smuggler turn"""
         
         
         if self.southern_atm_bankaccounts is not None:
             
-              for name_key in self.southern_atm_bankaccounts.keys():
+            for name_key in self.southern_atm_bankaccounts.keys():
+                
+                if self.game_settings.smuggler == self.team_list.player1 or self.game_settings.smuggler == self.team_list.player3:
+                    for name_key in self.southern_atm_bankaccounts.keys():
+                        
+                        if name_key == self.game_settings.smuggler:
+                            current_val = int(self.southern_atm_bankaccounts[name_key])
+                            self.southern_atm_bankaccounts[name_key] = current_val - self.game_settings.smuggling_amount      
                 
                 if name_key == self.game_settings.smuggler:
                     
@@ -429,10 +449,13 @@ class Banks:
                     if current_val <= 0:
                         
                         self.game_settings.smuggling_amount = 0 
+                    elif current_val >= 100_000_000:
+                        self.game_settings.smuggling_amount = random.randrange(0,100_000_000)
+                        self.southern_atm_bankaccounts[name_key] = current_val - self.game_settings.smuggling_amount
                     else:
-                       self.game_settings.smuggling_amount = random.randrange(0,current_val)
-                       self.southern_atm_bankaccounts[name_key] = current_val - self.game_settings.smuggling_amount
-                       
+                        self.game_settings.smuggling_amount = random.randrange(0,current_val)
+                        self.southern_atm_bankaccounts[name_key] = current_val - self.game_settings.smuggling_amount
+                        
             
          
         else:
@@ -458,7 +481,6 @@ class Banks:
                         
                         self.game_settings.smuggling_amount = 0 
                     else:
-                    
                         self.southern_atm_bankaccounts[name_key] = current_val - self.game_settings.smuggling_amount
                         
                 else:

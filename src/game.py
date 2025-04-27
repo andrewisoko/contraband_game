@@ -1,6 +1,6 @@
 from teams import Teams
-from src.signups import SignUpProcess
-from src.gamesettings import GameSettings
+from signups import SignUpProcess
+from gamesettings import GameSettings
 from banks import Banks
 import random
 
@@ -8,10 +8,34 @@ import random
 
 class Game():
     
+    def __init__(self):
+        
+        self.set_list = None
+        self.game = None
+    
+    
+    def random_player_set(self,list_par):
+   
+        
+        while True:
+            choice = random.choice(list_par)
+            
+            if choice not in self.set_list:
+                self.set_list.add(choice)
+                return choice
+            
+            elif len(self.set_list) == 10:
+                self.set_list.clear()
+                continue
+            else:
+                continue
+ 
     
     def games(self,sign_in):
     
         """General game setting, bare in mind the money are smuggled with a trunk but it is not in this game"""
+        
+        self.set_list = set()
         
         # Teams class instance where the log in of the gamer is passed as an argument
         teams_instance = Teams(sign_in)
@@ -27,15 +51,17 @@ class Game():
         banks_instance.southern_bankaccount_third_country()
         
         
+        
+        
        # Bear in mind the turn in a game are 4
         for self.game in range(25,0,-1):
             
             
             # Initialising the class on the instance variable which will generate a random player from the southern country. Now the instance variable will have the same value throughout the all functions of the class if present in the following call of a function.
-            game_settings_instance.smuggler = random.choice(teams_instance.southern_country_players())
+            game_settings_instance.smuggler = self.random_player_set(teams_instance.southern_country_players())
             print(f" The smuggler of the Southern team is: {game_settings_instance.smuggler}")
             
-            game_settings_instance.inspector = random.choice(teams_instance.northern_country_players())
+            game_settings_instance.inspector = self.random_player_set(teams_instance.northern_country_players())
             print(f" The inspector of the Northern team is: { game_settings_instance.inspector}")
             
             
@@ -64,10 +90,10 @@ class Game():
             game_settings_instance.inspector_win = False
             
             
-            game_settings_instance.smuggler = random.choice(teams_instance.northern_country_players())
+            game_settings_instance.smuggler = self.random_player_set(teams_instance.northern_country_players())
             print(f" the smuggler of the Northern team is { game_settings_instance.smuggler}")
             
-            game_settings_instance.inspector = random.choice(teams_instance.southern_country_players())
+            game_settings_instance.inspector = self.random_player_set(teams_instance.southern_country_players())
             print(f" the inspector of the Southern team is: { game_settings_instance.inspector}")
             
             game_settings_instance.the_smuggler()

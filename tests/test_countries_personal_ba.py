@@ -8,6 +8,8 @@ from src.banks import Banks
 
 def test_countries_personal_ba():
     
+    """Testing the amount of each players'personal bank account outside the country is equal to 200 million"""
+    
     test_signups = SignUpProcess()
     test_teams = Teams(test_signups)
     test_gamesettings = GameSettings(test_teams)
