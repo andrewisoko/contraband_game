@@ -1,0 +1,17 @@
+from src.signups import SignUpProcess
+from src.teams import Teams
+from src.gamesettings import GameSettings
+
+
+def test_smuggling_amount():
+    
+    
+    test_signups = SignUpProcess()
+    test_teams = Teams(test_signups)
+    test_gamesettings = GameSettings(test_teams)
+    
+    
+    if type(test_gamesettings.smuggling_amount) is float:
+        smuggling_amount_float = test_gamesettings.smuggling_amount
+        
+        assert smuggling_amount_float <= 100_000_000
