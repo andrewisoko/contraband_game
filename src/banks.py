@@ -1,13 +1,13 @@
 
 from gamesettings import GameSettings
-from signups import SignUpProcess
+from signups import SignUps
 import random
 from teams import Teams
 
 class Banks:
     
     
-    def __init__(self, countries_players: SignUpProcess , team_list: Teams, game_settings: GameSettings):
+    def __init__(self, countries_players: SignUps , team_list: Teams, game_settings: GameSettings):
         
         self.countries_players = countries_players
         self.team_list = team_list

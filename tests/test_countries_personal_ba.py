@@ -1,5 +1,5 @@
 
-from src.signups import SignUpProcess
+from src.signups import SignUps
 from src.teams import Teams
 from src.gamesettings import GameSettings
 from src.banks import Banks
@@ -10,7 +10,7 @@ def test_countries_personal_ba():
     
     """Testing the amount of each players'personal bank account outside the country is equal to 200 million"""
     
-    test_signups = SignUpProcess()
+    test_signups = SignUps()
     test_teams = Teams(test_signups)
     test_gamesettings = GameSettings(test_teams)
     test_banks = Banks(test_signups,test_teams,test_gamesettings)

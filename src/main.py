@@ -1,4 +1,4 @@
-from signups import SignUpProcess
+from signups import SignUps
 from teams import Teams
 from gamesettings import GameSettings
 from game import Game
@@ -6,7 +6,7 @@ from game import Game
 
 def main():
    
-   signup_or_signin = SignUpProcess()
+   signup_or_signin = SignUps()
 
    quick_start = input("Sign up = S / log in = L: ")
    
@@ -15,7 +15,7 @@ def main():
       signup_or_signin.main_signup_process()
    
    elif quick_start == "L":
-      signup_or_signin.main_sign_in_process()
+      signup_or_signin.main_signin_process()
       teams = Teams(signup_or_signin)
       gameset = GameSettings(teams)
       game = Game()

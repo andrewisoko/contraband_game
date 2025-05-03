@@ -1,4 +1,4 @@
-from src.signups import SignUpProcess
+from src.signups import SignUps
 from src.teams import Teams
 from src.gamesettings import GameSettings
 from src.banks import Banks
@@ -7,7 +7,7 @@ from src.game import Game
 
 def test_game_turns():
     
-    test_signups = SignUpProcess()
+    test_signups = SignUps()
     test_teams = Teams(test_signups)
     test_gamesettings = GameSettings(test_teams)
     test_banks_atm = Banks(test_signups,test_teams,test_gamesettings)

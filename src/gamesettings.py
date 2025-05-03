@@ -1,7 +1,7 @@
 from teams import Teams
 from getpass import getpass
 import random
-from signups import SignUpProcess
+from signups import SignUps
 import time
 
 

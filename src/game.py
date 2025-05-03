@@ -1,5 +1,5 @@
 from teams import Teams
-from signups import SignUpProcess
+from signups import SignUps
 from gamesettings import GameSettings
 from banks import Banks
 import random

@@ -7,7 +7,7 @@ class Teams:
   
   
   
-  def __init__(self,sign_in: SignUpProcess):
+  def __init__(self,sign_in: SignUps):
       
       self.sign_in = sign_in
       self.player1 = None

@@ -4,7 +4,7 @@ import random
 import json
 
 
-class SignUpProcess:
+class SignUps:
   
   """initial sign up credentials"""
 
@@ -248,7 +248,7 @@ class SignUpProcess:
         
 
  
-  def main_sign_in_process(self):
+  def main_signin_process(self):
     
     """Sign up function that summarises all the sign up process"""
     
