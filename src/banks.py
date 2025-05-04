@@ -390,7 +390,6 @@ class Banks:
                             self.game_settings.smuggling_amount = 0 
                             
                         elif current_val >= 100_000_000:
-                            self.game_settings.smuggling_amount = random.randrange(0,100_000_000)
                             self.southern_atm_bankaccounts[name_key] = current_val - self.game_settings.smuggling_amount
                         else:
                             self.game_settings.smuggling_amount = random.randrange(0,current_val)
@@ -422,7 +421,7 @@ class Banks:
                     
                         self.northern_atm_bankaccounts[name_key] = current_val - self.game_settings.smuggling_amount
                 
-                        self.total_amount_northern_atm = sum(self.bankaccounts_values_northern) 
+                      
                         
 
    
@@ -447,10 +446,9 @@ class Banks:
                     current_val = int(self.southern_atm_bankaccounts[name_key])
                     
                     if current_val <= 0:
-                        
                         self.game_settings.smuggling_amount = 0 
+                        
                     elif current_val >= 100_000_000:
-                        self.game_settings.smuggling_amount = random.randrange(0,100_000_000)
                         self.southern_atm_bankaccounts[name_key] = current_val - self.game_settings.smuggling_amount
                     else:
                         self.game_settings.smuggling_amount = random.randrange(0,current_val)
