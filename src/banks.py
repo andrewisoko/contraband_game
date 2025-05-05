@@ -223,7 +223,7 @@ class Banks:
             
             self.bankaccounts_values_southern = self.southern_country_personal_bankaccounts.values()
     
-            self.total_amount_southern_thirdcountry = sum(self.bankaccounts_values_northern) 
+            self.total_amount_southern_thirdcountry = sum(self.bankaccounts_values_southern) 
                
             return self.total_amount_southern_thirdcountry
 
@@ -272,29 +272,29 @@ class Banks:
                 
                 current_val = self.southern_country_personal_bankaccounts[name_key]
                 
-                ammount_won = self.game_settings.smuggling_amount
+                amount_won = self.game_settings.smuggling_amount
                 
                 security_ammount_won = self.game_settings.security_amount
                 
-                self.southern_country_personal_bankaccounts[name_key] = current_val + ammount_won + security_ammount_won
+                self.southern_country_personal_bankaccounts[name_key] = current_val + amount_won + security_ammount_won
                 
                 
             elif  self.game_settings.smuggler == name_key and self.game_settings.sec_amount_win is True:
                     
                 current_val = self.southern_country_personal_bankaccounts[name_key]
            
-                ammount_won = self.game_settings.security_amount
+                amount_won = self.game_settings.security_amount
                 
-                self.southern_country_personal_bankaccounts[name_key] = current_val + ammount_won
+                self.southern_country_personal_bankaccounts[name_key] = current_val + amount_won
                 
                  
             elif self.game_settings.smuggler == name_key and self.game_settings.inspector_win is True: 
             
                 current_val = self.southern_country_personal_bankaccounts[name_key]
             
-                ammount_lost = self.game_settings.smuggling_amount
+                amount_lost = self.game_settings.smuggling_amount
                 
-                self.southern_country_personal_bankaccounts[name_key] = current_val - ammount_lost
+                self.southern_country_personal_bankaccounts[name_key] = current_val - amount_lost
                 
                 
              
@@ -302,9 +302,9 @@ class Banks:
                 
                 current_val = self.southern_country_personal_bankaccounts[name_key]
         
-                ammount_won = self.game_settings.smuggling_amount
+                amount_won = self.game_settings.smuggling_amount
                 
-                self.southern_country_personal_bankaccounts[name_key] = current_val + ammount_won 
+                self.southern_country_personal_bankaccounts[name_key] = current_val + amount_won 
             else:
                 pass  
     
