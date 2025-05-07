@@ -53,7 +53,7 @@ def test_inspector_win_chances_south():
         
     #---Third scenario--#
     
-    test_gamesettings.inspector =  "C.Ponzi"       
+    test_gamesettings.inspector =  "Charles Ponzi"       
     test_gamesettings.inspector_win = True
             
     test_banks.money_update_as_southern_inspector()
@@ -63,7 +63,7 @@ def test_inspector_win_chances_south():
          
     #--Fourth scenario--#
     
-    test_gamesettings.inspector =  "Joker"      
+    test_gamesettings.inspector =  "Jordan Belfort"      
     test_gamesettings.smuggler_win = True
     
     test_banks.money_update_as_southern_inspector()

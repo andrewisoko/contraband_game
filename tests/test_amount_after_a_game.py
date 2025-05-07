@@ -32,7 +32,7 @@ def test_amount_after_a_game():
     assert test_banks.northern_country_personal_bankaccounts[test_gamesettings.inspector] < inital_val
     
     test_gamesettings.smuggler = "Berlusconi"
-    test_gamesettings.inspector = "Joker"
+    test_gamesettings.inspector = "Jordan Belfort"
     
     test_banks.money_update_as_northern_smuggler()
     test_banks.money_update_as_southern_inspector()

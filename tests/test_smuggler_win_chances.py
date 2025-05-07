@@ -63,7 +63,7 @@ def test_smuggler_win_chances_south():
          
     #--Fourth scenario--#
     
-    test_gamesettings.smuggler =  "Joker"      
+    test_gamesettings.smuggler =  "Jordan Belfort"      
     test_gamesettings.smuggler_win = True
     
     test_banks.money_update_as_southern_smuggler()
