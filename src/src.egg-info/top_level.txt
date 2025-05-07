@@ -1,7 +1,0 @@
-__init__
-banks
-game
-gamesettings
-main
-signups
-teams

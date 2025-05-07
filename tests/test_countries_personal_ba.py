@@ -1,8 +1,8 @@
 
-from src.signups import SignUps
-from src.teams import Teams
-from src.gamesettings import GameSettings
-from src.banks import Banks
+from contraband_game.signups import SignUps
+from contraband_game.teams import Teams
+from contraband_game.gamesettings import GameSettings
+from contraband_game.banks import Banks
 
 
 
