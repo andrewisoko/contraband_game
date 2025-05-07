@@ -1,6 +1,6 @@
 # Contraband-Game
 
-This is one of the games from the manga "Liar Game". The instructions of the game are in the directory. 
+This is one of the games from the manga "Liar Game". The instructions of the game are in the repository(game_rules.txt). 
 Have fun.
 
 ![ image alt](https://github.com/andrewisoko/contraband_game/blob/main/images/image%2001.jpg)
@@ -44,7 +44,7 @@ Have fun.
 
 3) Run "pip install contraband_game" to install the package.
 
-4) RUn  "python -m contraband_game.main" to start the game.
+4) Run  "python -m contraband_game.main" to start the game.
 
 
 
