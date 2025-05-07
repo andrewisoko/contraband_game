@@ -1,5 +1,4 @@
 import json
-import random
 from .signups import *
 
 
@@ -24,7 +23,7 @@ class Teams:
     
       """Dinamically assign players values"""
 
-      with open("data/players.json", "r") as file:
+      with open(self.sign_in.data_path_players, "r") as file:
           # Read Json file.
           self.player_json_list = json.load(file) 
           
@@ -51,11 +50,11 @@ class Teams:
     """It returns a list containing the southern country's players"""
        
     
-    team1_list = [ "Lupin", "Clyde","C.Ponzi"]
+    team1_list = [ "Lupin", "Clyde","Charles Ponzi"]
     
     # It is mandatory to have at least a player in the game, player1. the additional players will be replaced by other invented players if they do not partake in the game.
     if self.player1 is None:
-      team1_list.append("Joker")
+      team1_list.append("Jordan Belfort")
     else:
         team1_list.append(self.player1)
         

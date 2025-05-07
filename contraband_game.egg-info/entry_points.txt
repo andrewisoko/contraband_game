@@ -1,2 +1,0 @@
-[console_scripts]
-contraband_game = contraband_game.main:main

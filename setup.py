@@ -1,14 +1,14 @@
 from setuptools import setup, find_packages
 
 setup(
-    packages=find_packages(include=['contraband_game']), 
-    version = "0.1",
-   
+    name="contraband_game",
+    version="0.3",  
+    packages=find_packages(),
+    include_package_data=True,
     package_data={
-        'contraband_game': ['data/*', 'images/*'] 
+        "contraband_game": ["data/*.json"]
     },
-    entry_points={  
-        'console_scripts': ['contraband_game=contraband_game.main:main']
-    }
+
 )
+
 

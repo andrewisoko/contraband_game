@@ -1,6 +1,7 @@
 
 import string
 import random
+import pkg_resources
 import json
 
 
@@ -16,6 +17,8 @@ class SignUps:
     self.email_address = None
     self.nickname = None
     self.code = None
+    self.data_path_users = None
+    self.data_path_players = None
     
     
 
@@ -58,8 +61,11 @@ class SignUps:
     
     """Checks if value is in the json dictionary"""
   
-    read_data_for_signin = self.json_read_data("data/user_data.json")  
-    read_data_for_players = self.json_read_data("data/players.json")
+    self.data_path_users = pkg_resources.resource_filename('contraband_game', 'data/user_data.json')
+    self.data_path_players = pkg_resources.resource_filename('contraband_game', 'data/players.json')
+    
+    read_data_for_signin = self.json_read_data(self.data_path_users)  
+    read_data_for_players = self.json_read_data(self.data_path_players)
        
 
     self.json_user_data_list = [values for dictionaries in read_data_for_signin for values in dictionaries.values()] 
@@ -223,7 +229,7 @@ class SignUps:
         # creating the dictionary which will be passed as an argument in the json_append_data function.
         self.dict_credentials()
         # Adding dict_credentials in the json_user_data file.
-        self.json_append_data("data/user_data.json")
+        self.json_append_data(self.data_path_users)
         
         while True:
           
@@ -236,7 +242,7 @@ class SignUps:
             self.game_generated_credentials() 
             
             self.dict_credentials()
-            self.json_append_data("data/user_data.json")
+            self.json_append_data(self.data_path_users)
             break
             
           elif self.additional_player == "N":
@@ -258,7 +264,7 @@ class SignUps:
     self.sign_in()
     
     # Unlike the sign up this will grab the user nickname data for then store it in a json file
-    self.json_append_data("data/players.json",{"Nickname": self.nickname_signin})
+    self.json_append_data(self.data_path_players,{"Nickname": self.nickname_signin})
     
     while count_players > 0:
       
@@ -276,7 +282,7 @@ class SignUps:
           # Print statement occurring.
           self.sign_in()
           # Unlike the sign up process in this case the function will not append a dixtionary therefore the argument is needed.
-          self.json_append_data("data/players.json",{"Nickname": self.nickname_signin})
+          self.json_append_data(self.data_path_players,{"Nickname": self.nickname_signin})
           count_players -= 1
       
       except:

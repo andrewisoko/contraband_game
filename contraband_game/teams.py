@@ -1,5 +1,4 @@
 import json
-import random
 from .signups import *
 
 
@@ -24,7 +23,7 @@ class Teams:
     
       """Dinamically assign players values"""
 
-      with open("data/players.json", "r") as file:
+      with open(self.sign_in.data_path_players, "r") as file:
           # Read Json file.
           self.player_json_list = json.load(file) 
           

@@ -1,4 +1,5 @@
 LICENSE
+MANIFEST.in
 README.md
 setup.py
 contraband_game/__init__.py
@@ -11,8 +12,10 @@ contraband_game/teams.py
 contraband_game.egg-info/PKG-INFO
 contraband_game.egg-info/SOURCES.txt
 contraband_game.egg-info/dependency_links.txt
-contraband_game.egg-info/entry_points.txt
 contraband_game.egg-info/top_level.txt
+contraband_game/data/players.json
+contraband_game/data/user_data.json
+tests/__init__.py
 tests/test_amount_after_a_game.py
 tests/test_countries_atm.py
 tests/test_countries_personal_ba.py
