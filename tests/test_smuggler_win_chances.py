@@ -53,7 +53,7 @@ def test_smuggler_win_chances_south():
         
     #---Third scenario--#
     
-    test_gamesettings.smuggler =  "C.Ponzi"       
+    test_gamesettings.smuggler =  "Charles Ponzi"       
     test_gamesettings.inspector_win = True
             
     test_banks.money_update_as_southern_smuggler()

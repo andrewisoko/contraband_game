@@ -1,6 +1,6 @@
 # Contraband-Game
 
-This is one of the games from the manga "Liar Game". The instructions of the game are in the repository(game_rules.txt). 
+This is one of the games from the manga "Liar Game". The instructions of the game are in the repository (game_rules.txt). 
 Have fun.
 
 ![ image alt](https://github.com/andrewisoko/contraband_game/blob/main/images/image%2001.jpg)
@@ -23,8 +23,9 @@ Have fun.
 # Tests 
 
 1) The tests are not found in the packages, if wanting to try the tests it is advised to download the entire repository.
-2) It is recquired to activate the vritual environment to run the tests.
-3) Simply insert "pytest" on the terminal.
+2) "pip install setuptools" 
+3) It is recquired to activate the vritual environment to run the tests.
+4) Simply insert "pytest" on the terminal.
 
 
 # Potential issues
