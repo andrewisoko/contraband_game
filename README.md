@@ -32,7 +32,7 @@ Have fun.
 
 3) It is recquired to activate the vritual environment to run the tests.
 
-4) Simply insert "pytest" on the terminal.
+4) Simply insert "pytest" and run it in the terminal.
 
 
 # Potential issues
@@ -60,6 +60,8 @@ Have fun.
 # Additionl notes
 
 * The game can be quite complicated to undertand feel free to drop me a message on LinkedIn www.linkedin.com/in/andrew-isoko for any assistance
+
+* The premise of the game other than winning the round with your country is also not falling into dept. Bonus if you finish as a top earner. Can you do it?
 
 
 

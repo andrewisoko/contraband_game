@@ -34,13 +34,13 @@ class GameSettings:
             try:
                 # If it's the default player turn a random statement amount will be generated.
                 if self.inspector != self.teams.player1 and self.inspector != self.teams.player2 and self.inspector != self.teams.player3 and self. inspector!= self.teams.player4:
-                    self.statement_amount = float(random.randrange(1,100_000_000))
+                    self.statement_amount = int(random.randrange(1,100_000_000))
                     
                     self.security_amount = self.statement_amount / 2
                     
                     break
                 else:
-                    self.statement_amount = float(input("AMOUNT: "))
+                    self.statement_amount = int(input("AMOUNT: "))
                     
                     # the security amount is equal to half of the statement amount. this gets temporary withdrawn from the inspector outside bank account, and given to the smuggler certain circumstances.
                     self.security_amount = self.statement_amount / 2
@@ -156,7 +156,7 @@ class GameSettings:
             try:
                 # The if statement declares that every non user/player place their amount with the random function.
                 if self.smuggler != self.teams.player1 and self.smuggler != self.teams.player2 and self.smuggler != self.teams.player3 and self.smuggler != self.teams.player4:
-                    self.smuggling_amount = float(random.randrange(1,100_000_000))
+                    self.smuggling_amount = int(random.randrange(1,100_000_000))
                     
                     # delayed output to make it more fluid
                     # time.sleep(10)
@@ -168,7 +168,7 @@ class GameSettings:
                     break
                 else:
                 # the getpass method is needed to hide the amount placed in the trunk by the smuggler.
-                    self.smuggling_amount = float(getpass(f"{self.smuggler} place your amount in the trunk. The max is 100,000,000 £: "))
+                    self.smuggling_amount = int(getpass(f"{self.smuggler} place your amount in the trunk. The max is 100,000,000 £: "))
                     
                     # the amount in the trunk has to be 100 million £ maximum
                     if self.smuggling_amount <= 100_000_000:

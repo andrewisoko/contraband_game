@@ -138,9 +138,9 @@ class Game():
         print("Game Over!")
         
         if sum(self.final_personal_ba_northern.values()) > sum(self.final_personal_ba_southern.values()):
-            print(f"with the total amount of {sum(self.final_personal_ba_northern.values()):,} the northern country wins the round!!!🥳\n The southern only managed to earn {sum(self.final_personal_ba_northern.values()):,} during the round")
+            print(f"with the total amount of {sum(self.final_personal_ba_northern.values()):,} the northern country wins the round!!!🥳\n The southern only managed to earn {sum(self.final_personal_ba_southern.values()):,} during the round")
         else:
-         print(f"with the total amount of {sum(self.final_personal_ba_northern.values()):,} the southern country wins the round!!!🥳\n The southern only managed to earn {sum(self.final_personal_ba_southern.values()):,} during the round")
+         print(f"with the total amount of {sum(self.final_personal_ba_southern.values()):,} the southern country wins the round!!!🥳\n The nothern only managed to earn {sum(self.final_personal_ba_northern.values()):,} during the round")
          
   
     
