@@ -245,7 +245,6 @@ class Banks:
                     
                     while True:
                         
-                        
                         print("the amount cannot be backed by your security amount. Please try again")
                             
                         if self.game_settings.inspector != self.team_list.player1 and self.game_settings.inspector != self.team_list.player2 and self.game_settings.inspector != self.team_list.player3 and self.game_settings.inspector != self.team_list.player4:
@@ -457,9 +456,7 @@ class Banks:
                                             self.game_settings.smuggling_amount = try_again_user
                                             self.southern_atm_bankaccounts[name_key] = current_val - self.game_settings.smuggling_amount
                                             break
-                                else:
-                                    self.southern_atm_bankaccounts[name_key] = current_val - self.game_settings.smuggling_amount
-                                            
+                                 
                 else:                                
                     if name_key == self.game_settings.smuggler:
                         
