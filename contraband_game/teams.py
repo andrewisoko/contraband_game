@@ -1,5 +1,6 @@
 import json
-from .signups import *
+from   signups import *
+import pkg_resources
 
 
 
@@ -22,8 +23,10 @@ class Teams:
   def player_generator(self):
     
       """Dinamically assign players values"""
+      
+      user_players = pkg_resources.resource_filename('contraband_game', 'data/players.json')
 
-      with open(self.sign_in.data_path_players, "r") as file:
+      with open(user_players, "r") as file:
           # Read Json file.
           self.player_json_list = json.load(file) 
           

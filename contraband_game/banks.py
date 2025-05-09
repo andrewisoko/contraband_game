@@ -1,7 +1,7 @@
 
-from .gamesettings import GameSettings
-from .signups import SignUps
-from .teams import Teams
+from gamesettings import GameSettings
+from signups import SignUps
+from teams import Teams
 import random
 
 class Banks:
@@ -375,18 +375,32 @@ class Banks:
                 for name_key in self.northern_atm_bankaccounts.keys():
                     
                     if name_key == self.game_settings.smuggler:
-                        current_val = int(self.northern_atm_bankaccounts[name_key])
-                        self.northern_atm_bankaccounts[name_key] = current_val - self.game_settings.smuggling_amount      
-            else:
-                
+                        current_val = float(self.northern_atm_bankaccounts[name_key])
+                        
+                        if current_val <= 0:
+                          self.game_settings.smuggling_amount = 0 
+                        
+                        elif current_val >= 100_000_000:
+                            self.southern_atm_bankaccounts[name_key] = current_val - self.game_settings.smuggling_amount
+                        else: 
+                            check_user_amount = random.randrange(0,current_val)
+                            if self.game_settings.smuggling_amount not in check_user_amount:
+                        
+                                while True:
+                                    try_again_user = float(input("Amount smuggled exceeds the atm resources, please try again: "))
+                                    if try_again_user in check_user_amount:
+                                        self.game_settings.smuggling_amount = try_again_user
+                                        break
+                                    
+                                    
+            else:    
                 for name_key in self.northern_atm_bankaccounts.keys():
                 
                     if name_key == self.game_settings.smuggler:
                         
-                        current_val = int(self.northern_atm_bankaccounts[name_key])
+                        current_val = float(self.northern_atm_bankaccounts[name_key])
                         
                         if current_val <= 0:
-                            
                             self.game_settings.smuggling_amount = 0 
                             
                         elif current_val >= 100_000_000:
@@ -399,7 +413,6 @@ class Banks:
         else:
             self.northern_ba_with_money_loaned = self.team_list.northern_country_players()
                 
-
             self.northern_atm_bankaccounts = {self.northern_ba_with_money_loaned[0]:300_000_000,
                                             self.northern_ba_with_money_loaned[1]:300_000_000,
                                             self.northern_ba_with_money_loaned[2]:300_000_000,
@@ -413,13 +426,7 @@ class Banks:
                 if name_key == self.game_settings.smuggler:
                     
                     current_val = self.northern_atm_bankaccounts[name_key]
-                    
-                    if current_val <= 0:
-                        
-                        self.game_settings.smuggling_amount = 0 
-                    else:
-                    
-                        self.northern_atm_bankaccounts[name_key] = current_val - self.game_settings.smuggling_amount
+                    self.northern_atm_bankaccounts[name_key] = current_val - self.game_settings.smuggling_amount
                 
                       
                         
@@ -438,21 +445,34 @@ class Banks:
                     for name_key in self.southern_atm_bankaccounts.keys():
                         
                         if name_key == self.game_settings.smuggler:
-                            current_val = int(self.southern_atm_bankaccounts[name_key])
-                            self.southern_atm_bankaccounts[name_key] = current_val - self.game_settings.smuggling_amount      
-                
-                if name_key == self.game_settings.smuggler:
-                    
-                    current_val = int(self.southern_atm_bankaccounts[name_key])
-                    
-                    if current_val <= 0:
-                        self.game_settings.smuggling_amount = 0 
-                        
-                    elif current_val >= 100_000_000:
-                        self.southern_atm_bankaccounts[name_key] = current_val - self.game_settings.smuggling_amount
-                    else:
-                        self.game_settings.smuggling_amount = random.randrange(0,current_val)
-                        self.southern_atm_bankaccounts[name_key] = current_val - self.game_settings.smuggling_amount
+                            current_val = float(self.southern_atm_bankaccounts[name_key])
+                            if current_val <= 0:
+                                self.game_settings.smuggling_amount = 0 
+                                
+                            elif current_val >= 100_000_000:
+                                self.southern_atm_bankaccounts[name_key] = current_val - self.game_settings.smuggling_amount
+                            else: 
+                                check_user_amount = random.randrange(0,current_val)
+                                if self.game_settings.smuggling_amount not in check_user_amount:
+                                    while True:
+                                        try_again_user = float(input("Amount smuggled exceeds the atm resources, please try again: "))
+                                        if try_again_user in check_user_amount:
+                                            self.game_settings.smuggling_amount = try_again_user
+                                            break
+                else:                                
+                   for name_key in self.southern_atm_bankaccounts.keys():
+                        if name_key == self.game_settings.smuggler:
+                            
+                            current_val = float(self.southern_atm_bankaccounts[name_key])
+                            
+                            if current_val <= 0:
+                                self.game_settings.smuggling_amount = 0 
+                                
+                            elif current_val >= 100_000_000:
+                                self.southern_atm_bankaccounts[name_key] = current_val - self.game_settings.smuggling_amount
+                            else:
+                                self.game_settings.smuggling_amount = random.randrange(0,current_val)
+                                self.southern_atm_bankaccounts[name_key] = current_val - self.game_settings.smuggling_amount
                         
             
          
@@ -460,7 +480,6 @@ class Banks:
             
             self.southern_ba_with_money_loaned = self.team_list.southern_country_players()
             
-
             self.southern_atm_bankaccounts = {self.southern_ba_with_money_loaned[0]:300_000_000,
                                         self.southern_ba_with_money_loaned[1]:300_000_000,
                                         self.southern_ba_with_money_loaned[2]:300_000_000,
@@ -474,12 +493,7 @@ class Banks:
                 if name_key == self.game_settings.smuggler:
                     
                     current_val = self.southern_atm_bankaccounts[name_key]
-                    
-                    if current_val <= 0:
-                        
-                        self.game_settings.smuggling_amount = 0 
-                    else:
-                        self.southern_atm_bankaccounts[name_key] = current_val - self.game_settings.smuggling_amount
+                    self.southern_atm_bankaccounts[name_key] = current_val - self.game_settings.smuggling_amount
                         
                 else:
                     pass

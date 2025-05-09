@@ -14,17 +14,24 @@ Have fun.
 
 1) The sign up process creates username and code, mandatory for participating the game.
 
-2) Although there is no limit for the amount of accounts that can be created, only 4 accounts can partecipate.
+2) User credentials , generated username and code are stored in json files. *Highly advised to remember the generated credentials for the log in*. 
 
-3) User credentials , generated username and code are stored in json files. *Highly advised to remember the generated credentials for the log in*. 
+3) After signing up,  Run the program again, this time select "L" and add the nickname and code created during the sign up process.
 
-4) The game (round according to the manga conventions) has no graphic interface. it requires simple inputs.
+4) Although there is no limit for the amount of accounts that can be created, only 4 accounts can partecipate.
+
+5) The game (round according to the manga conventions) has no graphic interface. it requires simple inputs.
+
+6) The input amount of the user/smuggler is not visible, it will appear only after insert it.
 
 # Tests 
 
 1) The tests are not found in the packages, if wanting to try the tests it is advised to download the entire repository.
+
 2) "pip install setuptools" 
+
 3) It is recquired to activate the vritual environment to run the tests.
+
 4) Simply insert "pytest" on the terminal.
 
 
@@ -34,6 +41,8 @@ Have fun.
 *  To avoid the unlimited waiting time during the tests, it is suggested to comment all the time.sleep in the gamesettings.py module.
 
 *  In case an issue arises with the test functionality, it is suggested to activate the virtual environment inside the tests directory for then returning back to the previous directory (cd..) to ensure the proper usage of pytest. 
+
+* Found some issues with the pkg_resources package. used the pkg_resource function as a value of an instance attribute, thinking that I could reuse the instance across different functions of the class but it did not work, therefore forced to repeat some code.
 
 
 # Installation instructions
@@ -47,6 +56,10 @@ Have fun.
 
 4) Run  "python -m contraband_game.main" to start the game.
 
+
+# Additionl notes
+
+* The game can be quite complicated to undertand feel free to drop me a message on LinkedIn www.linkedin.com/in/andrew-isoko for any assistance
 
 
 

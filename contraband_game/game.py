@@ -1,6 +1,6 @@
-from .teams import Teams
-from .gamesettings import GameSettings
-from .banks import Banks
+from teams import Teams
+from gamesettings import GameSettings
+from banks import Banks
 import random
 
 
@@ -123,9 +123,12 @@ class Game():
             print(f"{self.game - 1} game(s) remaining.\n")
             
             # Print statement return bank transitions. Not needed in the game but if in case of uncertainty it's suggested the use of it.
-            # print(f"{banks_instance.northern_country_personal_bankaccounts}") 
-            # print(f"{banks_instance.southern_country_personal_bankaccounts}")
+            print(f"{banks_instance.northern_country_personal_bankaccounts}") 
+            print(f"{banks_instance.southern_country_personal_bankaccounts}")
             
+            print(f"{banks_instance.northern_atm_bankaccounts}") 
+            print(f"{banks_instance.southern_atm_bankaccounts}")
+             
             if self.game == 1:
                 self.final_personal_ba_northern = banks_instance.northern_country_personal_bankaccounts 
                 self.final_personal_ba_southern = banks_instance.southern_country_personal_bankaccounts 
@@ -135,9 +138,9 @@ class Game():
         print("Game Over!")
         
         if sum(self.final_personal_ba_northern.values()) > sum(self.final_personal_ba_southern.values()):
-            print(f"with the total amount of {sum(self.final_personal_ba_northern.values()):,} the northern country wins the round!!!🥳")
+            print(f"with the total amount of {sum(self.final_personal_ba_northern.values()):,} the northern country wins the round!!!🥳\n The southern only managed to earn {sum(self.final_personal_ba_northern.values()):,} during the round")
         else:
-         print(f"with the total amount of {sum(self.final_personal_ba_northern.values()):,} the southern country wins the round!!!🥳")
+         print(f"with the total amount of {sum(self.final_personal_ba_northern.values()):,} the southern country wins the round!!!🥳\n The southern only managed to earn {sum(self.final_personal_ba_southern.values()):,} during the round")
          
   
     

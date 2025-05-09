@@ -17,8 +17,8 @@ class SignUps:
     self.email_address = None
     self.nickname = None
     self.code = None
-    self.data_path_users = None
-    self.data_path_players = None
+    
+
     
     
 
@@ -60,12 +60,9 @@ class SignUps:
   def json_account_check_process(self):
     
     """Checks if value is in the json dictionary"""
-  
-    self.data_path_users = pkg_resources.resource_filename('contraband_game', 'data/user_data.json')
-    self.data_path_players = pkg_resources.resource_filename('contraband_game', 'data/players.json')
     
-    read_data_for_signin = self.json_read_data(self.data_path_users)  
-    read_data_for_players = self.json_read_data(self.data_path_players)
+    read_data_for_signin = self.json_read_data(pkg_resources.resource_filename('contraband_game', 'data/user_data.json'))  
+    read_data_for_players = self.json_read_data(pkg_resources.resource_filename('contraband_game', 'data/players.json'))
        
 
     self.json_user_data_list = [values for dictionaries in read_data_for_signin for values in dictionaries.values()] 
@@ -108,13 +105,17 @@ class SignUps:
         # Email in a while loop in case it doesn't match requirements
         self.email_address = input("email: ")
         
+        read_jsondata_for_email = self.json_read_data(pkg_resources.resource_filename('contraband_game', 'data/user_data.json'))  
+        json_data_list2 = [values for dictionaries in read_jsondata_for_email for values in dictionaries.values()] 
+        
          # Checking requirements needed for an email 
-        if "@" in self.email_address and "." in self.email_address:
+        if "@" in self.email_address and "." in self.email_address and self.email_address not in json_data_list2:
           print("Succesful sign up")
           break
         
+        
         else:
-          print("Not matching email standards. Please add a @ and a . into your email.")  
+          print("Not matching email standards.\n Please add a @ and a . into your email, otherwise the email has already been used.\n Try another email.")  
           
            
     
@@ -136,7 +137,7 @@ class SignUps:
     
         """Generating nickname and code for each user."""  
         
-        game_list_data_instance = self.json_read_data("data/user_data.json")
+        game_list_data_instance = self.json_read_data(pkg_resources.resource_filename('contraband_game', 'data/user_data.json'))
         
         # Instead of checking name and surname that might be homonym, this checks if email is already in the json list suggesting a creation of a previous account.
         if self.email_address != None and self.email_address in game_list_data_instance:
@@ -219,6 +220,7 @@ class SignUps:
         
         """Sign up function that summarises all the sign up process"""
         
+        count_signups = 1
         
         # sign up first gamer.
         self.sign_up() 
@@ -229,29 +231,30 @@ class SignUps:
         # creating the dictionary which will be passed as an argument in the json_append_data function.
         self.dict_credentials()
         # Adding dict_credentials in the json_user_data file.
-        self.json_append_data(self.data_path_users)
+        self.json_append_data(pkg_resources.resource_filename('contraband_game', 'data/user_data.json'))
         
-        while True:
+        while count_signups < 4:
           
-          # sign up second player.
-          self.additional_player = input("to join a second gamer press S otherwise press N: ")  
-        
-          if self.additional_player == "S":
-            
-            self.sign_up()
-            self.game_generated_credentials() 
-            
-            self.dict_credentials()
-            self.json_append_data(self.data_path_users)
-            break
-            
-          elif self.additional_player == "N":
-              print("Only 1 player logged in")
-              break
+          try:  
+            # sign up second player.
+            self.additional_player = input("to join an additional player press S otherwise press N: ")  
           
-          else:
-              self.additional_player = input("please try again: ")
-        
+            if self.additional_player == "S":
+              
+              self.sign_up()
+              self.game_generated_credentials() 
+              
+              self.dict_credentials()
+              self.json_append_data(pkg_resources.resource_filename('contraband_game', 'data/user_data.json'))
+              count_signups += 1
+              print(f"{count_signups} player/s logged in")
+              
+            elif self.additional_player == "N":
+                break  
+              
+          except:
+                pass
+          
 
  
   def main_signin_process(self):
@@ -259,12 +262,12 @@ class SignUps:
     """Sign up function that summarises all the sign up process"""
     
     # Used to multiple log in requests. Maximum 4 players.
-    count_players  = 3 
+    count_players  = 3
     
     self.sign_in()
     
     # Unlike the sign up this will grab the user nickname data for then store it in a json file
-    self.json_append_data(self.data_path_players,{"Nickname": self.nickname_signin})
+    self.json_append_data(pkg_resources.resource_filename('contraband_game', 'data/players.json'),{"Nickname": self.nickname_signin})
     
     while count_players > 0:
       
@@ -282,11 +285,11 @@ class SignUps:
           # Print statement occurring.
           self.sign_in()
           # Unlike the sign up process in this case the function will not append a dixtionary therefore the argument is needed.
-          self.json_append_data(self.data_path_players,{"Nickname": self.nickname_signin})
+          self.json_append_data(pkg_resources.resource_filename('contraband_game', 'data/players.json'),{"Nickname": self.nickname_signin})
           count_players -= 1
       
       except:
-          print("I Know it sounds frustrating, please restart the log in process.")
+          pass
         
       
       

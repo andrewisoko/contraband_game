@@ -1,5 +1,5 @@
-from .teams import Teams
-from .signups import SignUps
+from teams import Teams
+from signups import SignUps
 from getpass import getpass
 import random
 import time
@@ -46,7 +46,7 @@ class GameSettings:
                     self.security_amount = self.statement_amount / 2
                     
                     # the statement amount shoudn't exceed 100milion since that is the limit of the money allowed inside the trunk.
-                    if self.statement_amount >= 100_000_000:
+                    if self.statement_amount <= 100_000_000:
                         break
                     else:
                         print("Invalid amount")
@@ -60,7 +60,7 @@ class GameSettings:
         """All the possible outcome from the doubt statement"""   
         
         # Some suspance on the decision.
-        time.sleep(15)
+        # time.sleep(15)
         print(f"the inspector {self.inspector} declared amount is equal to {self.statement_amount:,}£ inside the trunk")    
     
         # If smuggler has no money inside the trunk and the statement amount from the inspector exceeds the empty trunk the smuggler wins and gets the security amount        
@@ -117,11 +117,11 @@ class GameSettings:
     
             
             # slowing down the pace of the output
-            time.sleep(15)
+            # time.sleep(15)
             print("Call PASS if you believe the smuggler is carrying no money. Call DOUBT if you believe money are carried by the smuggler")
             
             # Adding a bit of suspance before the decision.
-            time.sleep(5)
+            # time.sleep(5)
             print(self.inspector_action) 
         else:
             # Otherwise the the user/player inserts the key words.
@@ -131,14 +131,14 @@ class GameSettings:
         while True:
             
             if self.inspector_action == "PASS":
-                time.sleep(5)
+                # time.sleep(5)
                 self.pass_declaration()
                 break
                 
             elif self.inspector_action == "DOUBT":
                 self.doubt_investigation = True
                 
-                time.sleep(5)
+                # time.sleep(5)
                 self.doubt_declaration()
                 break
             
@@ -159,7 +159,7 @@ class GameSettings:
                     self.smuggling_amount = float(random.randrange(1,100_000_000))
                     
                     # delayed output to make it more fluid
-                    time.sleep(10)
+                    # time.sleep(10)
                     
                     # The print statement masks the smuggling amount of the default player
                     print("*************")

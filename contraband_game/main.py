@@ -1,7 +1,7 @@
-from .signups import SignUps
-from .teams import Teams
-from .gamesettings import GameSettings
-from .game import Game
+from signups import SignUps
+from teams import Teams
+from gamesettings import GameSettings
+from game import Game
 
 
 def main():
