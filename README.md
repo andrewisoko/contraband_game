@@ -8,9 +8,11 @@ Have fun.
 
 # Instructions
 
+
 * Run the game with "python -m contraband_game.main" (both IDE terminal and Command prompt)
 *  Terminate the game by pressing Ctrl + C
 * Clear terminal by pressing cls (command prompt) otherwise if running on IDE terminal Ctrl + L
+* Name, Surname and email can be invented it is not a real case scenario, I just wanted to add up more stuff in the project.
 
 1) The sign up process creates username and code, mandatory for participating the game.
 
@@ -26,6 +28,7 @@ Have fun.
 
 # Tests 
 
+
 1) The tests are not found in the packages, if wanting to try the tests it is advised to download the entire repository.
 
 2) "pip install setuptools" 
@@ -33,6 +36,7 @@ Have fun.
 3) It is recquired to activate the vritual environment to run the tests.
 
 4) Simply insert "pytest" and run it in the terminal.
+
 
 
 # Potential issues
@@ -43,6 +47,8 @@ Have fun.
 *  In case an issue arises with the test functionality, it is suggested to activate the virtual environment inside the tests directory for then returning back to the previous directory (cd..) to ensure the proper usage of pytest. 
 
 * Found some issues with the pkg_resources package. used the pkg_resource function as a value of an instance attribute, thinking that I could reuse the instance across different functions of the class but it did not work, therefore forced to repeat some code.
+
+* If downloading the repository, and wanting to try the sign up process do not add backslash found in user_data_json file generated code. Omit it from the generated code when past it to the terminal.
 
 
 # Installation instructions
@@ -58,6 +64,7 @@ Have fun.
 
 
 # Additionl notes
+
 
 * The game can be quite complicated to undertand feel free to drop me a message on LinkedIn www.linkedin.com/in/andrew-isoko for any assistance
 

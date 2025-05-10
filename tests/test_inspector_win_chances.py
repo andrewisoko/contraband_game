@@ -81,7 +81,7 @@ def test_inspector_win_chances_south():
 
 
     
-def test_smuggler_win_chances_north():
+def test_inspector_win_chances_north():
     
     """Testing winning chances of a northern inspector against a southern smuggler"""
     
@@ -112,7 +112,6 @@ def test_smuggler_win_chances_north():
     test_gamesettings.smuggler_win = False
     test_gamesettings.sec_amount_win = False 
     
-    
     #--Second scenario--#
         
     test_gamesettings.inspector =  "Diddy"
@@ -135,16 +134,15 @@ def test_smuggler_win_chances_north():
          
     #--Fourth scenario--#
     
-    test_gamesettings.smuggler =  "Berlusconi"     
+    test_gamesettings.inspector =  "Berlusconi"     
     test_gamesettings.smuggler_win = True
     
     test_banks.money_update_as_northern_inspector()
     amounts_updates_list.append(test_banks.northern_country_personal_bankaccounts[test_gamesettings.inspector])
-    
+
     test_gamesettings.smuggler_win = False
         
     winning_chances_north_inspector = len([ amounts for amounts in amounts_updates_list if amounts > inital_val])
 
-    
     assert winning_chances_north_inspector == 1
     assert num_of_scenarios == 4

@@ -146,7 +146,7 @@ def test_smuggler_win_chances_north():
     test_gamesettings.smuggler_win = False
         
     winning_chances_north_smuggler = len([ amounts for amounts in amounts_updates_list if amounts > inital_val])
-
+    
     
     assert winning_chances_north_smuggler == 3
     assert num_of_scenarios == 4

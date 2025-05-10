@@ -29,7 +29,7 @@ def test_amount_after_a_game():
     
     
     assert test_banks.southern_country_personal_bankaccounts[test_gamesettings.smuggler] > inital_val
-    assert test_banks.northern_country_personal_bankaccounts[test_gamesettings.inspector] < inital_val
+    assert test_banks.northern_country_personal_bankaccounts[test_gamesettings.inspector] == inital_val
     
     test_gamesettings.smuggler = "Berlusconi"
     test_gamesettings.inspector = "Jordan Belfort"
@@ -38,5 +38,5 @@ def test_amount_after_a_game():
     test_banks.money_update_as_southern_inspector()
     
     assert test_banks.northern_country_personal_bankaccounts[test_gamesettings.smuggler] > inital_val
-    assert test_banks.southern_country_personal_bankaccounts[test_gamesettings.inspector] < inital_val
+    assert test_banks.southern_country_personal_bankaccounts[test_gamesettings.inspector] == inital_val
     

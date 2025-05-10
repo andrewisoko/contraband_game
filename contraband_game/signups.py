@@ -149,20 +149,21 @@ class SignUps:
             # Nickname contains the first three character of a name and the rest is made by the entire surname.
             self.nickname = self.name[0:3] + self.surname  
 
-            # this contains all the upper case letters
-            letters_uppercase = string.ascii_uppercase
+            # this contains all the pucntuation letters
+            punctuations = string.punctuation[0:20]
             
             # this tuple contains lower case, punctuations and numbers.
-            my_tuppy = (string.ascii_lowercase,string.punctuation,string.digits)
+            my_tuppy = (string.ascii_lowercase,string.ascii_uppercase,string.digits)
             
             # mergin the upper case letters with the rest of the tuple
-            code_chars = letters_uppercase.join(my_tuppy)
+            code_chars = punctuations.join(my_tuppy)
             
             # accessing each character in the list
             list_char = [char for char in code_chars]
             
             # shuffling the list
             random.shuffle(list_char)
+              
             
             empty = ""
              # merging the empty string with the tuple (of the list) to have an array of random characters

@@ -1,5 +1,5 @@
 import json
-from   signups import *
+from   .signups import *
 import pkg_resources
 
 
@@ -37,8 +37,8 @@ class Teams:
       if self.player_list_values[0] == "player0": 
           self.player_list_values.pop(0) 
       
-      # Creating an index paired with a value for the first 4 items in the list.
-      for index_list_value, value in enumerate(self.player_list_values[:4]): 
+      # Creating an index paired with a value for the First 4 items in the list.
+      for index_list_value, value in enumerate(self.player_list_values[ :4]): 
           
            # Assigning values to initialised instance attribute matched with index of list item.
           setattr(self, f"player{index_list_value + 1}", value)

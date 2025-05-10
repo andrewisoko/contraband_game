@@ -1,5 +1,4 @@
-from teams import Teams
-from signups import SignUps
+from  .teams import Teams
 from getpass import getpass
 import random
 import time
@@ -68,7 +67,7 @@ class GameSettings:
             
             # This will be used to update the money in the bank account.
             self.sec_amount_win = True
-            print(f"The smuggler {self.smuggler} obtained {self.security_amount:,} £ of inspector's security amount.")
+            print(f"The smuggler {self.smuggler} obtained {self.security_amount:,} £ of inspector's security amount as he/she smuggled {self.smuggling_amount:,}£.")
             
         # If statement amount higher or equal the smuggler amount the inspector wins  
         elif self.statement_amount >= self.smuggling_amount:

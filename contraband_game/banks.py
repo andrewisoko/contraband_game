@@ -1,9 +1,12 @@
 
-from gamesettings import GameSettings
-from signups import SignUps
-from teams import Teams
+from .gamesettings import GameSettings
+from .signups import SignUps
+from .teams import Teams
 import random
 from getpass import getpass
+
+
+
 class Banks:
     
     

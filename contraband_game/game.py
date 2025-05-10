@@ -1,7 +1,9 @@
-from teams import Teams
-from gamesettings import GameSettings
-from banks import Banks
+from  .teams import Teams
+from  .gamesettings import GameSettings
+from  .banks import Banks
 import random
+import json
+import pkg_resources
 
 
 
@@ -147,6 +149,7 @@ class Game():
     def game_aftermath(self):
         
         """Aftermath of the game, deducting the initial loans, spitting remaining money inside atms to the opposing country, declaring the player with the most money and the ones in dept"""
+
         
         self.northern_atm_aftermath = self.final_amount_northern_atm
         self.southern_atm_aftermath = self.final_amount_southern_atm
@@ -224,7 +227,14 @@ class Game():
                 print(f"After the end of the round the players in debt are {losers} with {debt_money}")
               
         print(f" the highest earner of the round is {name_highest_earner} with an amount of {highest_amount:,}£") 
+        
+        
+        players_json= pkg_resources.resource_filename("contraband_game","data/players.json")
+        
+        new_list = [{"player0": "player0"}]
          
-             
+        with open(players_json,"w") as file:
+            json.dump(new_list, file, indent=4)
+                    
 
 
