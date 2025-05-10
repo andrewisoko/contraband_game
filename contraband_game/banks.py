@@ -187,13 +187,7 @@ class Banks:
             
             # Condition occurring in a declared PASS scenario.   
             elif self.game_settings.inspector == name_key and self.game_settings.smuggler_win is True:
-                
-                current_val = self.northern_country_personal_bankaccounts[name_key]
-        
-                ammount_lost = self.game_settings.smuggling_amount
-                
-                # Assigning a new value by adding the previous value with the smuggling amount.
-                self.northern_country_personal_bankaccounts[name_key] = current_val - ammount_lost 
+                pass
                 
             else:
                 pass  
@@ -349,13 +343,9 @@ class Banks:
                 
          
             elif self.game_settings.inspector == name_key and self.game_settings.smuggler_win is True:
+                pass
                 
-                current_val = self.southern_country_personal_bankaccounts[name_key]
-        
-                ammount_lost = self.game_settings.smuggling_amount
-                
-                self.southern_country_personal_bankaccounts[name_key] = current_val - ammount_lost 
-                
+      
             else:
                 pass  
 
@@ -383,15 +373,14 @@ class Banks:
                             elif current_val >= 100_000_000:
                                 self.northern_atm_bankaccounts[name_key] = current_val - self.game_settings.smuggling_amount
                             else: 
-                                if self.game_settings.smuggling_amount not in range(0,current_val+1):
-                                    while True:
-                                        try_again_user = int(getpass("Amount smuggled exceeds the atm resources, please try again: "))
-                                        if try_again_user in range(0,current_val+1):
-                                            self.game_settings.smuggling_amount = try_again_user
+                                while True:
+                                    if self.game_settings.smuggling_amount in range(0,current_val+1):
                                             self.northern_atm_bankaccounts[name_key] = current_val - self.game_settings.smuggling_amount
                                             break
-                                else:
-                                    self.northern_atm_bankaccounts[name_key] = current_val - self.game_settings.smuggling_amount                 
+                                    else: 
+                                        self.game_settings.smuggling_amount = int(getpass("Amount smuggled exceeds the atm resources, please try again: "))
+                                     
+                                          
                 else:    
                     
                     if name_key == self.game_settings.smuggler:
@@ -449,14 +438,12 @@ class Banks:
                             elif current_val >= 100_000_000:
                                 self.southern_atm_bankaccounts[name_key] = current_val - self.game_settings.smuggling_amount
                             else: 
-                                if self.game_settings.smuggling_amount not in range(0,current_val+1):
-                                    while True:
-                                        try_again_user = int(getpass("Amount smuggled exceeds the atm resources, please try again: "))
-                                        if try_again_user in range(0,current_val+1):
-                                            self.game_settings.smuggling_amount = try_again_user
-                                            self.southern_atm_bankaccounts[name_key] = current_val - self.game_settings.smuggling_amount
-                                            break
-                                 
+                                while True:
+                                    if self.game_settings.smuggling_amount in range(0,current_val+1):
+                                        self.southern_atm_bankaccounts[name_key] = current_val - self.game_settings.smuggling_amount
+                                        break
+                                    else:
+                                        self.game_settings.smuggling_amount = int(getpass("Amount smuggled exceeds the atm resources, please try again: "))
                 else:                                
                     if name_key == self.game_settings.smuggler:
                         
