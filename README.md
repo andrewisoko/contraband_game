@@ -46,8 +46,6 @@ Have fun.
 
 *  In case an issue arises with the test functionality, it is suggested to activate the virtual environment inside the tests directory for then returning back to the previous directory (cd..) to ensure the proper usage of pytest. 
 
-* Found some issues with the pkg_resources package. used the pkg_resource function as a value of an instance attribute, thinking that I could reuse the instance across different functions of the class but it did not work, therefore forced to repeat some code.
-
 * If downloading the repository, and wanting to try the sign up process do not add backslash found in user_data_json file generated code. Omit it from the generated code when past it to the terminal.
 
 

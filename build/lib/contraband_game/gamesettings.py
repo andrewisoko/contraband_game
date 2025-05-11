@@ -20,6 +20,7 @@ class GameSettings:
         self.smuggler_win = False
         self.sec_amount_win = False
         self.doubt_investigation  = False
+        self.choice_extremes = None
        
         
        
@@ -33,7 +34,7 @@ class GameSettings:
             try:
                 # If it's the default player turn a random statement amount will be generated.
                 if self.inspector != self.teams.player1 and self.inspector != self.teams.player2 and self.inspector != self.teams.player3 and self. inspector!= self.teams.player4:
-                    self.statement_amount = int(random.randrange(1,100_000_000))
+                    self.statement_amount = 100_000_000
                     
                     self.security_amount = self.statement_amount / 2
                     
@@ -59,7 +60,7 @@ class GameSettings:
         """All the possible outcome from the doubt statement"""   
         
         # Some suspance on the decision.
-        time.sleep(15)
+        time.sleep(7)
         print(f"the inspector {self.inspector} declared amount is equal to {self.statement_amount:,}£ inside the trunk")    
     
         # If smuggler has no money inside the trunk and the statement amount from the inspector exceeds the empty trunk the smuggler wins and gets the security amount        
@@ -116,7 +117,7 @@ class GameSettings:
     
             
             # slowing down the pace of the output
-            time.sleep(15)
+            time.sleep(5)
             print("Call PASS if you believe the smuggler is carrying no money. Call DOUBT if you believe money are carried by the smuggler")
             
             # Adding a bit of suspance before the decision.
@@ -151,14 +152,13 @@ class GameSettings:
         
         """The smuggler's action"""
         
+        self.choice_extremes = [0,100_000_000]
+        
         while True: 
             try:
                 # The if statement declares that every non user/player place their amount with the random function.
                 if self.smuggler != self.teams.player1 and self.smuggler != self.teams.player2 and self.smuggler != self.teams.player3 and self.smuggler != self.teams.player4:
-                    self.smuggling_amount = int(random.randrange(1,100_000_000))
-                    
-                    # delayed output to make it more fluid
-                    # time.sleep(10)
+                    self.smuggling_amount = int(random.choice(self.choice_extremes))
                     
                     # The print statement masks the smuggling amount of the default player
                     print("*************")

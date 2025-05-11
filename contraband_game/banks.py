@@ -75,7 +75,7 @@ class Banks:
                         
                             
                         if self.game_settings.inspector != self.team_list.player1 and self.game_settings.inspector != self.team_list.player2 and self.game_settings.inspector != self.team_list.player3 and self.game_settings.inspector != self.team_list.player4:
-                            statement_amount_attemmpts = float(random.randrange(1,100_000_000))
+                            statement_amount_attemmpts = float(random.choice(self.game_settings.choice_extremes))
                             
                             if statement_amount_attemmpts / 2 < personal_bankaccount:
                                 self.game_settings.statement_amount = statement_amount_attemmpts
@@ -245,7 +245,7 @@ class Banks:
                         print("the amount cannot be backed by your security amount. Please try again")
                             
                         if self.game_settings.inspector != self.team_list.player1 and self.game_settings.inspector != self.team_list.player2 and self.game_settings.inspector != self.team_list.player3 and self.game_settings.inspector != self.team_list.player4:
-                            statement_amount_attemmpts = float(random.randrange(1,100_000_000))
+                            statement_amount_attemmpts = float(random.choice(self.game_settings.choice_extremes))
                             
                             if statement_amount_attemmpts / 2 < personal_bankaccount:
                                 self.game_settings.statement_amount = statement_amount_attemmpts
