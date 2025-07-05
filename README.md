@@ -57,10 +57,19 @@ pip install setuptools
 1) Downloading python is required to play the game in your command prompt here is the link for the tutorial https://wiki.python.org/moin/BeginnersGuide/Download
 
 2) Run "pip install setuptools" in your command prompt for configuring the required modules.
+```
+pip install setuptools
+```
 
 3) Run "pip install contraband_game" to install the package.
+```
+pip install contraband_game
+```
 
 4) Run  "python -m contraband_game.main" to start the game.
+```
+python -m contraband_game.main
+```
 
 
 # Additionl notes
