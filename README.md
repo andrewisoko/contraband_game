@@ -31,11 +31,13 @@ Have fun.
 
 1) The tests are not found in the packages, if wanting to try the tests it is advised to download the entire repository.
 
-2) "pip install setuptools" 
+```
+pip install setuptools
+```
 
-3) It is recquired to activate the vritual environment to run the tests.
+2) It is recquired to activate the vritual environment to run the tests.
 
-4) Simply insert "pytest" and run it in the terminal.
+3) Simply insert "pytest" and run it in the terminal.
 
 
 
