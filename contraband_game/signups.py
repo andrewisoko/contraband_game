@@ -37,7 +37,7 @@ class SignUps:
             self.data_to_append.append(arg) 
       else:
        # The dictionary comes from the dict credential function 
-       self.data_to_append.append(self.user_dict) 
+       self.data_to_append.append(self.user_cred) 
          
       with open (filename,"w") as file:
         # Writing the new data in the json file once it has been appended with the variable instance of the json list
@@ -65,7 +65,7 @@ class SignUps:
     read_data_for_players = self.json_read_data(pkg_resources.resource_filename('contraband_game', 'data/players.json'))
        
 
-    self.json_user_data_list = [values for dictionaries in read_data_for_signin for values in dictionaries.values()] 
+    self.json_user_data = [values for dictionaries in read_data_for_signin for values in dictionaries.values()] 
  
     self.players_json_list = [value_players for dictionaries_players in read_data_for_players for value_players in dictionaries_players.values()] 
     
@@ -75,10 +75,10 @@ class SignUps:
       
     else:
       
-      if self.nickname_signin in self.json_user_data_list and self.code_signin in self.json_user_data_list:
+      if self.nickname_signin in self.json_user_data and self.code_signin in self.json_user_data:
     
-          index1 = self.json_user_data_list.index(self.nickname_signin) 
-          index2 = self.json_user_data_list.index(self.code_signin)
+          index1 = self.json_user_data.index(self.nickname_signin) 
+          index2 = self.json_user_data.index(self.code_signin)
           
           # This will avoid accessing the game with credentials deriving from two different account but still present in the json list
           if index1 + 1 == index2: 
@@ -106,10 +106,10 @@ class SignUps:
         self.email_address = input("email: ")
         
         read_jsondata_for_email = self.json_read_data(pkg_resources.resource_filename('contraband_game', 'data/user_data.json'))  
-        json_data_list2 = [values for dictionaries in read_jsondata_for_email for values in dictionaries.values()] 
+        json_data2 = [values for dictionaries in read_jsondata_for_email for values in dictionaries.values()] 
         
          # Checking requirements needed for an email 
-        if "@" in self.email_address and "." in self.email_address and self.email_address not in json_data_list2:
+        if "@" in self.email_address and "." in self.email_address and self.email_address not in json_data2:
           print("Succesful sign up")
           break
         
@@ -119,12 +119,12 @@ class SignUps:
           
            
     
-  def dict_credentials(self) -> str: 
+  def user_credentials(self) -> str: 
         
       """Data where each user generated credentials are stored"""
       
       
-      self.user_dict = {"nickname": self.nickname,
+      self.user_cred = {"nickname": self.nickname,
                   "code": self.code,
                   "email": self.email_address,
                   }
@@ -141,27 +141,20 @@ class SignUps:
         
         # Instead of checking name and surname that might be homonym, this checks if email is already in the json list suggesting a creation of a previous account.
         if self.email_address != None and self.email_address in game_list_data_instance:
-          
-            # preventing creation of multiple accounts
             print("Account already exists")
     
         else:
-            # Nickname contains the first three character of a name and the rest is made by the entire surname.
             self.nickname = self.name[0:3] + self.surname  
 
-            # this contains all the pucntuation letters
             punctuations = string.punctuation[0:20]
-            
-            # this tuple contains lower case, punctuations and numbers.
+        
             my_tuppy = (string.ascii_lowercase,string.ascii_uppercase,string.digits)
-            
-            # mergin the upper case letters with the rest of the tuple
+       
             code_chars = punctuations.join(my_tuppy)
             
-            # accessing each character in the list
+      
             list_char = [char for char in code_chars]
-            
-            # shuffling the list
+        
             random.shuffle(list_char)
               
             
@@ -230,7 +223,7 @@ class SignUps:
         self.game_generated_credentials()  
         
         # creating the dictionary which will be passed as an argument in the json_append_data function.
-        self.dict_credentials()
+        self.user_credentials()
         # Adding dict_credentials in the json_user_data file.
         self.json_append_data(pkg_resources.resource_filename('contraband_game', 'data/user_data.json'))
         
@@ -245,7 +238,7 @@ class SignUps:
               self.sign_up()
               self.game_generated_credentials() 
               
-              self.dict_credentials()
+              self.user_credentials()
               self.json_append_data(pkg_resources.resource_filename('contraband_game', 'data/user_data.json'))
               count_signups += 1
               print(f"{count_signups} player/s logged in")

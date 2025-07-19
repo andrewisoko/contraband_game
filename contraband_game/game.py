@@ -11,22 +11,22 @@ class Game():
     
     def __init__(self):
         
-        self.set_list = None
+        self.unrepeated_sequence = None
         self.game = None
     
     
-    def random_player_set(self,list_par):
+    def random_player_set(self,players):
    
         
         while True:
-            choice = random.choice(list_par)
+            choice = random.choice(players)
             
-            if choice not in self.set_list:
-                self.set_list.add(choice)
+            if choice not in self.unrepeated_sequence:
+                self.unrepeated_sequence.add(choice)
                 return choice
             
-            elif len(self.set_list) == 10:
-                self.set_list.clear()
+            elif len(self.unrepeated_sequence) == 10:
+                self.unrepeated_sequence.clear()
                 continue
             else:
                 continue
@@ -36,7 +36,7 @@ class Game():
     
         """General game setting, bare in mind the money are smuggled with a trunk but it is not in this game"""
         
-        self.set_list = set()
+        self.unrepeated_sequence = set()
         
         # Teams class instance where the log in of the gamer is passed as an argument
         teams_instance = Teams(sign_in)
@@ -204,8 +204,8 @@ class Game():
         print(f" SOUTHERN COUNTRY FINAL PERSONAL AMOUNT:{self.southern_personal_account_aftermath} £ \n the additional amount is derived from the money not smuggled in northern country atm")
            
     
-        united_countries_dicts = self.northern_personal_account_aftermath
-        united_countries_dicts.update(self.southern_personal_account_aftermath)
+        both_country = self.northern_personal_account_aftermath
+        both_country.update(self.southern_personal_account_aftermath)
         
         name_highest_earner = ""
         losers = ""
@@ -213,16 +213,16 @@ class Game():
         debt_money = 0
     
         
-        for key_dicts,value_dicts in united_countries_dicts.items(): 
-            all_values.append(value_dicts)
+        for keys,values in both_country.items(): 
+            all_values.append(values)
             sorted_all_values = sorted(all_values)
             
-            if max(sorted_all_values) == value_dicts: 
-               name_highest_earner = key_dicts
-               highest_amount = value_dicts
-            if value_dicts < 0:
-                losers = key_dicts
-                debt_money = value_dicts
+            if max(sorted_all_values) == values: 
+               name_highest_earner = keys
+               highest_amount = values
+            if values < 0:
+                losers = keys
+                debt_money = values
                 
                 print(f"After the end of the round the players in debt are {losers} with {debt_money}")
               
