@@ -31,11 +31,13 @@ Have fun.
 
 1) The tests are not found in the packages, if wanting to try the tests it is advised to download the entire repository.
 
-2) "pip install setuptools" 
+```
+pip install setuptools
+```
 
-3) It is recquired to activate the vritual environment to run the tests.
+2) It is recquired to activate the vritual environment to run the tests.
 
-4) Simply insert "pytest" and run it in the terminal.
+3) Simply insert "pytest" and run it in the terminal.
 
 
 
@@ -55,10 +57,19 @@ Have fun.
 1) Downloading python is required to play the game in your command prompt here is the link for the tutorial https://wiki.python.org/moin/BeginnersGuide/Download
 
 2) Run "pip install setuptools" in your command prompt for configuring the required modules.
+```
+pip install setuptools
+```
 
 3) Run "pip install contraband_game" to install the package.
+```
+pip install contraband_game
+```
 
 4) Run  "python -m contraband_game.main" to start the game.
+```
+python -m contraband_game.main
+```
 
 
 # Additionl notes
